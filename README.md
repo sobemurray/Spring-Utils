@@ -25,4 +25,7 @@ Initial project creation
 #### SU-5
 Initial migration and re-packaging
 
+## 0.0.2
+##### upcoming
+
 -----------------------------
