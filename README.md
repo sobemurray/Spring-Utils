@@ -18,14 +18,16 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 # Releases
 
+## 0.0.2
+##### upcoming
+#### SU-5
+Added in the Jackson and Swagger dependent classes
+
 ## 0.0.1
 ##### 05-03-2024
 #### SU-1
 Initial project creation
 #### SU-5
 Initial migration and re-packaging
-
-## 0.0.2
-##### upcoming
 
 -----------------------------
