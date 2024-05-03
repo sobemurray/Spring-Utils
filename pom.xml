@@ -1,0 +1,136 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.sobetech.spring</groupId>
+	<artifactId>utils</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Spring Utilities</name>
+	<description>Spring Beans that would be useful in any Spring project. This will replace SDJK, JavaUtil and FileUtil. It would be easier to strip out the Spring in the future than to add it in</description>
+	<inceptionYear>2024</inceptionYear>
+
+	<organization>
+		<name>Sobetech Holdings LLC</name>
+		<url>http://sobetech.com</url>
+	</organization>
+
+	<!-- Not necessary for Spring Boot apps -->
+	<packaging>jar</packaging>
+
+	<developers>
+		<developer>
+			<name>John Murray</name>
+			<email>john.murray@sobetech.com</email>
+			<organization>Sobetech</organization>
+			<timezone>-5</timezone>
+		</developer>
+	</developers>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.release>21</maven.compiler.release>
+		<maven.compiler.target>21</maven.compiler.target>
+		<java.version>21</java.version>
+		<junit.version>5.10.1</junit.version>
+        <downloadSources>true</downloadSources>
+        <downloadJavadocs>true</downloadJavadocs>
+        <spring.version>6.1.6</spring.version>
+	</properties>
+
+	<dependencies>
+		<!-- Internal Library Dependencies -->
+		
+		<!-- External Library Dependencies -->
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.13</version>
+        </dependency>
+
+		<!-- Test Only Dependencies -->
+		<dependency>
+		    <groupId>org.junit.jupiter</groupId>
+		    <artifactId>junit-jupiter-api</artifactId>
+		    <version>${junit.version}</version> 
+		    <scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+    			<version>3.12.1</version>
+				<configuration>
+                	<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+				    <compilerArgs>
+				        <arg>-Xlint:unchecked</arg>
+				    </compilerArgs>
+            	</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.2</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<id>enforce-no-snapshots</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireReleaseDeps>
+									<message>No Snapshots Allowed!</message>
+								</requireReleaseDeps>
+							</rules>
+							<fail>true</fail>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                 <!-- Or the latest version -->
+                <configuration>
+                    <!-- Configuration options -->
+                </configuration>
+            </plugin>
+		</plugins>
+	</build>
+
+    <distributionManagement>
+        <repository>
+            <id>AWS-Code-Artifact-Sobetech-Java-Releases</id>
+            <name>AWS CodeArtifact Sobetech Java Releases</name>
+            <url>https://sobetech-070193291827.d.codeartifact.us-east-1.amazonaws.com/maven/Java-Releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>AWS-Code-Artifact-Sobetech-Java-Snapshots</id>
+            <name>AWS CodeArtifact Sobetech Java Snapshots</name>
+            <url>https://sobetech-070193291827.d.codeartifact.us-east-1.amazonaws.com/maven/Java-Snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+	<scm>
+		<connection>scm:git:https://github.com/sobemurray/Spring-Utils.git</connection>
+		<developerConnection>scm:git:https://github.com/sobemurray/Spring-Utils.git</developerConnection>
+		<url>https://github.com/sobemurray/Spring-Utils</url>
+	</scm>
+</project>
