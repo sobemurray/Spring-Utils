@@ -12,7 +12,7 @@
 package com.sobetech.common.enums;
 
 /**
- * Type of query value that will be used in MongoDB
+ * Type of query value that will be used in any database query
  *
  * @author Nicholas.Peterson
  *

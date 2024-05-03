@@ -20,20 +20,36 @@ import java.io.Serializable;
  *
  * @since Jan 26, 2024
  *
+ * @param <I> The object used as the ID for the user. Number, UUID, String, etc.
  */
-public interface CommonUser extends Serializable
+public interface CommonUser<I extends Object> extends Serializable
 {
+
+	/**
+	 * Get the ID for this user
+	 * 
+	 * @return The user's ID
+	 */
+	I getId();
+	
+	/**
+	 * The user's email address
+	 * 
+	 * @return The ID for this user
+	 */
 	String getEmail();
 	
-	String getAgencyId();
-	
-	String getAgencyName();
-	
+	/**
+	 * The name to be displayed for this user
+	 * 
+	 * @return The name to be displayed for this user
+	 */
 	String getDisplayName();
-	
-	CommonRole getRole();
 
-	Object getId();
-
-	Object getName();
+	/**
+	 * The user's name
+	 * 
+	 * @return The user's name
+	 */
+	String getName();
 }

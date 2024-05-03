@@ -53,7 +53,7 @@ public class NumberOrStringValue
 	 * Checks this value to see if the value in the object has a numeric value. If for some reason
 	 * there are entries in the value AND textValue attribute, then it will be deemed as numeric
 	 * 
-	 * @return <tt>true</tt> if the value attribute is not null. Zero is a valid numeric value
+	 * @return <code>true</code> if the value attribute is not null. Zero is a valid numeric value
 	 */
 	public boolean isNumericValue()
 	{

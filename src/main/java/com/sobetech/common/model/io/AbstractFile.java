@@ -18,12 +18,17 @@ import java.util.Optional;
 import com.sobetech.common.model.string.TextLine;
 
 /**
- * An abstract class to represent a text file. While this might seem unnecessary it creates the opportunity
+ * An abstract class to represent an text file. While this might seem unnecessary it creates the opportunity
  * to consolidate many methods and operations into one place
  *
  * @author John Murray
  *
  * @since 0.3.1
+ *
+ * @param <L> Any class that is a TextLine class or extension of it
+ * 
+ * @see CSVFile
+ * @see TextFile
  *
  */
 public abstract class AbstractFile <L extends TextLine>
@@ -67,7 +72,7 @@ public abstract class AbstractFile <L extends TextLine>
 	 * Add a new line to the end of the file
 	 * 
 	 * @param newLine The new line to add to the file
-	 * @return <tt>true</tt> if the new line has been added. This will also return <tt>false</tt> if the newLine is null
+	 * @return <code>true</code> if the new line has been added. This will also return <code>false</code> if the newLine is null
 	 */
 	public boolean addLine(L newLine)
 	{
@@ -89,7 +94,8 @@ public abstract class AbstractFile <L extends TextLine>
 	 * specified is out of bounds, the line will be added to the end of the file
 	 * 
 	 * @param newLine The new line to add to the file
-	 * @return <tt>true</tt> if the new line has been added. This will also return <tt>false</tt> if the newLine is null
+	 * @param index The index location to add this line
+	 * @return <code>true</code> if the new line has been added. This will also return <code>false</code> if the newLine is null
 	 */
 	public boolean addLine(L newLine, int index)
 	{

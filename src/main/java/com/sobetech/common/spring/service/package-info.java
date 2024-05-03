@@ -11,15 +11,11 @@
  */
 
 /**
- * Model objects used in database communications. They can be but not exclusively for the following:
- * 
- * Configuration
- * Statement creation
- * SQL creation
+ * Common and generic Spring service that can be used in any application
  *
  * @author John Murray
  *
  * @since May 1, 2024
  *
  */
-package com.sobetech.common.model.sql;
+package com.sobetech.common.spring.service;

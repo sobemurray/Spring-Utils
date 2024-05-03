@@ -32,9 +32,11 @@ import java.io.IOException;
  */
 public class CustomStateDeserializer extends StdDeserializer<State>
 {
-
 	private static final long serialVersionUID = -8913678073665695706L;
 
+	/**
+	 * Default constructor
+	 */
 	public CustomStateDeserializer()
 	{
 		super(State.class);

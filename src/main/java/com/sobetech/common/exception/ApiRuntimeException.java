@@ -236,6 +236,8 @@ public class ApiRuntimeException extends RuntimeException
 	}
 
 	/**
+	 * The message for this exception
+	 * 
 	 * @return the message
 	 */
 	@Override
@@ -245,6 +247,8 @@ public class ApiRuntimeException extends RuntimeException
 	}
 
 	/**
+	 * The CodedError for this exception
+	 * 
 	 * @return the codedError
 	 */
 	public CodedError getCodedError() 
@@ -253,6 +257,8 @@ public class ApiRuntimeException extends RuntimeException
 	}
 
 	/**
+	 * The errorDisplayParameters for this exception
+	 * 
 	 * @return the errorDisplayParameters
 	 */
 	public Object[] getErrorDisplayParameters() 
@@ -261,6 +267,8 @@ public class ApiRuntimeException extends RuntimeException
 	}
 
 	/**
+	 * The errorResolutionParameters for this exception
+	 * 
 	 * @return the errorResolutionParameters
 	 */
 	public Object[] getErrorResolutionParameters() 

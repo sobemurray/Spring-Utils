@@ -54,7 +54,7 @@ public interface CodedError
 	 * passed, false is returned
 	 * 
 	 * @param codedError The CodedError to check for equality
-	 * @return <tt>true</tt> only of if the codes are equal
+	 * @return <code>true</code> only of if the codes are equal
 	 */
 	default boolean equals(CodedError codedError)
 	{

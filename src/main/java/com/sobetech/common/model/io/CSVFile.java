@@ -23,9 +23,8 @@ import com.sobetech.common.model.string.CSVLine;
  */
 public class CSVFile extends AbstractFile<CSVLine>
 {
-
 	/**
-	 * 
+	 * Default constructor
 	 */
 	public CSVFile()
 	{

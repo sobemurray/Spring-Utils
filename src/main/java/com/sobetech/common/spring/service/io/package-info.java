@@ -11,15 +11,14 @@
  */
 
 /**
- * Model objects used in database communications. They can be but not exclusively for the following:
+ * Services to do I/O functionality. Examples
  * 
- * Configuration
- * Statement creation
- * SQL creation
+ * File read/write
+ * File parsing
  *
  * @author John Murray
  *
  * @since May 1, 2024
  *
  */
-package com.sobetech.common.model.sql;
+package com.sobetech.common.spring.service.io;

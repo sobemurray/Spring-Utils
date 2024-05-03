@@ -122,8 +122,8 @@ public class Tokenizer implements Enumeration<String>
 
     /**
      * Tests if there are more tokens available from this tokenizer's string. If
-     * this method returns <tt>true</tt>, then a subsequent call to
-     * <tt>nextToken</tt> with no argument will successfully return a token.
+     * this method returns <code>true</code>, then a subsequent call to
+     * <code>nextToken</code> with no argument will successfully return a token.
      * 
      * @return <code>true</code> if and only if there is at least one token in
      *         the string after the current position; <code>false</code>
@@ -138,7 +138,6 @@ public class Tokenizer implements Enumeration<String>
      * Returns the next token from this string tokenizer.
      * 
      * @return The next token from this string tokenizer.
-     * @exception NoSuchElementException If there are no more tokens in this tokenizer's string.
      */
     public String nextToken()
     {
@@ -184,8 +183,6 @@ public class Tokenizer implements Enumeration<String>
      * <code>Enumeration</code> interface.
      * 
      * @return the next token in the string.
-     * @exception NoSuchElementException
-     *                if there are no more tokens in this tokenizer's string.
      * @see java.util.Enumeration
      * @see java.util.StringTokenizer#nextToken()
      */

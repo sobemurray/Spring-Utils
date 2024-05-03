@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import com.sobetech.common.enums.CodedEnum;
 
 /**
- * A Jackson serliazer to use for CodedEnum objects
+ * A Jackson serializer to use for CodedEnum objects
  *
  * @author John.Murray
  *
@@ -30,6 +30,9 @@ import com.sobetech.common.enums.CodedEnum;
  */
 public class CodedEnumSerializer extends StdSerializer<CodedEnum>
 {
+	/**
+	 * Default constructor
+	 */
 	public CodedEnumSerializer() 
 	{
 		super(CodedEnum.class);

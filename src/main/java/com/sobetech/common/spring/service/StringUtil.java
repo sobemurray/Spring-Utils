@@ -38,11 +38,11 @@ public class StringUtil
     /**
      * 
      * Safely compares 2 String objects for equality regardless if the either of the arguments are null. If both
-     * arguments are null, then the method will return <tt>true</tt>
+     * arguments are null, then the method will return <code>true</code>
      *
      * @param string1 The first String argument for comparison
      * @param string2 The second String argument for comparison
-     * @return <tt>true</tt> if the strings are equal or both null. Otherwise <tt>false</tt>
+     * @return <code>true</code> if the strings are equal or both null. Otherwise <code>false</code>
      *
      */
     public boolean nullSafeEquals(String string1, String string2)
@@ -53,12 +53,12 @@ public class StringUtil
     /**
      * 
      * Safely compares 2 String objects for equality regardless if the either of the arguments are null. If both
-     * arguments are null, then the method will return <tt>true</tt>
+     * arguments are null, then the method will return <code>true</code>
      *
      * @param string1 The first String argument for comparison
      * @param string2 The second String argument for comparison
-     * @param trimStrings If set to <tt>true</tt> the strings will be trimmed before doing the comparison
-     * @return <tt>true</tt> if the strings are equal or both null. Otherwise <tt>false</tt>
+     * @param trimStrings If set to <code>true</code> the strings will be trimmed before doing the comparison
+     * @return <code>true</code> if the strings are equal or both null. Otherwise <code>false</code>
      *
      */
     public boolean nullSafeEquals(String string1, String string2, boolean trimStrings)
@@ -89,11 +89,11 @@ public class StringUtil
     /**
      * 
      * Safely compares 2 String objects for case-less equality regardless if the either of the arguments are null. If both
-     * arguments are null, then the method will return <tt>true</tt>
+     * arguments are null, then the method will return <code>true</code>
      *
      * @param string1 The first String argument for comparison
      * @param string2 The second String argument for comparison
-     * @return <tt>true</tt> if the strings are equal while ignoring case or both null. Otherwise <tt>false</tt>
+     * @return <code>true</code> if the strings are equal while ignoring case or both null. Otherwise <code>false</code>
      *
      */
     public boolean nullSafeEqualsIgnoreCase(String string1, String string2)
@@ -105,12 +105,12 @@ public class StringUtil
     /**
      * 
      * Safely compares 2 String objects for case-less equality regardless if the either of the arguments are null. If both
-     * arguments are null, then the method will return <tt>true</tt>
+     * arguments are null, then the method will return <code>true</code>
      *
      * @param string1 The first String argument for comparison
      * @param string2 The second String argument for comparison
-     * @param trimStrings If set to <tt>true</tt> the strings will be trimmed before doing the comparison
-     * @return <tt>true</tt> if the strings are equal while ignoring case or both null. Otherwise <tt>false</tt>
+     * @param trimStrings If set to <code>true</code> the strings will be trimmed before doing the comparison
+     * @return <code>true</code> if the strings are equal while ignoring case or both null. Otherwise <code>false</code>
      *
      */
     public boolean nullSafeEqualsIgnoreCase(String string1, String string2, boolean trimStrings)
@@ -142,7 +142,7 @@ public class StringUtil
      * Checks to see if a string is all lower case
      * 
      * @param string The string to check
-     * @return <tt>true</tt> if the string is not null and it is all in lower case
+     * @return <code>true</code> if the string is not null and it is all in lower case
      */
     public boolean isLowerCase(String string)
     {
@@ -158,7 +158,7 @@ public class StringUtil
      * Checks to see if a string is all upper case
      * 
      * @param string The string to check
-     * @return <tt>true</tt> if the string is not null and it is all in upper case
+     * @return <code>true</code> if the string is not null and it is all in upper case
      */
     public boolean isUpperCase(String string)
     {
@@ -175,7 +175,7 @@ public class StringUtil
      * so if the input parameter is null then it will return false instead of throwing an exception
      * 
      * @param string The string to check
-     * @return <tt>true</tt> if the string can be converted into a Java Double. Otherwise <tt>false</tt>
+     * @return <code>true</code> if the string can be converted into a Java Double. Otherwise <code>false</code>
      */
     public boolean isNumeric(String string)
     {
@@ -200,8 +200,7 @@ public class StringUtil
      * so if the input parameter is null then it will return false instead of throwing an exception
      * 
      * @param string The string to check
-     * @return <tt>true</tt> if the string can be converted into a Java UUID. Otherwise <tt>false</tt>
-     * @see {@link java.util.UUID}
+     * @return <code>true</code> if the string can be converted into a Java UUID. Otherwise <code>false</code>
      */
     public boolean isUUID(String string)
     {
@@ -248,7 +247,7 @@ public class StringUtil
      * @param targetStringLength The length of the string required
      * @return A random alphabetic string targetStringLength characters long
      * 
-     * @see https://www.asciitable.com for ASCII codes
+     * @see <a href="https://asciitable.com">https://www.asciitable.com for ASCII codes</a>
      */
     public String getRandomAlphabeticString(int targetStringLength)
     {
@@ -273,7 +272,7 @@ public class StringUtil
      * @param targetStringLength The length of the string required
      * @return A random alphanumeric string targetStringLength characters long
      * 
-     * @see https://www.asciitable.com for ASCII codes
+     * @see <a href="https://asciitable.com">https://www.asciitable.com for ASCII codes</a>
      */
     public String getRandomAlphanumericString(int targetStringLength)
     {
@@ -323,7 +322,7 @@ public class StringUtil
 	 * 
 	 * @param stringToTest The String to test
 	 * @param validStrings An array of the valid Strings to test
-	 * @return <tt>true</tt> if the String to test equals one of the valid Strings
+	 * @return <code>true</code> if the String to test equals one of the valid Strings
 	 */
 	public boolean isOneOfTheseStrings(String stringToTest, String... validStrings)
 	{
@@ -334,9 +333,9 @@ public class StringUtil
 	 * Check a String to see if it equals one of these strings
 	 * 
 	 * @param stringToTest The String to test
-	 * @param ignoreCase If <tt>true</tt> the test will ignore case
+	 * @param ignoreCase If <code>true</code> the test will ignore case
 	 * @param validStrings An array of the valid Strings to test
-	 * @return <tt>true</tt> if the String to test equals one of the valid Strings
+	 * @return <code>true</code> if the String to test equals one of the valid Strings
 	 */
 	public boolean isOneOfTheseStrings(String stringToTest, boolean ignoreCase, String... validStrings)
 	{
@@ -373,7 +372,7 @@ public class StringUtil
 	 * 
 	 * @param stringToTest The String to test
 	 * @param validStrings An array of the valid Strings to test
-	 * @return <tt>true</tt> if the String to test does not equal one of the valid Strings
+	 * @return <code>true</code> if the String to test does not equal one of the valid Strings
 	 */
 	public boolean isNotOneOfTheseStrings(String stringToTest, String... validStrings)
 	{
@@ -384,9 +383,9 @@ public class StringUtil
 	 * Check a String to see if it does not equal one of these strings
 	 * 
 	 * @param stringToTest The String to test
-	 * @param ignoreCase If <tt>true</tt> the test will ignore case
+	 * @param ignoreCase If <code>true</code> the test will ignore case
 	 * @param validStrings An array of the valid Strings to test
-	 * @return <tt>true</tt> if the String to test does not equal one of the valid Strings
+	 * @return <code>true</code> if the String to test does not equal one of the valid Strings
 	 */
 	public boolean isNotOneOfTheseStrings(String stringToTest, boolean ignoreCase, String... validStrings)
 	{
@@ -397,7 +396,7 @@ public class StringUtil
 	 * Checks a String if it has a pattern that would translate to a boolean true
 	 * 
 	 * @param value The String to check
-	 * @return <tt>true</tt> if this String can be translated into a boolean true
+	 * @return <code>true</code> if this String can be translated into a boolean true
 	 */
 	public boolean isTrue(String value)
 	{
