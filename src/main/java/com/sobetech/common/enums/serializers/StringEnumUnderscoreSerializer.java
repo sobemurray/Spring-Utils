@@ -30,6 +30,9 @@ import com.sobetech.common.enums.StringEnum;
  */
 public class StringEnumUnderscoreSerializer extends StdSerializer<StringEnum>
 {
+	/**
+	 * Default constructor
+	 */
 	public StringEnumUnderscoreSerializer() 
 	{
 		super(StringEnum.class);

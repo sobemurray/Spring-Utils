@@ -23,11 +23,11 @@ import java.io.InputStream;
  */
 public class FastArrayInputStream extends InputStream
 {
-    protected byte[] byteBuffer = null;
+    private byte[] byteBuffer = null;
 
-    protected int count = 0;
+    private int count = 0;
 
-    protected int position = 0;
+    private int position = 0;
 
     /**
      * Constructs the input stream with a defined byte array and a count of bytes to used

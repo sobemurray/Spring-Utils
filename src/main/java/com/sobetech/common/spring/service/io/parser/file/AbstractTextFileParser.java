@@ -26,6 +26,9 @@ import java.util.Scanner;
  * @author John Murray
  *
  * @since 0.2.2
+ * 
+ * @param <O> The resulting object after the file is parsed. Since this is a quite generic parser, it is
+ * best to make this as generic as possible
  *
  */
 public abstract class AbstractTextFileParser<O extends Object> extends AbstractFileParser<O>
@@ -40,21 +43,45 @@ public abstract class AbstractTextFileParser<O extends Object> extends AbstractF
 	
 	private boolean removeTrailingWhitespace = true;
 	
+	/**
+	 * Create a parser from a File object
+	 * 
+	 * @param file The File to be parsed
+	 * @throws FileNotFoundException If the file could not be found
+	 */
 	protected AbstractTextFileParser(File file) throws FileNotFoundException
 	{
 		super(file);
 	}
 
+	/**
+	 * Create a parser from a directory and a file name
+	 * 
+	 * @param directory The directory the file is located
+	 * @param fileName The name of the file
+	 * @throws FileNotFoundException If the file could not be found
+	 */
 	protected AbstractTextFileParser(String directory, String fileName) throws FileNotFoundException
 	{
 		super(directory, fileName);
 	}
 
+	/**
+	 * Create a parser from a fully qualified file name
+	 * @param fileName The fully qualified file name
+	 * @throws FileNotFoundException FileNotFoundException If the file could not be found
+	 */
 	protected AbstractTextFileParser(String fileName) throws FileNotFoundException
 	{
 		super(fileName);
 	}
 	
+	/**
+	 * Convert a list of line Strings into an Object
+	 * 
+	 * @param stringLines The list of Strings to turn into an Object
+	 * @return The resultant Object
+	 */
 	protected abstract O convertLinesToFile(List<String> stringLines);
 	
 	/**
@@ -70,8 +97,8 @@ public abstract class AbstractTextFileParser<O extends Object> extends AbstractF
 	{
 		List<String> fileLines = scanFileLines();
 		adjustForEscapedContent(fileLines);
-		this.fileContents = convertLinesToFile(fileLines);
-		return this.fileContents;
+		setFileContents(convertLinesToFile(fileLines));
+		return getFileContents();
 	}
 	
 	/**
@@ -145,6 +172,7 @@ public abstract class AbstractTextFileParser<O extends Object> extends AbstractF
 	 * will not do any processing
 	 * 
 	 * @param lineString The String to make adjustments
+	 * @return The line adjusted for escaped content
 	 */
 	protected String adjustForEscapedContent(String lineString)
 	{
@@ -152,6 +180,8 @@ public abstract class AbstractTextFileParser<O extends Object> extends AbstractF
 	}
 
 	/**
+	 * The number of header lines to ignore
+	 * 
 	 * @return the headerLinesToIgnore
 	 */
 	public int getHeaderLinesToIgnore()
@@ -160,6 +190,8 @@ public abstract class AbstractTextFileParser<O extends Object> extends AbstractF
 	}
 
 	/**
+	 * Set the number of header lines to ignore
+	 * 
 	 * @param headerLinesToIgnore the headerLinesToIgnore to set
 	 */
 	public void setHeaderLinesToIgnore(int headerLinesToIgnore)
@@ -168,6 +200,8 @@ public abstract class AbstractTextFileParser<O extends Object> extends AbstractF
 	}
 
 	/**
+	 * The number of footer lines to ignore
+	 * 
 	 * @return the footerLinesToIgnore
 	 */
 	public int getFooterLinesToIgnore()
@@ -176,6 +210,8 @@ public abstract class AbstractTextFileParser<O extends Object> extends AbstractF
 	}
 
 	/**
+	 * Set the number of footer lines to ignore
+	 * 
 	 * @param footerLinesToIgnore the footerLinesToIgnore to set
 	 */
 	public void setFooterLinesToIgnore(int footerLinesToIgnore)
@@ -184,6 +220,8 @@ public abstract class AbstractTextFileParser<O extends Object> extends AbstractF
 	}
 
 	/**
+	 * Does this parser remove blank lines
+	 * 
 	 * @return the removeBlankLines
 	 */
 	public boolean removeBlankLines()
@@ -192,6 +230,8 @@ public abstract class AbstractTextFileParser<O extends Object> extends AbstractF
 	}
 
 	/**
+	 * Tells this parser whether or not to remove blank lines
+	 * 
 	 * @param removeBlankLines the removeBlankLines to set
 	 */
 	public void setRemoveBlankLines(boolean removeBlankLines)
@@ -200,6 +240,8 @@ public abstract class AbstractTextFileParser<O extends Object> extends AbstractF
 	}
 
 	/**
+	 * Does this remove leading whitespace from this line
+	 * 
 	 * @return the removeLeadingWhitespace
 	 */
 	public boolean removeLeadingWhitespace()
@@ -208,6 +250,8 @@ public abstract class AbstractTextFileParser<O extends Object> extends AbstractF
 	}
 
 	/**
+	 * Tells this parser whether or not to remove leading whitespace from this line
+	 * 
 	 * @param removeLeadingWhitespace the removeLeadingWhitespace to set
 	 */
 	public void setRemoveLeadingWhitespace(boolean removeLeadingWhitespace)
@@ -216,6 +260,8 @@ public abstract class AbstractTextFileParser<O extends Object> extends AbstractF
 	}
 
 	/**
+	 * Does this remove trailing whitespace from this line
+	 * 
 	 * @return the removeTrailingWhitespace
 	 */
 	public boolean removeTrailingWhitespace()
@@ -224,6 +270,8 @@ public abstract class AbstractTextFileParser<O extends Object> extends AbstractF
 	}
 
 	/**
+	 * Tells this parser whether or not to remove trailing whitespace from this line
+	 * 
 	 * @param removeTrailingWhitespace the removeTrailingWhitespace to set
 	 */
 	public void setRemoveTrailingWhitespace(boolean removeTrailingWhitespace)

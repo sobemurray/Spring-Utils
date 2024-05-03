@@ -11,15 +11,11 @@
  */
 
 /**
- * Model objects used in database communications. They can be but not exclusively for the following:
- * 
- * Configuration
- * Statement creation
- * SQL creation
+ * Services that parse files
  *
  * @author John Murray
  *
  * @since May 1, 2024
  *
  */
-package com.sobetech.common.model.sql;
+package com.sobetech.common.spring.service.io.parser;

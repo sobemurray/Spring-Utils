@@ -19,7 +19,7 @@ import java.lang.annotation.Target;
 /**
  * An annotation to tag a method that needs to be included in the Swagger documentation
  *
- * @author 
+ * @author Unknown
  *
  * @since May 20, 2022
  *

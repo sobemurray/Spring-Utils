@@ -32,7 +32,7 @@ public class Statistics
      * Takes a collection of float values and computes the mean with a MathContext.DECIMAL64 level of precision
      * 
      * @param values The values to compute the mean from
-     * @return The mean of the values or Float.NaN if the collection is <tt>null</tt> or empty
+     * @return The mean of the values or Float.NaN if the collection is <code>null</code> or empty
      */
     public static double getMean(Collection<Float> values)
     {
@@ -49,7 +49,7 @@ public class Statistics
      * Takes a collection of float values and computes the standard deviation with a MathContext.DECIMAL64 level of precision
      * 
      * @param values The full population of values to compute the standard deviation from
-     * @return The standard deviation of the values or Float.NaN if the collection is <tt>null</tt> or empty
+     * @return The standard deviation of the values or Float.NaN if the collection is <code>null</code> or empty
      */
     @Deprecated
     //TODO This needs to be addressed because precision is not perfected
@@ -72,7 +72,7 @@ public class Statistics
      * Takes a collection of float values and computes the standard deviation with a MathContext.DECIMAL64 level of precision
      * 
      * @param values The sample population of values to compute the standard deviation from
-     * @return The standard deviation of the values or Float.NaN if the collection is <tt>null</tt> or empty
+     * @return The standard deviation of the values or Float.NaN if the collection is <code>null</code> or empty
      */
     @Deprecated
     //TODO This needs to be addressed because precision is not perfected

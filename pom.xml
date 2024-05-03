@@ -138,6 +138,8 @@
                  <!-- Or the latest version -->
                 <configuration>
                     <!-- Configuration options -->
+                    <failOnError>false</failOnError>
+                    <outputDirectory>${javadoc.dest.dir}</outputDirectory>
                 </configuration>
             </plugin>
 		</plugins>

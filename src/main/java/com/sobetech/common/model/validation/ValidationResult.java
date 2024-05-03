@@ -35,7 +35,7 @@ public class ValidationResult
 	 * Add a new issue to this result. This will also set the valid boolean to false
 	 * 
 	 * @param newIssue The new issue String to add
-	 * @return <tt>true</tt> if the addition has been successful. Otherwise <tt>false</tt>
+	 * @return <code>true</code> if the addition has been successful. Otherwise <code>false</code>
 	 */
 	public boolean addIssue(String newIssue)
 	{
@@ -57,7 +57,7 @@ public class ValidationResult
 	 * Add a new ValidationMessage to this result. This will also set the valid boolean to false
 	 * 
 	 * @param newMessage The new ValidationMessage to add
-	 * @return <tt>true</tt> if the addition has been successful. Otherwise <tt>false</tt>
+	 * @return <code>true</code> if the addition has been successful. Otherwise <code>false</code>
 	 */
 	public boolean addValidationMessage(ValidationMessage newMessage)
 	{

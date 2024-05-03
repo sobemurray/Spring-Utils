@@ -9,7 +9,7 @@
  *  in accordance with the terms of that agreement.
  * 
  */
-package com.sobetech.common.model.string;
+package com.sobetech.common.spring.service.io.parser;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

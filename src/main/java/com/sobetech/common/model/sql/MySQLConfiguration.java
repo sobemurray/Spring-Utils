@@ -67,6 +67,6 @@ public class MySQLConfiguration extends DatabaseConfiguration
     @Override
     public boolean isValid()
     {
-        return super.isValid() && !this.driverClassName.isEmpty();
+        return super.isValid() && !getDriverClassName().isEmpty();
     }
 } 

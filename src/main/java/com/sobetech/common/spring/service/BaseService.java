@@ -29,17 +29,32 @@ import com.sobetech.common.spring.service.math.NumberUtil;
  */
 public abstract class BaseService
 {
+	/**
+	 * A logger accessible by all child services
+	 */
 	protected final Logger LOG = LoggerFactory.getLogger(this.getClass());
 	
+	/**
+	 * A Spring Service to work with dates and times
+	 */
 	@Autowired
 	protected DateUtil dateUtil;
 	
+	/**
+	 * A Spring Service to work with files
+	 */
 	@Autowired
 	protected FileUtil fileUtil;
 	
+	/**
+	 * A Spring Service to work with numbers and math
+	 */
 	@Autowired
 	protected NumberUtil numberUtil;
 	
+	/**
+	 * A Spring Service to work with Strings
+	 */
 	@Autowired
 	protected StringUtil stringUtil;
 }

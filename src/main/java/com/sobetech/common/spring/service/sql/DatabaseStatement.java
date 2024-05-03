@@ -25,15 +25,25 @@ import com.sobetech.common.model.sql.DatabaseConfiguration;
  * @author John Murray
  * 
  * @since 0.2.0
+ * 
+ * @param <C> The type of database configuration that this statement will be run against
  */
 public abstract class DatabaseStatement<C extends DatabaseConfiguration>
 {
     private C configuration;
     
+    /**
+     * Default constructor
+     */
     protected DatabaseStatement()
     {
     }
     
+    /**
+     * Build this statement with a configuration
+     * 
+     * @param configuration The configuration to use
+     */
     protected DatabaseStatement(C configuration)
     {
         if(configuration != null && configuration.isValid())
@@ -42,6 +52,12 @@ public abstract class DatabaseStatement<C extends DatabaseConfiguration>
             throw new IllegalArgumentException("The Information passed to form a connection was invalid or null");
     }
     
+    /**
+     * Run this SQL query
+     * 
+     * @param sql The SQL to run
+     * @throws SQLException If an exception occurs when the query is run
+     */
     protected void runQuery(String sql) throws SQLException
     {
         if(this.configuration.getDriverClassName() == null)
@@ -104,13 +120,29 @@ public abstract class DatabaseStatement<C extends DatabaseConfiguration>
         }
     }
     
+    /**
+     * Process a ResultSet that was returned by the database
+     * 
+     * @param resultSet The ResultSet returned by the database
+     * @throws SQLException If there is an issue accessing the data in the ResultSet
+     */
     public abstract void processResultSet(ResultSet resultSet) throws SQLException;
 
+    /**
+     * Get the database configuration used for this statement
+     * 
+     * @return The database configuration being used
+     */
     public C getConfiguration()
     {
         return this.configuration;
     }
 
+    /**
+     * Set the database configuration to use
+     * 
+     * @param configuration The database configuration to use
+     */
     public void setConfiguration(C configuration)
     {
         this.configuration = configuration;

@@ -11,15 +11,14 @@
  */
 
 /**
- * Model objects used in database communications. They can be but not exclusively for the following:
+ * Enums used for a variety of uses
  * 
- * Configuration
- * Statement creation
- * SQL creation
+ * HTTP Communication
+ * File parsing
  *
  * @author John Murray
  *
  * @since May 1, 2024
  *
  */
-package com.sobetech.common.model.sql;
+package com.sobetech.common.enums;

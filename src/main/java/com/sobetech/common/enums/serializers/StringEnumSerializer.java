@@ -32,7 +32,9 @@ public class StringEnumSerializer extends StdSerializer<StringEnum>
 {
 	private static final long serialVersionUID = 1L;
 
-
+	/**
+	 * Default constructor
+	 */
 	public StringEnumSerializer() 
 	{
 		super(StringEnum.class);

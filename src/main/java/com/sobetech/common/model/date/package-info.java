@@ -11,15 +11,12 @@
  */
 
 /**
- * Model objects used in database communications. They can be but not exclusively for the following:
- * 
- * Configuration
- * Statement creation
- * SQL creation
+ * Custom extensions to the existing Java Date and Time classes. These have been going away at the JDK
+ * has been improving their classes
  *
  * @author John Murray
  *
  * @since May 1, 2024
  *
  */
-package com.sobetech.common.model.sql;
+package com.sobetech.common.model.date;

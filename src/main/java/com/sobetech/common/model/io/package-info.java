@@ -11,15 +11,16 @@
  */
 
 /**
- * Model objects used in database communications. They can be but not exclusively for the following:
+ * Model objects used for I/O functions. Examples:
  * 
- * Configuration
- * Statement creation
- * SQL creation
+ * Configurations
+ * Files
+ * I/O results
+ * Streams
  *
  * @author John Murray
  *
  * @since May 1, 2024
  *
  */
-package com.sobetech.common.model.sql;
+package com.sobetech.common.model.io;
