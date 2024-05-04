@@ -59,5 +59,4 @@ public class CSVLine extends DelimitedLine
 	{
 		super(',', line, expectedColumnCount);
 	}
-
 }

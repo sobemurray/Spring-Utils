@@ -26,11 +26,19 @@ import java.util.TimeZone;
 public class Calendar extends GregorianCalendar
 {
     private static final long serialVersionUID = -5867680842852032500L;
+    
+    /**
+     * Boolean signifier to use as an instruction to move downwards
+     */
     public static boolean DOWN = false;
+    
+    /**
+     * Boolean signifier to use as an instruction to move upwards
+     */
     public static boolean UP = true;
     
     /**
-     * 
+     * Default constructor
      */
     public Calendar()
     {
@@ -38,6 +46,8 @@ public class Calendar extends GregorianCalendar
     }
 
     /**
+     * Construct a Calendar with a year / month /date
+     * 
      * @param year The year to set this object to.
      * @param month The month to set this object to.
      * @param date The day to set this object to. 
@@ -48,6 +58,8 @@ public class Calendar extends GregorianCalendar
     }
 
     /**
+     * Construct a Calendar with a year / month /date / hour / minute
+     *      
      * @param year The year to set this object to.
      * @param month The month to set this object to.
      * @param date The day to set this object to.
@@ -60,6 +72,8 @@ public class Calendar extends GregorianCalendar
     }
 
     /**
+     * Construct a Calendar with a year / month /date / hour / minute / second
+     * 
      * @param year The year to set this object to.
      * @param month The month to set this object to.
      * @param date The day to set this object to.
@@ -73,7 +87,9 @@ public class Calendar extends GregorianCalendar
     }
 
     /**
-     * @param locale The locale to set this Calendar to.
+     * Construct a Calendar for a Locale
+     * 
+     * @param locale The locale to set this Calendar to
      */
     public Calendar(Locale locale)
     {
@@ -81,7 +97,9 @@ public class Calendar extends GregorianCalendar
     }
 
     /**
-     * @param zone The time zone to set this Calendar to.
+     * Construct a Calendar in a TimeZone
+     * 
+     * @param zone The time zone to set this Calendar to
      */
     public Calendar(TimeZone zone)
     {
@@ -89,8 +107,10 @@ public class Calendar extends GregorianCalendar
     }
 
     /**
-     * @param zone
-     * @param locale
+     * Construct a Calendar in a TimeZone and Locale
+     * 
+     * @param zone The time zone to set this Calendar to
+     * @param locale The locale to set this Calendar to
      */
     public Calendar(TimeZone zone, Locale locale)
     {
@@ -98,9 +118,9 @@ public class Calendar extends GregorianCalendar
     }
 
     /**
-     * This returns the number of days remaining in the current year of this Calendar object.
+     * This returns the number of days remaining in the current year of this Calendar object
      * 
-     * @return The number of days remaining in the current year of this object.
+     * @return The number of days remaining in the current year of this object
      */
     public int getRemainingDaysOfYear()
     {

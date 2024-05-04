@@ -24,9 +24,9 @@ import java.io.OutputStream;
  */
 public class FastByteArrayOutputStream extends OutputStream
 {
-    protected byte[] byteBuffer = null;
+	private byte[] byteBuffer = null;
 
-    protected int size = 0;
+	private int size = 0;
 
     /**
      * An empty constructor that creates a byte array buffer of initial size of 5120

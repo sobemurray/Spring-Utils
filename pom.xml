@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sobetech.spring</groupId>
 	<artifactId>utils</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>Spring Utilities</name>
 	<description>Spring Beans that would be useful in any Spring project. This will replace SDJK, JavaUtil and FileUtil. It would be easier to strip out the Spring in the future than to add it in</description>
 	<inceptionYear>2024</inceptionYear>
@@ -37,6 +37,8 @@
         <downloadSources>true</downloadSources>
         <downloadJavadocs>true</downloadJavadocs>
         <spring.version>6.1.6</spring.version>
+        <jackson.version>2.17.0</jackson.version>
+        <swagger.version>2.2.21</swagger.version>
 	</properties>
 
 	<dependencies>
@@ -44,10 +46,36 @@
 		
 		<!-- External Library Dependencies -->
 
+        <!-- Spring Dependencies -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        
+        <!-- Jackson Dependencies -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        
+        <!-- Other Dependencies -->
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger.version}</version>
         </dependency>
         
         <dependency>
@@ -110,6 +138,8 @@
                  <!-- Or the latest version -->
                 <configuration>
                     <!-- Configuration options -->
+                    <failOnError>false</failOnError>
+                    <outputDirectory>${javadoc.dest.dir}</outputDirectory>
                 </configuration>
             </plugin>
 		</plugins>

@@ -20,7 +20,7 @@ package com.sobetech.common.model.string;
  */
 public class DataLine
 {
-    protected String line;
+    private String line;
 
     /**
      * Constructs a new instance containing an empty string

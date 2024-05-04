@@ -9,7 +9,7 @@
  * the terms of that agreement.
  *
  */
-package com.sobetech.common.model;
+package com.sobetech.common.model.io;
 
 import java.time.Duration;
 import java.util.ArrayList;

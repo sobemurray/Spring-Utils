@@ -20,6 +20,9 @@ import java.net.URI;
  * @author John Murray
  * 
  * @since 0.2.0
+ * 
+ * @see com.sobetech.common.model.sql.DatabaseConfiguration
+ * 
  */
 public class ServerConfiguration
 { 
@@ -27,6 +30,9 @@ public class ServerConfiguration
     private String username;
     private String password;
     
+    /**
+	 * Default constructor
+	 */
     public ServerConfiguration()
     {
     }
@@ -47,6 +53,13 @@ public class ServerConfiguration
         this.password = password;
     }
     
+    /**
+     * Test if this configuration is valid. This only tests if the address provided can be resolved 
+     * as a URL. No other validations are done at this level. This method should be extended by child 
+     * classes to do this check as well as more specific ones
+     * 
+     * @return <code>true</code> if this configuration can validate what has been provided
+     */
 	public boolean isValid()
     {
     	// Test the URL String
@@ -68,33 +81,63 @@ public class ServerConfiguration
         return true;
     }
 
-    public String getAddress()
-    {
-        return this.address;
-    }
+	/**
+	 * Getter for attribute address
+	 *
+	 * @return the address
+	 */
+	public String getAddress()
+	{
+		return this.address;
+	}
 
-    public void setAddress(String address)
-    {
-        this.address = address;
-    }
+	/**
+	 * Setter for attribute address
+	 *
+	 * @param address the address to set
+	 */
+	public void setAddress(String address)
+	{
+		this.address = address;
+	}
 
-    public String getUsername()
-    {
-        return this.username;
-    }
+	/**
+	 * Getter for attribute username
+	 *
+	 * @return the username
+	 */
+	public String getUsername()
+	{
+		return this.username;
+	}
 
-    public void setUsername(String username)
-    {
-        this.username = username;
-    }
+	/**
+	 * Setter for attribute username
+	 *
+	 * @param username the username to set
+	 */
+	public void setUsername(String username)
+	{
+		this.username = username;
+	}
 
-    public String getPassword()
-    {
-        return this.password;
-    }
+	/**
+	 * Getter for attribute password
+	 *
+	 * @return the password
+	 */
+	public String getPassword()
+	{
+		return this.password;
+	}
 
-    public void setPassword(String password)
-    {
-        this.password = password;
-    }
+	/**
+	 * Setter for attribute password
+	 *
+	 * @param password the password to set
+	 */
+	public void setPassword(String password)
+	{
+		this.password = password;
+	}
 } 

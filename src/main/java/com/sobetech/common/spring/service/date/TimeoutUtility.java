@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
  * polling on a rapid basis and to increase the wait time as the polling continues. That accounts for 
  * a system that is slow to generate a response not getting bombarded as time passes
  * 
- * @author 
+ * @author Unknown
  *
  * @since Sep 6, 2022
  *

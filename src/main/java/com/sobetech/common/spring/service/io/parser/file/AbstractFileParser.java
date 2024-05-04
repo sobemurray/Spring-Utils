@@ -20,12 +20,17 @@ import java.io.FileNotFoundException;
  * @author John Murray
  * 
  * @since 0.0.1
+ * 
+ * @param <O> The resulting object after the file is parsed. Since this is a quite generic parser, it is
+ * best to make this as generic as possible
+ * 
+ * @see AbstractTextFileParser
  */
 public abstract class AbstractFileParser<O extends Object>
 {
 	private File file;
 	
-	protected O fileContents;
+	private O fileContents;
 
 	/**
 	 * Load the file contents into the parser
@@ -34,10 +39,11 @@ public abstract class AbstractFileParser<O extends Object>
 	 * @throws FileNotFoundException If the file is not correctly initialized in this parser
 	 */
 	public abstract O parseFile() throws FileNotFoundException;
-	
+
 	/**
-	 * @throws FileNotFoundException 
-	 * 
+	 * Create a parser from a fully qualified file name
+	 * @param fileName The fully qualified file name
+	 * @throws FileNotFoundException FileNotFoundException If the file could not be found
 	 */
 	protected AbstractFileParser(String fileName) throws FileNotFoundException
 	{
@@ -49,6 +55,13 @@ public abstract class AbstractFileParser<O extends Object>
 		setFile(new File(fileName));
 	}
 	
+	/**
+	 * Create a parser from a directory and a file name
+	 * 
+	 * @param directory The directory the file is located
+	 * @param fileName The name of the file
+	 * @throws FileNotFoundException If the file could not be found
+	 */
 	protected AbstractFileParser(String directory, String fileName) throws FileNotFoundException
 	{
 		if( directory == null || directory.isEmpty() || directory.isBlank() )
@@ -65,6 +78,12 @@ public abstract class AbstractFileParser<O extends Object>
 	}
 	
 	
+	/**
+	 * Create a parser from a File object
+	 * 
+	 * @param file The File to be parsed
+	 * @throws FileNotFoundException If the file could not be found
+	 */
 	protected AbstractFileParser(File file) throws FileNotFoundException
 	{
 		if(file == null)
@@ -76,6 +95,8 @@ public abstract class AbstractFileParser<O extends Object>
 	}
 
 	/**
+	 * The file being parsed
+	 * 
 	 * @return The file for this parser
 	 */
 	public File getFile()
@@ -106,10 +127,22 @@ public abstract class AbstractFileParser<O extends Object>
 	}
 
 	/**
+	 * The contents of the file as an object
+	 * 
 	 * @return the fileContents
 	 */
 	public O getFileContents()
 	{
 		return this.fileContents;
+	}
+
+	/**
+	 * Setter for attribute fileContents
+	 *
+	 * @param fileContents the fileContents to set
+	 */
+	public void setFileContents(O fileContents)
+	{
+		this.fileContents = fileContents;
 	}
 }
