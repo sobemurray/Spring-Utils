@@ -12,9 +12,7 @@
 package com.sobetech.common.model.io;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import com.sobetech.common.exception.string.DataLineException;
 import com.sobetech.common.model.string.TextLine;
@@ -37,7 +35,7 @@ public abstract class AbstractFile <L extends TextLine>
 {
 	private boolean allowsEmptyLines = false;
 	
-	private Optional<List<L>> lines;
+	private List<L> lines;
 	
 	/**
 	 * Empty Constructor
@@ -63,7 +61,7 @@ public abstract class AbstractFile <L extends TextLine>
 	 * 
 	 * @return An Optional instance of the lines in the file for null safety
 	 */
-	public Optional<List<L>> getLines()
+	public List<L> getLines()
 	{
 		return this.lines;
 	}
@@ -75,12 +73,12 @@ public abstract class AbstractFile <L extends TextLine>
 	 */
 	public int getLineCount()
 	{
-		if(this.lines.isPresent())
+		if(this.lines == null)
 		{
-			return this.lines.get().size();
+			return 0;
 		}
 		
-		return 0;
+		return this.lines.size();
 	}
 	
 	/**
@@ -91,17 +89,9 @@ public abstract class AbstractFile <L extends TextLine>
 	 */
 	public boolean addLine(L newLine)
 	{
-		if(newLine == null)
-		{
-			return false;
-		}
+		initializeIfNecessary();
 		
-		if(this.lines.isEmpty())
-		{
-			this.lines = Optional.of(new ArrayList<L>());
-		}
-		
-		return this.lines.get().add(newLine);
+		return this.lines.add(newLine);
 	}
 	
 	/**
@@ -119,14 +109,11 @@ public abstract class AbstractFile <L extends TextLine>
 			return false;
 		}
 		
-		if(this.lines.isEmpty())
-		{
-			this.lines = Optional.of(new ArrayList<L>());
-		}
+		initializeIfNecessary();
 		
 		try
 		{
-			this.lines.get().add(index, newLine);
+			this.lines.add(index, newLine);
 		}
 		catch(IndexOutOfBoundsException e)
 		{
@@ -145,7 +132,9 @@ public abstract class AbstractFile <L extends TextLine>
 	 */
 	public L getLine(int lineIndex)
 	{
-		return this.lines.get().get(lineIndex);
+		initializeIfNecessary();
+		
+		return this.lines.get(lineIndex);
 	}
 	
 	/**
@@ -157,7 +146,9 @@ public abstract class AbstractFile <L extends TextLine>
 	 */
 	public L removeLine(int lineIndex)
 	{
-		return this.lines.get().remove(lineIndex);
+		initializeIfNecessary();
+		
+		return this.lines.remove(lineIndex);
 	}
 	
 	/**
@@ -170,7 +161,9 @@ public abstract class AbstractFile <L extends TextLine>
 	 */
 	public L replaceLine(int lineIndex, L replacementLine)
 	{
-		return this.lines.get().set(lineIndex, replacementLine);
+		initializeIfNecessary();
+		
+		return this.lines.set(lineIndex, replacementLine);
 	}
 	
 	/**
@@ -178,7 +171,9 @@ public abstract class AbstractFile <L extends TextLine>
 	 */
 	public void clearLines()
 	{
-		this.lines = Optional.of(new ArrayList<L>());
+		initializeIfNecessary();
+		
+		this.lines.clear();
 	}
 	
 	/**
@@ -187,7 +182,9 @@ public abstract class AbstractFile <L extends TextLine>
 	 */
 	public L getFirstLine()
 	{
-		return this.lines.orElse(Collections.emptyList()).getFirst();
+		initializeIfNecessary();
+		
+		return this.lines.getFirst();
 	}
 	
 	/**
@@ -196,8 +193,19 @@ public abstract class AbstractFile <L extends TextLine>
 	 */
 	public L getLastLine()
 	{
-		return this.lines.orElse(Collections.emptyList()).getLast();
+		initializeIfNecessary();
+		
+		return this.lines.getLast();
 	}
+	
+	/*
+	public void truncateTo(int newLineCount)
+	{
+		int startIndex = newLineCount - 1;
+		int endIndex = 
+		this.lines.orElse(Collections.emptyList()).subList(newLineCount, newLineCount).clear();
+	}
+	*/
 
 	/**
 	 * Convert this object into a single String. This String will use the line separators specified
@@ -206,23 +214,22 @@ public abstract class AbstractFile <L extends TextLine>
 	@Override
 	public String toString()
 	{
+		initializeIfNecessary();
+		
 		StringBuilder stringBuilder = new StringBuilder();
 		
-		if(this.lines.isPresent())
+		boolean addNewLine = false;
+		
+		for(L line : this.lines)
 		{
-			boolean addNewLine = false;
-			
-			for(L line : this.lines.get())
+			if(addNewLine)
 			{
-				if(addNewLine)
-				{
-					stringBuilder.append(System.getProperty("line.separator"));
-				}
-				
-				stringBuilder.append(line.toString());
-				
-				addNewLine = true;
+				stringBuilder.append(System.getProperty("line.separator"));
 			}
+			
+			stringBuilder.append(line.toString());
+			
+			addNewLine = true;
 		}
 
 		return stringBuilder.toString();
@@ -247,6 +254,14 @@ public abstract class AbstractFile <L extends TextLine>
 		}
 		
 		return true;
+	}
+	
+	private void initializeIfNecessary()
+	{
+		if(this.lines == null)
+		{
+			this.lines = new ArrayList<>();
+		}
 	}
 
 	/**
