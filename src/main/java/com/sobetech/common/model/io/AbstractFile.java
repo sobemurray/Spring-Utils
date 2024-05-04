@@ -184,7 +184,6 @@ public abstract class AbstractFile <L extends TextLine>
 	/**
 	 * Get the first line of the file if it has any lines
 	 * @return The first line of the file if it has any lines
-	 * @throws NoSuchElementException if there are no lines in the file
 	 */
 	public L getFirstLine()
 	{
@@ -194,7 +193,6 @@ public abstract class AbstractFile <L extends TextLine>
 	/**
 	 * Get the last line of the file if it has any lines
 	 * @return The last line of the file if it has any lines
-	 * @throws NoSuchElementException if there are no lines in the file
 	 */
 	public L getLastLine()
 	{
