@@ -513,4 +513,22 @@ public class StringUtil
         
         return "$" + formatNumber(thousands, "#,###,###")+ "k";
     }
+	
+	/**
+	 * Inspects a String a determines how many Strings it would be turned into if split based on a delimiter
+	 * 
+	 * @param stringToSplit The String to inspect
+	 * @param delimiter The delimiter character
+	 * @return The number of Strings this would be split into. If the String to split is <code>null</code> or blank, 
+	 * 0 will be returned
+	 */
+	public int splitCount(String stringToSplit, char delimiter)
+	{
+		if(stringToSplit == null || stringToSplit.isBlank())
+		{
+			return 0;
+		}
+		
+		return stringToSplit.split(String.valueOf(delimiter)).length;
+	}
 }

@@ -161,6 +161,24 @@ public abstract class DelimitedLine extends TextLine
 	}
 	
 	/**
+	 * Get the first column from this line
+	 * 
+	 * @return The first column from this line
+	 */
+	public String getFirstColumn()
+	{
+		return asList().getFirst();
+	}
+
+	public boolean isFirstColumnNumeric()
+	{
+		String firstColumn = getFirstColumn();
+		
+		// This regex might work "-?\\d+(\\.\\d+)?"
+		return firstColumn.matches("-?\\d+(\\.\\d+)?");
+	}
+	
+	/**
 	 * Checks this line to ensure that it has the correct number of columns. If the expected columns
 	 * attribute is not set <code>true</code> will be returned
 	 * 
@@ -186,6 +204,31 @@ public abstract class DelimitedLine extends TextLine
 	public boolean invalidNumberOfColumns()
 	{
 		return !validNumberOfColumns();
+	}
+	
+	/**
+	 * Checks this line to see if it has the number of columns the file expects
+	 * 
+	 * @param fileExpectedColumns The number of columns the file expects
+	 * @return <code>true</code> if this line has the same number of columns that the file expects
+	 */
+	public boolean validNumberOfColumns(int fileExpectedColumns)
+	{
+		this.expectedColumnCount = fileExpectedColumns;
+		
+		return validNumberOfColumns();
+	}
+	
+	/**
+	 * Checks this line to see if it does not have the number of columns the file expects
+	 * 
+	 * @param fileExpectedColumns The number of columns the file expects
+	 * @return <code>true</code> if this line does not have the same number of columns that the file expects
+	 */
+	
+	public boolean invalidNumberOfColumns(int fileExpectedColumns)
+	{
+		return !validNumberOfColumns(fileExpectedColumns);
 	}
 	
 	/**

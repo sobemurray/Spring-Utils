@@ -20,7 +20,6 @@ package com.sobetech.common.model.sql;
  */
 public class MySQLConfiguration extends DatabaseConfiguration
 { 
-	@SuppressWarnings("hiding")
 	protected int port = 3306;
     protected static String DEFAULT_DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
     

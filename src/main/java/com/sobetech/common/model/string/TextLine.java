@@ -75,13 +75,83 @@ public class TextLine
         this.line = Objects.requireNonNull(line, "line must not be null");;
     }
     
+    /**
+     * Clear all of the content in this line. It will not make the line <code>null</code>, but an empty String
+     */
     public void clear()
     {
     	this.line = new String();
     }
 
+    /**
+     * Replace all occurrences of a String within this line
+     * 
+     * @param targetToReplaceRegex A Regex of a what is to be replaced
+     * @param replacement The String to replace it with
+     */
     public void replaceAllInLine(String targetToReplaceRegex, String replacement)
     {
     	this.line = this.line.replaceAll(targetToReplaceRegex, replacement);
+    }
+    
+    /**
+     * Get the first character in this line. If the line is empty or null, and empty character will be returned
+     * 
+     * @return The first character in this line. If the line is empty or null, and empty character will be returned
+     */
+    public char firstCharacter()
+    {
+    	if(this.line == null || this.line.isBlank())
+    	{
+    		return ' ';
+    	}
+    	
+    	return this.line.charAt(0);
+    }
+    
+    /**
+     * Check to see if this character is the first one in this line. If the line is empty or null, a test 
+     * character of an empty character will return <code>true</code>
+     * 
+     * @param testCharacter The character to check
+     * @return <code>true</code) if the test character is the first character in the line
+     */
+    public boolean isFirstCharacter(char testCharacter)
+    {
+    	return testCharacter == firstCharacter();
+    }
+    
+    /**
+     * Check to see if this character is NOT the first one in this line. If the line is empty or null, a test 
+     * character of an empty character will return <code>false</code>
+     * 
+     * @param testCharacter The character to check
+     * @return <code>true</code) if the test character is NOT the first character in the line
+     */
+    public boolean isFirstCharacterNot(char testCharacter)
+    {
+    	return testCharacter != firstCharacter();
+    }
+    
+    /**
+     * See of this line start with this String
+     * 
+     * @param leadingString The String to test with
+     * @return <code>true</code> if this line leads with this String
+     */
+    public boolean leadsWith(String leadingString)
+    {
+    	return this.line.startsWith(leadingString);
+    }
+    
+    /**
+     * See of this line end with this String
+     * 
+     * @param leadingString The String to test with
+     * @return <code>true</code> if this line ends with this String
+     */
+    public boolean endsWith(String leadingString)
+    {
+    	return this.line.endsWith(leadingString);
     }
 }
