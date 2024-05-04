@@ -19,9 +19,8 @@ package com.sobetech.common.exception.string;
  * 
  * @since 0.0.2
  */
-public class DataLineException extends Exception
+public class DataLineException extends RuntimeException
 {
-
     private static final long serialVersionUID = 1029467033051512194L;
 
     /**
@@ -29,6 +28,7 @@ public class DataLineException extends Exception
      */
     public DataLineException()
     {
+    	super();
     }
 
     /**

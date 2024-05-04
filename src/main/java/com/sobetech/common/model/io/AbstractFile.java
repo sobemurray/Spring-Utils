@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import com.sobetech.common.exception.string.DataLineException;
 import com.sobetech.common.model.string.TextLine;
 
 /**
@@ -34,6 +35,8 @@ import com.sobetech.common.model.string.TextLine;
  */
 public abstract class AbstractFile <L extends TextLine>
 {
+	private boolean allowsEmptyLines = false;
+	
 	private Optional<List<L>> lines;
 	
 	/**
@@ -42,6 +45,17 @@ public abstract class AbstractFile <L extends TextLine>
 	public AbstractFile()
 	{
 		clearLines();
+	}
+	
+	/**
+	 * Create a new file with the flag to allow empty lines or not
+	 * 
+	 * @param allowsEmptyLines If <code>true</code> this file will allow empty lines. This is false by default
+	 */
+	public AbstractFile(boolean allowsEmptyLines)
+	{
+		this();
+		this.allowsEmptyLines = allowsEmptyLines;
 	}
 
 	/**
@@ -214,5 +228,46 @@ public abstract class AbstractFile <L extends TextLine>
 		}
 
 		return stringBuilder.toString();
+	}
+
+	/**
+	 * Check if a line is valid
+	 * 
+	 * @param lineToValidate The line to validate
+	 * @return <code>true</code> if the line is valid. It may also throw a DateLineException
+	 */
+	protected boolean validateLine(L lineToValidate)
+	{
+		if(lineToValidate == null)
+		{
+			throw new DataLineException("Cannot add a null line");
+		}
+		
+		if(!allowsEmptyLines && lineToValidate.toString().isBlank())
+		{
+			throw new DataLineException("Cannot add an empty line");
+		}
+		
+		return true;
+	}
+
+	/**
+	 * Getter for attribute allowsEmptyLines
+	 *
+	 * @return the allowsEmptyLines
+	 */
+	public boolean allowsEmptyLines()
+	{
+		return this.allowsEmptyLines;
+	}
+
+	/**
+	 * Setter for attribute allowsEmptyLines
+	 *
+	 * @param allowsEmptyLines the allowsEmptyLines to set
+	 */
+	public void setAllowsEmptyLines(boolean allowsEmptyLines)
+	{
+		this.allowsEmptyLines = allowsEmptyLines;
 	}
 }

@@ -189,6 +189,31 @@ public abstract class DelimitedLine extends TextLine
 	}
 	
 	/**
+	 * Checks this line to see if it has the number of columns the file expects
+	 * 
+	 * @param fileExpectedColumns The number of columns the file expects
+	 * @return <code>true</code> if this line has the same number of columns that the file expects
+	 */
+	public boolean validNumberOfColumns(int fileExpectedColumns)
+	{
+		this.expectedColumnCount = fileExpectedColumns;
+		
+		return validNumberOfColumns();
+	}
+	
+	/**
+	 * Checks this line to see if it does not have the number of columns the file expects
+	 * 
+	 * @param fileExpectedColumns The number of columns the file expects
+	 * @return <code>true</code> if this line does not have the same number of columns that the file expects
+	 */
+	
+	public boolean invalidNumberOfColumns(int fileExpectedColumns)
+	{
+		return !validNumberOfColumns(fileExpectedColumns);
+	}
+	
+	/**
 	 * Determine if this a valid column index
 	 * 
 	 * @param columnIndex The column index to check
