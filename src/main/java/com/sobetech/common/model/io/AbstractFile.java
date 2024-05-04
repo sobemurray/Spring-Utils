@@ -198,14 +198,30 @@ public abstract class AbstractFile <L extends TextLine>
 		return this.lines.getLast();
 	}
 	
-	/*
-	public void truncateTo(int newLineCount)
+	/**
+	 * Truncate a file to a number of lines. This will remove lines from the end of the file. If the file has less lines than
+	 * the desired size, <code>false</code> will be returned instead of an Exception
+	 * 
+	 * @param newLineCount The number of lines this file should now have.
+	 * @return <code>true</code> if the file has been successfully truncated. If the file has less lines than the desired 
+	 * size, <code>false</code> will be returned instead of an Exception 
+	 */
+	public boolean truncateTo(int newLineCount)
 	{
+		initializeIfNecessary();
+		
 		int startIndex = newLineCount - 1;
-		int endIndex = 
-		this.lines.orElse(Collections.emptyList()).subList(newLineCount, newLineCount).clear();
+		int endIndex = this.lines.size() - 1;
+		
+		if(startIndex > endIndex)
+		{
+			return false;
+		}
+		
+		this.lines.subList(newLineCount, newLineCount).clear();
+		
+		return true;
 	}
-	*/
 
 	/**
 	 * Convert this object into a single String. This String will use the line separators specified
