@@ -12,6 +12,7 @@
 package com.sobetech.common.model.io;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -165,7 +166,31 @@ public abstract class AbstractFile <L extends TextLine>
 	{
 		this.lines = Optional.of(new ArrayList<L>());
 	}
+	
+	/**
+	 * Get the first line of the file if it has any lines
+	 * @return The first line of the file if it has any lines
+	 * @throws NoSuchElementException if there are no lines in the file
+	 */
+	public L getFirstLine()
+	{
+		return this.lines.orElse(Collections.emptyList()).getFirst();
+	}
+	
+	/**
+	 * Get the last line of the file if it has any lines
+	 * @return The last line of the file if it has any lines
+	 * @throws NoSuchElementException if there are no lines in the file
+	 */
+	public L getLastLine()
+	{
+		return this.lines.orElse(Collections.emptyList()).getLast();
+	}
 
+	/**
+	 * Convert this object into a single String. This String will use the line separators specified
+	 * by the system that this is running on
+	 */
 	@Override
 	public String toString()
 	{
@@ -183,6 +208,8 @@ public abstract class AbstractFile <L extends TextLine>
 				}
 				
 				stringBuilder.append(line.toString());
+				
+				addNewLine = true;
 			}
 		}
 
