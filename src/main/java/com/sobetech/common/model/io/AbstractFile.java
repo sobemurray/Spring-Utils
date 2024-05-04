@@ -146,6 +146,19 @@ public abstract class AbstractFile <L extends TextLine>
 	}
 	
 	/**
+	 * Replace the content in a line with new content
+	 * 
+	 * @param lineIndex The line index to make the replacement
+	 * @param replacementLine The new line content
+	 * @return The previous line content
+	 * @throws IndexOutOfBoundsException if the index is not valid for the lines
+	 */
+	public L replaceLine(int lineIndex, L replacementLine)
+	{
+		return this.lines.get().set(lineIndex, replacementLine);
+	}
+	
+	/**
 	 * Remove all of the lines that are in this file. It will reset the lines to an empty list and not set it to null
 	 */
 	public void clearLines()
