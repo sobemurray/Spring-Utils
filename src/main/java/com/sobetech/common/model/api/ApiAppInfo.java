@@ -11,6 +11,9 @@
  */
 package com.sobetech.common.model.api;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 /**
  * POJO holding information attributes of an application
  *
@@ -19,6 +22,7 @@ package com.sobetech.common.model.api;
  * @since Apr 28, 2024
  *
  */
+@JsonInclude(Include.NON_NULL)
 public class ApiAppInfo
 {
 	private String applicationName;
