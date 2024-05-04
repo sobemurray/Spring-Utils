@@ -30,5 +30,34 @@ public class CSVFile extends AbstractFile<CSVLine>
 	{
 		super();
 	}
-
+	
+	/**
+	 * Merges two lines into a single line
+	 * 
+	 * @param firstLineIndex The index of the content of the first line
+	 * @param secondLineIndex The index of the content of the second line
+	 * @param omitDelimiter If <code>false</code> the delimiter will be placed between the two lines before
+	 * the update
+	 * @return The new CSVLine after the merge
+	 */
+	public CSVLine mergeLines(int firstLineIndex, int secondLineIndex, boolean omitDelimiter)
+	{
+		CSVLine firstLine = getLine(firstLineIndex);
+		CSVLine secondLine = getLine(secondLineIndex);
+		
+		String joiner = String.valueOf(firstLine.getDelimiter());
+		
+		if(omitDelimiter)
+		{
+			joiner = "";
+		}
+		
+		CSVLine newLine = new CSVLine(firstLine.toString() + joiner + secondLine.toString());
+		
+		replaceLine(firstLineIndex, newLine);
+		
+		removeLine(secondLineIndex);
+		
+		return newLine;
+	}
 }
