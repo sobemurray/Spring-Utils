@@ -23,10 +23,21 @@ import com.sobetech.common.model.string.TextLine;
  */
 public class TextFile extends AbstractFile<TextLine>
 {
-
+	/**
+	 * Default constructor
+	 */
 	public TextFile()
 	{
 		super();
 	}
-
+	
+	/**
+	 * Create a new file with the flag to allow empty lines or not
+	 * 
+	 * @param allowsEmptyLines If <code>true</code> this file will allow empty lines. This is false by default
+	 */
+	public TextFile(boolean allowsEmptyLines)
+	{
+		super(allowsEmptyLines);
+	}
 }

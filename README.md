@@ -18,6 +18,13 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 # Releases
 
+## 1.0.0
+##### upcoming
+#### SU-5
+Finished migration of code from JavaUtil and FileUtil
+Added in the Jackson and Swagger dependent classes
+Migrated most of the code from Football Importer to this
+
 ## 0.0.1
 ##### 05-03-2024
 #### SU-1

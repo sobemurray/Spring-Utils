@@ -20,7 +20,6 @@ package com.sobetech.common.model.sql;
  */
 public class PostgreSQLConfiguration extends DatabaseConfiguration
 { 
-	@SuppressWarnings("hiding")
 	protected int port = 5432;
     protected static String DEFAULT_DRIVER_CLASS_NAME = "org.postgresql.Driver";
     
@@ -67,6 +66,6 @@ public class PostgreSQLConfiguration extends DatabaseConfiguration
     @Override
     public boolean isValid()
     {
-        return super.isValid() && !this.driverClassName.isEmpty();
+        return super.isValid() && !getDriverClassName().isEmpty();
     }
 } 

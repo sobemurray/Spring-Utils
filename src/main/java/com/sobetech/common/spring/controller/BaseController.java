@@ -24,5 +24,8 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class BaseController
 {
+	/**
+	 * A logger accessible by all child controllers
+	 */
 	protected final Logger LOG = LoggerFactory.getLogger(this.getClass());
 }

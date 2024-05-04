@@ -23,13 +23,23 @@ import java.util.List;
  *
  * @since 0.3.1
  *
+ * @see CSVLine
  */
 public abstract class DelimitedLine extends TextLine
 {
+	/**
+	 * The character used as a delimiter
+	 */
 	protected char delimiter;
 	
+	/**
+	 * The delimited line as a list of strings
+	 */
 	protected List<String> stringList;
 	
+	/**
+	 * The number of columns expected in this line
+	 */
 	protected int expectedColumnCount;
 	
 	/**
@@ -151,10 +161,28 @@ public abstract class DelimitedLine extends TextLine
 	}
 	
 	/**
-	 * Checks this line to ensure that it has the correct number of columns. If the expected columns
-	 * attribute is not set <tt>true</tt> will be returned
+	 * Get the first column from this line
 	 * 
-	 * @return <tt>true</tt> if the line has the expected number of columns or the expected columns attribute has
+	 * @return The first column from this line
+	 */
+	public String getFirstColumn()
+	{
+		return asList().getFirst();
+	}
+
+	public boolean isFirstColumnNumeric()
+	{
+		String firstColumn = getFirstColumn();
+		
+		// This regex might work "-?\\d+(\\.\\d+)?"
+		return firstColumn.matches("-?\\d+(\\.\\d+)?");
+	}
+	
+	/**
+	 * Checks this line to ensure that it has the correct number of columns. If the expected columns
+	 * attribute is not set <code>true</code> will be returned
+	 * 
+	 * @return <code>true</code> if the line has the expected number of columns or the expected columns attribute has
 	 * not been set
 	 */
 	public boolean validNumberOfColumns()
@@ -169,15 +197,46 @@ public abstract class DelimitedLine extends TextLine
 	
 	/**
 	 * Checks this line to ensure that it has an invalid number of columns. If the expected columns
-	 * attribute is not set <tt>false</tt> will be returned
+	 * attribute is not set <code>false</code> will be returned
 	 * 
-	 * @return <tt>true</tt> if the line does not have the expected number of columns
+	 * @return <code>true</code> if the line does not have the expected number of columns
 	 */
 	public boolean invalidNumberOfColumns()
 	{
 		return !validNumberOfColumns();
 	}
 	
+	/**
+	 * Checks this line to see if it has the number of columns the file expects
+	 * 
+	 * @param fileExpectedColumns The number of columns the file expects
+	 * @return <code>true</code> if this line has the same number of columns that the file expects
+	 */
+	public boolean validNumberOfColumns(int fileExpectedColumns)
+	{
+		this.expectedColumnCount = fileExpectedColumns;
+		
+		return validNumberOfColumns();
+	}
+	
+	/**
+	 * Checks this line to see if it does not have the number of columns the file expects
+	 * 
+	 * @param fileExpectedColumns The number of columns the file expects
+	 * @return <code>true</code> if this line does not have the same number of columns that the file expects
+	 */
+	
+	public boolean invalidNumberOfColumns(int fileExpectedColumns)
+	{
+		return !validNumberOfColumns(fileExpectedColumns);
+	}
+	
+	/**
+	 * Determine if this a valid column index
+	 * 
+	 * @param columnIndex The column index to check
+	 * @return <code>true</code> if this a valid column index
+	 */
 	public boolean validColumnIndex(int columnIndex)
 	{
 		return columnIndex < asList().size();
@@ -253,7 +312,7 @@ public abstract class DelimitedLine extends TextLine
 	}
 
 	/**
-     * Set the value of a column. If <tt>null</tt> is sent, it will be replaced with an empty String
+     * Set the value of a column. If <code>null</code> is sent, it will be replaced with an empty String
      * 
      * @param data The value to set
      * @param columnIndex The zero based index of the column to set
@@ -342,7 +401,7 @@ public abstract class DelimitedLine extends TextLine
     }
     
     /**
-     * Set the value of a column. If <tt>null</tt> is sent, it will be replaced with an empty String
+     * Set the value of a column. If <code>null</code> is sent, it will be replaced with an empty String
      * 
      * @param data The value to set
      * @param columnIndex The zero based index of the column to set
@@ -368,7 +427,7 @@ public abstract class DelimitedLine extends TextLine
     /**
      * Convert this line to a single String. Null columns will be skipped
      * 
-     * @param columnsIndiciesToSkip The zero based indices to skip in building the String
+     * @param columnsIndicesToSkip The zero based indices to skip in building the String
      * @return This line as a single String with the specified columns skipped
      */
     public String toString(int... columnsIndicesToSkip)

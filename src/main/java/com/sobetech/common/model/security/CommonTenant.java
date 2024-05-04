@@ -18,10 +18,21 @@ package com.sobetech.common.model.security;
  *
  * @since Jan 26, 2024
  *
+* @param <I> The object used as the ID for the user. Number, UUID, String, etc.
  */
-public interface CommonTenant
+public interface CommonTenant<I extends Object>
 {
+	/**
+	 * The Auth Key this tenant has for access
+	 * 
+	 * @return The Auth Key this tenant has for access
+	 */
 	String getAuthKey();
 	
-	String getId();
+	/**
+	 * Get the ID for this user
+	 * 
+	 * @return The user's ID
+	 */
+	I getId();
 }

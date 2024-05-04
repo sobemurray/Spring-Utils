@@ -21,5 +21,10 @@ package com.sobetech.common.enums;
  */
 public interface CodedEnum
 {
+	/**
+	 * Get the numeric code from this enum
+	 * 
+	 * @return The numeric code from this enum
+	 */
 	int getCode();
 }

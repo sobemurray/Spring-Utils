@@ -33,10 +33,13 @@ public class DateUtil
 {
 	private static final Logger logger = Logger.getLogger(DateUtil.class.getName());
 	
+	/**
+	 * The default date format used MM/dd/yyyy
+	 */
     protected static String genericDateFormatString = "MM/dd/yyyy";
 
     /**
-     *  
+     *  Default Constructor
      */
     public DateUtil()
     {
@@ -311,7 +314,7 @@ public class DateUtil
      * 
      * @param firstDate The first date to check
      * @param secondDate The second date to check
-     * @return <tt>true</tt> if the time of the day of the first date is later in the day than the 
+     * @return <code>true</code> if the time of the day of the first date is later in the day than the 
      * time of day of the second date. It doesn't matter what the rest of the date object looks 
      * like. It only deals with the time. If the times are equal, then it will return false. 
      */
@@ -325,7 +328,7 @@ public class DateUtil
      * 
      * @param startCalendar The first date to check
      * @param endCalendar The second date to check
-     * @return <tt>true</tt> if the time of the day of the first date is later in the day than the time of day of the second
+     * @return <code>true</code> if the time of the day of the first date is later in the day than the time of day of the second
      * date. It doesn't matter what the rest of the date object looks like. It only deals with the time. If the times are
      * equal, then it will return false. 
      */
@@ -357,10 +360,9 @@ public class DateUtil
     }
     
     /**
-     * Takes a month and year and returns the exact beginning of the month
+     * Takes a Date and sets it to the beginning of the month and year of the desired date
      * 
-     * @param javaMonth The month to set the date to in a Java format. January == 0 and so on
-     * @param year The year to set the date to
+     * @param date The date to convert
      * @return A Date object that is the beginning of the month and year specified
      */
     public Date toBeginningOfTheMonth(Date date)
@@ -370,10 +372,9 @@ public class DateUtil
     }
     
     /**
-     * Takes a month and year and returns the exact end of the month
+     * Takes a Date and sets it to the end of the month and year of the desired date
      * 
-     * @param javaMonth The month to set the date to in a Java format. January == 0 and so on
-     * @param year The year to set the date to
+     * @param date The date to convert
      * @return A Date object that is the end of the month and year specified
      */
     public Date toEndOfTheMonth(Date date)
@@ -436,7 +437,7 @@ public class DateUtil
      * Tries to convert a string in the format of MM/dd/yyyy into a Date object
      * 
      * @param dateString The string to convert into a Date object
-     * @return The resultant Date object or <tt>null</tt> if this string cannot be converted into a 
+     * @return The resultant Date object or <code>null</code> if this string cannot be converted into a 
      * Date object
      */
     public Date toDate(String dateString)
@@ -451,7 +452,7 @@ public class DateUtil
      * 
      * @param dateString The string to convert into a Date object
      * @param dateFormatString A string representing a DateFormat
-     * @return The resultant Date object or <tt>null</tt> if this string cannot be converted into a 
+     * @return The resultant Date object or <code>null</code> if this string cannot be converted into a 
      * Date object
      */  
     public Date toDate(String dateString, String dateFormatString)

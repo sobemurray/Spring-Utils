@@ -13,22 +13,29 @@ package com.sobetech.common.model.io;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
+import com.sobetech.common.exception.string.DataLineException;
 import com.sobetech.common.model.string.TextLine;
 
 /**
- * An abstract class to represent a text file. While this might seem unnecessary it creates the opportunity
+ * An abstract class to represent an text file. While this might seem unnecessary it creates the opportunity
  * to consolidate many methods and operations into one place
  *
  * @author John Murray
  *
  * @since 0.3.1
  *
+ * @param <L> Any class that is a TextLine class or extension of it
+ * 
+ * @see CSVFile
+ * @see TextFile
+ *
  */
 public abstract class AbstractFile <L extends TextLine>
 {
-	private Optional<List<L>> lines;
+	private boolean allowsEmptyLines = false;
+	
+	private List<L> lines;
 	
 	/**
 	 * Empty Constructor
@@ -37,13 +44,24 @@ public abstract class AbstractFile <L extends TextLine>
 	{
 		clearLines();
 	}
+	
+	/**
+	 * Create a new file with the flag to allow empty lines or not
+	 * 
+	 * @param allowsEmptyLines If <code>true</code> this file will allow empty lines. This is false by default
+	 */
+	public AbstractFile(boolean allowsEmptyLines)
+	{
+		this();
+		this.allowsEmptyLines = allowsEmptyLines;
+	}
 
 	/**
 	 * Gets all of the lines of the file
 	 * 
 	 * @return An Optional instance of the lines in the file for null safety
 	 */
-	public Optional<List<L>> getLines()
+	public List<L> getLines()
 	{
 		return this.lines;
 	}
@@ -55,33 +73,25 @@ public abstract class AbstractFile <L extends TextLine>
 	 */
 	public int getLineCount()
 	{
-		if(this.lines.isPresent())
+		if(this.lines == null)
 		{
-			return this.lines.get().size();
+			return 0;
 		}
 		
-		return 0;
+		return this.lines.size();
 	}
 	
 	/**
 	 * Add a new line to the end of the file
 	 * 
 	 * @param newLine The new line to add to the file
-	 * @return <tt>true</tt> if the new line has been added. This will also return <tt>false</tt> if the newLine is null
+	 * @return <code>true</code> if the new line has been added. This will also return <code>false</code> if the newLine is null
 	 */
 	public boolean addLine(L newLine)
 	{
-		if(newLine == null)
-		{
-			return false;
-		}
+		initializeIfNecessary();
 		
-		if(this.lines.isEmpty())
-		{
-			this.lines = Optional.of(new ArrayList<L>());
-		}
-		
-		return this.lines.get().add(newLine);
+		return this.lines.add(newLine);
 	}
 	
 	/**
@@ -89,7 +99,8 @@ public abstract class AbstractFile <L extends TextLine>
 	 * specified is out of bounds, the line will be added to the end of the file
 	 * 
 	 * @param newLine The new line to add to the file
-	 * @return <tt>true</tt> if the new line has been added. This will also return <tt>false</tt> if the newLine is null
+	 * @param index The index location to add this line
+	 * @return <code>true</code> if the new line has been added. This will also return <code>false</code> if the newLine is null
 	 */
 	public boolean addLine(L newLine, int index)
 	{
@@ -98,14 +109,11 @@ public abstract class AbstractFile <L extends TextLine>
 			return false;
 		}
 		
-		if(this.lines.isEmpty())
-		{
-			this.lines = Optional.of(new ArrayList<L>());
-		}
+		initializeIfNecessary();
 		
 		try
 		{
-			this.lines.get().add(index, newLine);
+			this.lines.add(index, newLine);
 		}
 		catch(IndexOutOfBoundsException e)
 		{
@@ -124,7 +132,9 @@ public abstract class AbstractFile <L extends TextLine>
 	 */
 	public L getLine(int lineIndex)
 	{
-		return this.lines.get().get(lineIndex);
+		initializeIfNecessary();
+		
+		return this.lines.get(lineIndex);
 	}
 	
 	/**
@@ -136,7 +146,24 @@ public abstract class AbstractFile <L extends TextLine>
 	 */
 	public L removeLine(int lineIndex)
 	{
-		return this.lines.get().remove(lineIndex);
+		initializeIfNecessary();
+		
+		return this.lines.remove(lineIndex);
+	}
+	
+	/**
+	 * Replace the content in a line with new content
+	 * 
+	 * @param lineIndex The line index to make the replacement
+	 * @param replacementLine The new line content
+	 * @return The previous line content
+	 * @throws IndexOutOfBoundsException if the index is not valid for the lines
+	 */
+	public L replaceLine(int lineIndex, L replacementLine)
+	{
+		initializeIfNecessary();
+		
+		return this.lines.set(lineIndex, replacementLine);
 	}
 	
 	/**
@@ -144,29 +171,132 @@ public abstract class AbstractFile <L extends TextLine>
 	 */
 	public void clearLines()
 	{
-		this.lines = Optional.of(new ArrayList<L>());
+		initializeIfNecessary();
+		
+		this.lines.clear();
+	}
+	
+	/**
+	 * Get the first line of the file if it has any lines
+	 * @return The first line of the file if it has any lines
+	 */
+	public L getFirstLine()
+	{
+		initializeIfNecessary();
+		
+		return this.lines.getFirst();
+	}
+	
+	/**
+	 * Get the last line of the file if it has any lines
+	 * @return The last line of the file if it has any lines
+	 */
+	public L getLastLine()
+	{
+		initializeIfNecessary();
+		
+		return this.lines.getLast();
+	}
+	
+	/**
+	 * Truncate a file to a number of lines. This will remove lines from the end of the file. If the file has less lines than
+	 * the desired size, <code>false</code> will be returned instead of an Exception
+	 * 
+	 * @param newLineCount The number of lines this file should now have.
+	 * @return <code>true</code> if the file has been successfully truncated. If the file has less lines than the desired 
+	 * size, <code>false</code> will be returned instead of an Exception 
+	 */
+	public boolean truncateTo(int newLineCount)
+	{
+		initializeIfNecessary();
+		
+		int startIndex = newLineCount - 1;
+		int endIndex = this.lines.size() - 1;
+		
+		if(startIndex > endIndex)
+		{
+			return false;
+		}
+		
+		this.lines.subList(newLineCount, newLineCount).clear();
+		
+		return true;
 	}
 
+	/**
+	 * Convert this object into a single String. This String will use the line separators specified
+	 * by the system that this is running on
+	 */
 	@Override
 	public String toString()
 	{
+		initializeIfNecessary();
+		
 		StringBuilder stringBuilder = new StringBuilder();
 		
-		if(this.lines.isPresent())
+		boolean addNewLine = false;
+		
+		for(L line : this.lines)
 		{
-			boolean addNewLine = false;
-			
-			for(L line : this.lines.get())
+			if(addNewLine)
 			{
-				if(addNewLine)
-				{
-					stringBuilder.append(System.getProperty("line.separator"));
-				}
-				
-				stringBuilder.append(line.toString());
+				stringBuilder.append(System.getProperty("line.separator"));
 			}
+			
+			stringBuilder.append(line.toString());
+			
+			addNewLine = true;
 		}
 
 		return stringBuilder.toString();
+	}
+
+	/**
+	 * Check if a line is valid
+	 * 
+	 * @param lineToValidate The line to validate
+	 * @return <code>true</code> if the line is valid. It may also throw a DateLineException
+	 */
+	protected boolean validateLine(L lineToValidate)
+	{
+		if(lineToValidate == null)
+		{
+			throw new DataLineException("Cannot add a null line");
+		}
+		
+		if(!allowsEmptyLines && lineToValidate.toString().isBlank())
+		{
+			throw new DataLineException("Cannot add an empty line");
+		}
+		
+		return true;
+	}
+	
+	private void initializeIfNecessary()
+	{
+		if(this.lines == null)
+		{
+			this.lines = new ArrayList<>();
+		}
+	}
+
+	/**
+	 * Getter for attribute allowsEmptyLines
+	 *
+	 * @return the allowsEmptyLines
+	 */
+	public boolean allowsEmptyLines()
+	{
+		return this.allowsEmptyLines;
+	}
+
+	/**
+	 * Setter for attribute allowsEmptyLines
+	 *
+	 * @param allowsEmptyLines the allowsEmptyLines to set
+	 */
+	public void setAllowsEmptyLines(boolean allowsEmptyLines)
+	{
+		this.allowsEmptyLines = allowsEmptyLines;
 	}
 }
