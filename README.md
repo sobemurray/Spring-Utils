@@ -19,7 +19,7 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 # Releases
 
 ## 1.0.0
-##### upcoming
+##### 05-04-2024
 #### SU-5
 Finished migration of code from JavaUtil and FileUtil
 Added in the Jackson and Swagger dependent classes
