@@ -161,6 +161,24 @@ public abstract class DelimitedLine extends TextLine
 	}
 	
 	/**
+	 * Get the first column from this line
+	 * 
+	 * @return The first column from this line
+	 */
+	public String getFirstColumn()
+	{
+		return asList().getFirst();
+	}
+
+	public boolean isFirstColumnNumeric()
+	{
+		String firstColumn = getFirstColumn();
+		
+		// This regex might work "-?\\d+(\\.\\d+)?"
+		return firstColumn.matches("-?\\d+(\\.\\d+)?");
+	}
+	
+	/**
 	 * Checks this line to ensure that it has the correct number of columns. If the expected columns
 	 * attribute is not set <code>true</code> will be returned
 	 * 
