@@ -9,12 +9,16 @@
  * the terms of that agreement.
  *
  */
-package com.sobetech.common.model.io;
+package com.sobetech.common.model.io.result;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import com.sobetech.common.enums.io.ExportType;
 import com.sobetech.common.enums.io.ImportType;
@@ -30,8 +34,10 @@ import com.sobetech.common.enums.io.ImportType;
  *
  * @since May 3, 2024
  *
+ * @param <O> The type of object to include in the additionalInformation
  */
-public class ImportResult
+@JsonInclude(Include.NON_NULL)
+public class ImportResult <O extends Object>
 {
 	private String importDescription;
 	
@@ -49,7 +55,10 @@ public class ImportResult
 
 	private List<String> errors;
 
+	@JsonIgnore
 	private Duration duration;
+	
+	private String importDuration;
 	
 	private ImportType importType;
 	
@@ -58,6 +67,8 @@ public class ImportResult
 	private String destinationName;
 
 	private Date startDate;
+	
+	private O additionalInformation;
 
 	/**
 	 * Create a result with the start time set to now
@@ -172,6 +183,31 @@ public class ImportResult
 		return getDuration();
 	}
 
+	/**
+	 * Getter for attribute importDuration
+	 *
+	 * @return the importDuration
+	 */
+	public String getImportDuration()
+	{
+		return this.importDuration;
+	}
+
+	/**
+	 * Setter for attribute importDuration
+	 *
+	 * @param importDuration the importDuration to set
+	 */
+	public void setImportDuration(String importDuration)
+	{
+		this.importDuration = importDuration;
+	}
+
+	/**
+	 * Set the end time as the current system time
+	 * 
+	 * @return The Duration that has now been properly set
+	 */
 	public Duration setEndTime()
 	{
 		return setDuration(this.startDate.getTime(), System.currentTimeMillis());
@@ -362,6 +398,7 @@ public class ImportResult
 	public void setDuration(Duration duration)
 	{
 		this.duration = duration;
+		this.importDescription = this.duration.toString();
 	}
 
 	/**
@@ -422,5 +459,25 @@ public class ImportResult
 	public void setDestinationName(String destinationName)
 	{
 		this.destinationName = destinationName;
+	}
+
+	/**
+	 * Getter for attribute additionalInformation
+	 *
+	 * @return the additionalInformation
+	 */
+	public O getAdditionalInformation()
+	{
+		return this.additionalInformation;
+	}
+
+	/**
+	 * Set any additionalInformation that should be included in this result. This is left 
+	 *
+	 * @param additionalInformation the additionalInformation to set
+	 */
+	public void setAdditionalInformation(O additionalInformation)
+	{
+		this.additionalInformation = additionalInformation;
 	}
 }

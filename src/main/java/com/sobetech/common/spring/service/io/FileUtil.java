@@ -58,7 +58,15 @@ public class FileUtil
 		return resourceDirectory.toFile().getAbsolutePath();
 	}
 	
-	public boolean savePlayersFile(String filePath, Collection<Object> objectsToWriteToFile)
+	/**
+	 * Save a collection of Objects into a File. Each Object will converted into a String by its toString
+	 * methods and each of those lines will be written as its own line
+	 * 
+	 * @param filePath The fully qualified path of the file to be saved
+	 * @param objectsToWriteToFile The Collection of Objects to be saved in the file
+	 * @return <code>true</code> if the file has been saved successfully
+	 */
+	public boolean saveFile(String filePath, Collection<? extends Object> objectsToWriteToFile)
 	{
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) 
         {
