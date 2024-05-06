@@ -11,6 +11,9 @@
  */
 package com.sobetech.common.model.sql;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 /**
  * A class containing the information pertaining to a server connection
  * 
@@ -18,6 +21,7 @@ package com.sobetech.common.model.sql;
  * 
  * @since 0.2.0
  */
+@JsonInclude(Include.NON_NULL)
 public class PostgreSQLConfiguration extends DatabaseConfiguration
 { 
 	protected int port = 5432;
