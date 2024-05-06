@@ -64,7 +64,7 @@ public class ImportResult <O extends Object>
 
 	private Date startDate;
 	
-	private Object additionalInformation;
+	private O additionalInformation;
 
 	/**
 	 * Create a result with the start time set to now
@@ -436,7 +436,7 @@ public class ImportResult <O extends Object>
 	 *
 	 * @return the additionalInformation
 	 */
-	public Object getAdditionalInformation()
+	public O getAdditionalInformation()
 	{
 		return this.additionalInformation;
 	}
@@ -446,7 +446,7 @@ public class ImportResult <O extends Object>
 	 *
 	 * @param additionalInformation the additionalInformation to set
 	 */
-	public void setAdditionalInformation(Object additionalInformation)
+	public void setAdditionalInformation(O additionalInformation)
 	{
 		this.additionalInformation = additionalInformation;
 	}

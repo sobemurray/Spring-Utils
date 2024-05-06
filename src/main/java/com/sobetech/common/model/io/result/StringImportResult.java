@@ -21,5 +21,32 @@ package com.sobetech.common.model.io.result;
  */
 public class StringImportResult extends ImportResult<String>
 {
+	/**
+	 * Default constructor
+	 */
+	public StringImportResult()
+	{
+		super();
+	}
 
+	/**
+	 * Create a result with a description
+	 * 
+	 * @param importDescription The description to set for this result
+	 */
+	public StringImportResult(String importDescription)
+	{
+		super(importDescription);
+	}
+
+	@Override
+	public String getAdditionalInformation()
+	{
+		if(super.getAdditionalInformation() == null)
+		{
+			setAdditionalInformation("");
+		}
+		
+		return super.getAdditionalInformation();
+	}
 }

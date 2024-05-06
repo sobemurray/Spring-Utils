@@ -23,6 +23,7 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 #### SU-7
 Bug fixes found post-merge
 Moved import results into it's own package
+Created an object to hold year data in the results
 
 ## 1.0.0
 ##### 05-04-2024
