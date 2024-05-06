@@ -32,6 +32,8 @@ public class YearRanges
 	
 	private Set<Integer> excludedYears;
 	
+	private Set<Integer> partialYears;
+	
 	/**
 	 * Default constructor
 	 */
@@ -75,6 +77,22 @@ public class YearRanges
 		}
 		
 		return this.excludedYears.add(yearToExclude);
+	}
+	
+	/**
+	 * Add a year to the Set of partial years
+	 * 
+	 * @param yearToSet The year to add as a partial year
+	 * @return <code>true</code> if this year has been added to the Set of partial years
+	 */
+	public boolean addPartialYear(int yearToSet)
+	{
+		if(this.partialYears == null)
+		{
+			this.partialYears = new TreeSet<>();
+		}
+		
+		return this.partialYears.add(yearToSet);
 	}
 
 	/**
@@ -155,5 +173,25 @@ public class YearRanges
 	public void setExcludedYears(Set<Integer> excludedYears)
 	{
 		this.excludedYears = excludedYears;
+	}
+
+	/**
+	 * Getter for attribute partialYears
+	 *
+	 * @return the partialYears
+	 */
+	public Set<Integer> getPartialYears()
+	{
+		return this.partialYears;
+	}
+
+	/**
+	 * Setter for attribute partialYears
+	 *
+	 * @param partialYears the partialYears to set
+	 */
+	public void setPartialYears(Set<Integer> partialYears)
+	{
+		this.partialYears = partialYears;
 	}
 }

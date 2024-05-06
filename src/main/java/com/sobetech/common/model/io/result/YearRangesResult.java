@@ -23,6 +23,8 @@ import com.sobetech.common.model.date.YearRanges;
  */
 public class YearRangesResult extends ImportResult<YearRanges>
 {
+	private int currentYear;
+	
 	/**
 	 * Default constructor
 	 */
@@ -77,5 +79,25 @@ public class YearRangesResult extends ImportResult<YearRanges>
 		}
 		
 		return super.getAdditionalInformation();
+	}
+
+	/**
+	 * Getter for attribute currentYear
+	 *
+	 * @return the currentYear
+	 */
+	public int getCurrentYear()
+	{
+		return this.currentYear;
+	}
+
+	/**
+	 * Setter for attribute currentYear
+	 *
+	 * @param currentYear the currentYear to set
+	 */
+	public void setCurrentYear(int currentYear)
+	{
+		this.currentYear = currentYear;
 	}
 }
