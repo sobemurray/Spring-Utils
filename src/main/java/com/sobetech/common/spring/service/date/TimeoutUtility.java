@@ -31,6 +31,14 @@ import org.springframework.stereotype.Service;
 public class TimeoutUtility
 {
 	int n1 = 0, n2 = 1, n3, max;
+	
+	/**
+	 * Default constructor
+	 */
+	public TimeoutUtility()
+	{
+		
+	}
 
 	/**
 	 * Create a new instance with a maximum number that will be returned
