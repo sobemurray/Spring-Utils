@@ -13,6 +13,9 @@ package com.sobetech.common.model.string;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 /**
  * A wrapper class for the individual lines in a file
  * 
@@ -20,6 +23,7 @@ import java.util.Objects;
  *
  * @since 0.3.1
  */
+@JsonInclude(Include.NON_NULL)
 public class TextLine
 {
     protected String line;

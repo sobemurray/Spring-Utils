@@ -21,6 +21,7 @@ import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import com.sobetech.common.enums.BooleanFormat;
 
@@ -31,6 +32,7 @@ import com.sobetech.common.enums.BooleanFormat;
  
  * @since 0.0.2
  */
+@Service
 public class StringUtil
 {
 	protected final Logger LOG = LoggerFactory.getLogger(this.getClass());

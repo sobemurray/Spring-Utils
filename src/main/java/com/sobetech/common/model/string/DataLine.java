@@ -11,6 +11,9 @@
  */
 package com.sobetech.common.model.string;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 /**
  * A wrapper class that allows delimited string data lines to be created easily
  * 
@@ -18,6 +21,7 @@ package com.sobetech.common.model.string;
  *
  * @since 0.0.2
  */
+@JsonInclude(Include.NON_NULL)
 public class DataLine
 {
     private String line;
