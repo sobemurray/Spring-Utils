@@ -531,10 +531,10 @@ public class DateUtil
     	
     	if(duration.toHoursPart() > 0)
     	{
-	    	return String.format("%d:%d:%d.%d", duration.toHoursPart(), duration.toMinutesPart(), duration.toSecondsPart(), 
+	    	return String.format("%d:%02d:%02d.%03d", duration.toHoursPart(), duration.toMinutesPart(), duration.toSecondsPart(), 
 	    			duration.toMillisPart());
     	}
     	
-    	return String.format("%d:%d.%d", duration.toMinutesPart(), duration.toSecondsPart(), duration.toMillisPart());
+    	return String.format("%02d:%02d.%03d", duration.toMinutesPart(), duration.toSecondsPart(), duration.toMillisPart());
     }
 }
