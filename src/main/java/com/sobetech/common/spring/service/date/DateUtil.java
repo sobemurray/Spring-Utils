@@ -14,6 +14,7 @@ package com.sobetech.common.spring.service.date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
 import java.util.logging.Logger;
 
@@ -512,5 +513,28 @@ public class DateUtil
             //The exception is generic because we can either generate an NPE or an IllegalArgumentException
         }
         return dateFormat.format(date);
+    }
+    
+    /**
+     * Format a Duration into a more readable String than what the class returns
+     * 
+     * @param duration The Duration to print out
+     * @return The duration as hh:mm:ss.sss if there are hours presents, mm:ss.sss if not. If the duration is 
+     * <code>null</code> then an empty String is returned
+     */
+    public String formatDuration(Duration duration)
+    {
+    	if(duration == null)
+    	{
+    		return "";
+    	}
+    	
+    	if(duration.toHoursPart() > 0)
+    	{
+	    	return String.format("%d:%d:%d.%d", duration.toHoursPart(), duration.toMinutesPart(), duration.toSecondsPart(), 
+	    			duration.toMillisPart());
+    	}
+    	
+    	return String.format("%d:%d.%d", duration.toMinutesPart(), duration.toSecondsPart(), duration.toMillisPart());
     }
 }

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -54,7 +55,10 @@ public class ImportResult <O extends Object>
 
 	private List<String> errors;
 
+	@JsonIgnore
 	private Duration duration;
+	
+	private String importDuration;
 	
 	private ImportType importType;
 	
@@ -179,6 +183,31 @@ public class ImportResult <O extends Object>
 		return getDuration();
 	}
 
+	/**
+	 * Getter for attribute importDuration
+	 *
+	 * @return the importDuration
+	 */
+	public String getImportDuration()
+	{
+		return this.importDuration;
+	}
+
+	/**
+	 * Setter for attribute importDuration
+	 *
+	 * @param importDuration the importDuration to set
+	 */
+	public void setImportDuration(String importDuration)
+	{
+		this.importDuration = importDuration;
+	}
+
+	/**
+	 * Set the end time as the current system time
+	 * 
+	 * @return The Duration that has now been properly set
+	 */
 	public Duration setEndTime()
 	{
 		return setDuration(this.startDate.getTime(), System.currentTimeMillis());
@@ -369,6 +398,7 @@ public class ImportResult <O extends Object>
 	public void setDuration(Duration duration)
 	{
 		this.duration = duration;
+		this.importDescription = this.duration.toString();
 	}
 
 	/**
