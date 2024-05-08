@@ -18,7 +18,7 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 # Releases
 
-## 1.0.2
+## 1.0.3
 ##### upcoming
 ####
 
