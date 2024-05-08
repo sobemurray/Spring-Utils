@@ -11,12 +11,17 @@
  */
 package com.sobetech.common.spring.service.io;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -84,5 +89,35 @@ public class FileUtil
         }
         
         return true;
+	}
+	
+	/**
+	 * Open a file and convert each line to a String
+	 * 
+	 * @param filePath The fully qualified path of the file to be saved 
+	 * @return The contents of the file as a List of Strings
+	 */
+	public List<String> openFile(String filePath)
+	{
+		List<String> lines = new ArrayList<>();
+        try
+		{
+			BufferedReader reader = new BufferedReader(new FileReader(filePath));
+			String line;
+			while ((line = reader.readLine()) != null) 
+			{
+			    lines.add(line);
+			}
+			reader.close();
+		}
+		catch(FileNotFoundException e)
+		{
+			LOG.error("File {} could not be found", filePath);
+		}
+		catch(IOException e)
+		{
+			LOG.error("Error in reading file", e);
+		}
+        return lines;
 	}
 } 
