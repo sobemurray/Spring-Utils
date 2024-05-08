@@ -18,6 +18,11 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 # Releases
 
+## 1.0.2
+##### upcoming
+#### SU-10
+Open any text file and convert into a List of Strings
+
 ## 1.0.1
 ##### 05-06-2024
 #### SU-7
