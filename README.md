@@ -19,7 +19,7 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 # Releases
 
 ## 1.0.3
-##### upcoming
+##### 05-14-2024
 #### SU-14
 Renamed packages to have the general functionality first and Spring second
 
