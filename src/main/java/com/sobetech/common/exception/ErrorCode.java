@@ -28,15 +28,55 @@ public enum ErrorCode implements CodedEnum, CodedError
 	 * 
 	 * < 1000
 	 */
+	
+	/**
+	 * Mirror of HttpStatus.BAD_REQUEST
+	 */
 	BAD_REQUEST(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST),
+	
+	/**
+	 * Mirror of HttpStatus.UNAUTHORIZED
+	 */
 	UNAUTHORIZED(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED),
+	
+	/**
+	 * Mirror of HttpStatus.FORBIDDEN
+	 */
 	FORBIDDEN(HttpStatus.FORBIDDEN.value(), HttpStatus.FORBIDDEN),
+	
+	/**
+	 * Mirror of HttpStatus.NOT_FOUND
+	 */
 	NOT_FOUND(HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND),
+	
+	/**
+	 * Mirror of HttpStatus.METHOD_NOT_ALLOWED
+	 */
 	METHOD_NOT_ALLOWED(HttpStatus.METHOD_NOT_ALLOWED.value(), HttpStatus.METHOD_NOT_ALLOWED),
+	
+	/**
+	 * Mirror of HttpStatus.NOT_ACCEPTABLE
+	 */
 	NOT_ACCEPTABLE(HttpStatus.NOT_ACCEPTABLE.value(), HttpStatus.NOT_ACCEPTABLE),
+	
+	/**
+	 * Mirror of HttpStatus.CONFLICT
+	 */
 	CONFLICT(HttpStatus.CONFLICT.value(), HttpStatus.CONFLICT),
+	
+	/**
+	 * Mirror of HttpStatus.PAYLOAD_TOO_LARGE
+	 */
 	PAYLOAD_TOO_LARGE(HttpStatus.PAYLOAD_TOO_LARGE.value(), HttpStatus.PAYLOAD_TOO_LARGE),
+
+	/**
+	 * Mirror of HttpStatus.UNPROCESSABLE_ENTITY
+	 */
 	UNPROCESSABLE_ENTITY(HttpStatus.UNPROCESSABLE_ENTITY.value(), HttpStatus.UNPROCESSABLE_ENTITY),
+	
+	/**
+	 * Mirror of HttpStatus.LOCKED
+	 */
 	LOCKED(HttpStatus.LOCKED.value(), HttpStatus.LOCKED),
 	
 	/*
@@ -44,123 +84,238 @@ public enum ErrorCode implements CodedEnum, CodedError
 	 * 1000 - 1999
 	 */
 	
+	/**
+	 * A generic system error has occured and a 500 will be returned
+	 */
 	SYSTEM_ERROR(1000, HttpStatus.INTERNAL_SERVER_ERROR),
-	PROVIDER_CALL_FAILURE(1001, HttpStatus.INTERNAL_SERVER_ERROR),
-	CALLBACK_TIMEOUT(1002, HttpStatus.INTERNAL_SERVER_ERROR),
-	QUOTE_ENGINE_CREDENTIALS_FAILURE(1003, HttpStatus.INTERNAL_SERVER_ERROR),
-	QUOTE_ENGINE_CREDENTIALS_FAILURE_WITH_DETAILS(1004, HttpStatus.INTERNAL_SERVER_ERROR),
-	CALLBACK_FAILURE(1005, HttpStatus.INTERNAL_SERVER_ERROR),
-	SELECT_NOT_APPLICABLE(1006, HttpStatus.BAD_REQUEST),
-	ISSUE_NOT_APPLICABLE(1007, HttpStatus.BAD_REQUEST),
-	CARRIER_CONFIGUATION_ERROR(1008, HttpStatus.INTERNAL_SERVER_ERROR),
-	FILE_LOADING_ERROR(1009, HttpStatus.INTERNAL_SERVER_ERROR),
-	FILE_WRITING_ERROR(1010, HttpStatus.INTERNAL_SERVER_ERROR),
 	
 	/*
 	 * General Domain and Entity based errors
 	 * 
 	 * 2000 - 2999
 	 */
-	//TODO replace many of the HttpStatus.BAD_REQUEST with HttpStatus.UNPROCESSABLE_ENTITY
-	MALFORMED_ENITIY(2000, HttpStatus.BAD_REQUEST),
-	DUPLICATE_ENITIY(2001, HttpStatus.BAD_REQUEST),
-	MISSING_ATTRIBUTE(2002, HttpStatus.BAD_REQUEST),
-	DATE_FORMAT_ERROR(2003, HttpStatus.BAD_REQUEST),
-	MISSING_ENTITY(2004, HttpStatus.BAD_REQUEST),
-	STATUS_INVALID(2005, HttpStatus.BAD_REQUEST),
-	ROLE_MISSING(2006, HttpStatus.INTERNAL_SERVER_ERROR),
-	USER_INVALID(2007, HttpStatus.BAD_REQUEST),
-	INVALID_ATTRIBUTE(2008, HttpStatus.BAD_REQUEST),
-	ATTRIBUTE_CONFLICT(2009, HttpStatus.BAD_REQUEST),
-	VALIDATION_FAILURE(2010, HttpStatus.BAD_REQUEST),
-	INVALID_ENUM(2011, HttpStatus.BAD_REQUEST),
-	CALLBACK_INVALID_METHOD(2012, HttpStatus.METHOD_NOT_ALLOWED),
-	INVALID_ATTRIBUTE_VALUE(2013, HttpStatus.BAD_REQUEST),
-	CONDO_NOT_ALLOWED(2014, HttpStatus.BAD_REQUEST),
-	XML_MAPPING_FAILURE(2015, HttpStatus.INTERNAL_SERVER_ERROR),
-	TENANT_CONFIGURATION(2016, HttpStatus.UNPROCESSABLE_ENTITY),
-	INVALID_FORMAT(2017, HttpStatus.BAD_REQUEST),
-	INVALID_YEAR(2018, HttpStatus.UNPROCESSABLE_ENTITY),
-	INVALID_MONTH(2019, HttpStatus.UNPROCESSABLE_ENTITY),
-	ENTITY_ALREADY_PROCESSED(2020, HttpStatus.UNPROCESSABLE_ENTITY),
+	
+	/**
+	 * The entity being processed is malformed
+	 */
+	MALFORMED_ENITIY(2000, HttpStatus.UNPROCESSABLE_ENTITY),
+	
+	/**
+	 * There is a duplicate entity that is preventing the operation
+	 */
+	DUPLICATE_ENITIY(2001, HttpStatus.UNPROCESSABLE_ENTITY),
+	
+	/**
+	 * There is an attribute missing from either the request or entity
+	 */
+	MISSING_ATTRIBUTE(2002, HttpStatus.UNPROCESSABLE_ENTITY),
+	
+	/**
+	 * A date string has been sent that cannot be translated
+	 */
+	DATE_FORMAT_ERROR(2003, HttpStatus.UNPROCESSABLE_ENTITY),
+	
+	/**
+	 * An entity that was expected is missing. This is generally used in missing body
+	 */
+	MISSING_ENTITY(2004, HttpStatus.UNPROCESSABLE_ENTITY),
+	
+	/**
+	 * A role that was expected is missing
+	 */
+	ROLE_MISSING(2005, HttpStatus.UNPROCESSABLE_ENTITY),
+	
+	/**
+	 * The user is invalid. Not to be used for permissions issues
+	 */
+	USER_INVALID(2006, HttpStatus.BAD_REQUEST),
+	
+	/**
+	 * The value of an attribute is invalid. If there is a defined list of values for the attribute, use INVALID_ATTRIBUTE_VALUE
+	 */
+	INVALID_ATTRIBUTE(2007, HttpStatus.UNPROCESSABLE_ENTITY),
+	
+	/**
+	 * Two attributes for an entity are in conflict
+	 */
+	ATTRIBUTE_CONFLICT(2008, HttpStatus.UNPROCESSABLE_ENTITY),
+	
+	/**
+	 * A String that is trying to be translated into an Enum is invalid
+	 */
+	INVALID_ENUM(2009, HttpStatus.BAD_REQUEST),
+	
+	/**
+	 * The value of an attribute is invalid. This is different from INVALID_ATTRIBUTE, because the attribute in question 
+	 * has a defined list of possible values
+	 */
+	INVALID_ATTRIBUTE_VALUE(2010, HttpStatus.BAD_REQUEST),
+
+	/**
+	 * This tenant is not configured and needs to be address before it can use the system. This is not a security issue, but 
+	 * a configuration issue
+	 */
+	TENANT_CONFIGURATION(2011, HttpStatus.UNPROCESSABLE_ENTITY),
+	
+	/**
+	 * The item in question is not in the correct format
+	 */
+	INVALID_FORMAT(2012, HttpStatus.BAD_REQUEST),
+	
+	/**
+	 * The year that is being sent is not valid
+	 */
+	INVALID_YEAR(2013, HttpStatus.UNPROCESSABLE_ENTITY),
+	
+	/**
+	 * The month that is being sent is not valid
+	 */
+	INVALID_MONTH(2014, HttpStatus.UNPROCESSABLE_ENTITY),
+	
+	/**
+	 * The day that is being sent is not valid
+	 */
+	INVALID_DAY(2015, HttpStatus.UNPROCESSABLE_ENTITY),
+	
+	/**
+	 * The parameter sent in the request is not valid
+	 */
+	INVALID_REQUEST_PARAMETER(2016, HttpStatus.UNPROCESSABLE_ENTITY),
 
 	/*
 	 * Application security based errors
 	 * 3000 - 3999
 	 */
+	
+	/**
+	 * There is a generic issue with the token
+	 */
 	TOKEN_ERROR(3000, HttpStatus.INTERNAL_SERVER_ERROR),
+	
+	/**
+	 * This operation requires a valid request token
+	 */
 	MISSING_TOKEN(3001, HttpStatus.UNAUTHORIZED),
+	
+	/**
+	 * The token that was sent in the request is of an unknown type
+	 */
 	UNKNOWN_TOKEN_TYPE(3002, HttpStatus.BAD_REQUEST),
+	
+	/**
+	 * The token that was sent in the request is not the correct type
+	 */
 	MISSMATCHED_TOKEN_TYPE(3003, HttpStatus.BAD_REQUEST),
+	
+	/**
+	 * The token sent in the request has expired
+	 */
 	EXPIRED_TOKEN(3004, HttpStatus.UNAUTHORIZED),
+	
+	/**
+	 * The tenant making the request is not known
+	 */
 	UNKNOWN_TENANT(3005, HttpStatus.UNAUTHORIZED),
+	
+	/**
+	 * This tenant has been disabled from the system
+	 */
 	DISABLED_TENANT(3006, HttpStatus.UNAUTHORIZED),
+	
+	/**
+	 * This login request has been denied
+	 */
+	LOGIN_DENIED(3007, HttpStatus.UNAUTHORIZED),
 
 	/*
 	 * External System based errors
 	 * 4000 - 4999
 	 */
-	GENERIC_CARRIER_ERROR(4000, HttpStatus.SERVICE_UNAVAILABLE),
-	CARRIER_AUTH_ERROR(4001, HttpStatus.SERVICE_UNAVAILABLE),
-	HISCOX_QUOTE_ERROR(4002, HttpStatus.SERVICE_UNAVAILABLE),
-	HISCOX_FIND_ERROR(4003, HttpStatus.SERVICE_UNAVAILABLE),
-	HISCOX_BIND_ERROR(4004, HttpStatus.SERVICE_UNAVAILABLE),
-	AZURE_USER_UPDATE_ERROR(4005, HttpStatus.BAD_REQUEST),
-	AZURE_USER_CREATE_ERROR(4006, HttpStatus.BAD_REQUEST),
-	AZURE_USER_MISSING_ERROR(4007, HttpStatus.BAD_REQUEST),
-	CHUBB_FIND_ERROR(4008, HttpStatus.SERVICE_UNAVAILABLE),
-	WRIGHT_FLOOD_ID_MISSING(4009, HttpStatus.UNAUTHORIZED),
-	WRIGHT_FLOOD_AUTH_ERROR(4010, HttpStatus.BAD_REQUEST),
-	WRIGHT_FLOOD_LENDER_ERROR(4011, HttpStatus.BAD_REQUEST),
-	CARRIER_QUOTING_ERROR(4012, HttpStatus.BAD_REQUEST),
-	CARRIER_UNKNOWN_ERROR(4013, HttpStatus.BAD_REQUEST),
-	CARRIER_QUOTING_ERROR_NO_RESOLUTION(4014, HttpStatus.BAD_REQUEST),
+	
+	/**
+	 * A general error has occurred calling an external system
+	 */
+	GENERIC_EXTERNAL_ERROR(4000, HttpStatus.SERVICE_UNAVAILABLE),
+	
+	/**
+	 * The system had issues getting authorization from an external system
+	 */
+	AUTH_ERROR_EXTERNAL(4001, HttpStatus.SERVICE_UNAVAILABLE),
+	
+	/**
+	 * The system had issues uploading to an external system
+	 */
+	UPLOAD_FAILED(4003, HttpStatus.SERVICE_UNAVAILABLE),
+	
+	/**
+	 * The system had issues sending an email
+	 */
+	EMAIL_FAILED(4003, HttpStatus.SERVICE_UNAVAILABLE),
 	
 	/*
 	 * Logic based errors
 	 * 5000 - 5999
 	 */
+	
+	/**
+	 * The arguments for this method are not valid
+	 */
 	MALFORMED_ARGUMENT(5000, HttpStatus.BAD_REQUEST),
-	AGENCY_CONFIG_NEEDED(5001, HttpStatus.UNAUTHORIZED),
-	UPLOAD_FAILED(5002, HttpStatus.INTERNAL_SERVER_ERROR),
-	EMAIL_FAILED(5003, HttpStatus.INTERNAL_SERVER_ERROR),
-	STATUS_INVALID_FOR_OPERATION(5004, HttpStatus.BAD_REQUEST),
-	FEE_CALCULATION_FAILURE(5005, HttpStatus.INTERNAL_SERVER_ERROR),
-	FEE_SCHEDULE_UNAVAILABLE(5006, HttpStatus.INTERNAL_SERVER_ERROR),
-	RATE_OPTIONS_ERROR(5007, HttpStatus.INTERNAL_SERVER_ERROR),
-	RANGE_GAP(5008, HttpStatus.BAD_REQUEST),
-	RANGE_OVERLAP(5009, HttpStatus.BAD_REQUEST),
-	DATE_PAST(5010, HttpStatus.BAD_REQUEST),
-	DATE_FUTURE(5011, HttpStatus.BAD_REQUEST),
-	DATES_BEFORE(5012, HttpStatus.BAD_REQUEST),
-	RISK_ADDRESS_UPDATED(5013, HttpStatus.UNPROCESSABLE_ENTITY),
-	UNKNOWN_AGENT_PROCESSING(5014, HttpStatus.CONFLICT),
-	OBJECT_MISSING_ATTRIBUTE(5015, HttpStatus.UNPROCESSABLE_ENTITY),
-	INVALID_POLICY_TYPE(5016, HttpStatus.UNPROCESSABLE_ENTITY),
-	LARGER_THAN(5017, HttpStatus.UNPROCESSABLE_ENTITY),
-	LESS_THAN(5018, HttpStatus.UNPROCESSABLE_ENTITY),
-	EQUALS(5019, HttpStatus.UNPROCESSABLE_ENTITY),
-	NOT_EQUALS(5020, HttpStatus.UNPROCESSABLE_ENTITY),
 	
-	/*
-	 * Auto model object errors
-	 * 6000 - 6999
+	/**
+	 * The status of this object is invalid for the operation being requested
 	 */
-	INVALID_VIN(6005, HttpStatus.BAD_REQUEST),
+	STATUS_INVALID_FOR_OPERATION(5001, HttpStatus.BAD_REQUEST),
+
+	/**
+	 * If an entity has a list of attributes with ranges, this list has a gap in it that makes it invalid
+	 */
+	RANGE_GAP(5002, HttpStatus.BAD_REQUEST),
 	
-	/*
-	 * HO model object errors
-	 * 7000 - 7999
+	/**
+	 * If an entity has a list of attributes with ranges, this list has an overlap in it that makes it invalid
 	 */
-	RENO_DATE_BEFORE_BUILD(7005, HttpStatus.BAD_REQUEST),
+	RANGE_OVERLAP(5003, HttpStatus.BAD_REQUEST),
 	
-	/*
-	 * Concept One errors
-	 * 7000 - 7999
+	/**
+	 * This date attribute cannot be in the past
 	 */
-	C1_SERVER_NOT_FOUND(8000, HttpStatus.NOT_FOUND),
-	C1_BROKER_NOT_FOUND(8001, HttpStatus.NOT_FOUND),
-	AGENCY_ID_TOO_LONG(8002, HttpStatus.UNPROCESSABLE_ENTITY);
+	DATE_PAST(5004, HttpStatus.BAD_REQUEST),
+
+	/**
+	 * This date attribute cannot be in the future
+	 */
+	DATE_FUTURE(5005, HttpStatus.BAD_REQUEST),
+
+	/**
+	 * This date attribute cannot be in the before another
+	 */
+	DATES_BEFORE(5006, HttpStatus.BAD_REQUEST),
+
+	/**
+	 * This date attribute cannot be in the before another
+	 */
+	DATES_AFTER(5007, HttpStatus.BAD_REQUEST),
+
+	/**
+	 * An attribute cannot be larger than another
+	 */
+	LARGER_THAN(5008, HttpStatus.UNPROCESSABLE_ENTITY),
+
+	/**
+	 * An attribute cannot be less than another
+	 */
+	LESS_THAN(5009, HttpStatus.UNPROCESSABLE_ENTITY),
+	
+	/**
+	 * An attribute cannot be equal another
+	 */
+	EQUALS(5010, HttpStatus.UNPROCESSABLE_ENTITY),
+
+	/**
+	 * An attribute must equal another
+	 */
+	NOT_EQUALS(5011, HttpStatus.UNPROCESSABLE_ENTITY);
 	
 	int code;
 	
