@@ -229,17 +229,21 @@ public class LogicalErrorsListException  extends ApiRuntimeException
 	}
 
 	/**
+	 * Getter for attribute errorsList
+	 *
 	 * @return the errorsList
 	 */
-	public List<String> getErrorsList() 
+	protected List<String> getErrorsList()
 	{
-		return errorsList;
+		return this.errorsList;
 	}
 
 	/**
+	 * Setter for attribute errorsList
+	 *
 	 * @param errorsList the errorsList to set
 	 */
-	public void setErrorsList(List<String> errorsList) 
+	protected void setErrorsList(List<String> errorsList)
 	{
 		this.errorsList = errorsList;
 	}

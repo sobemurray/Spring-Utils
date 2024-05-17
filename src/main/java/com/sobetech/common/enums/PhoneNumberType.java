@@ -21,5 +21,23 @@ package com.sobetech.common.enums;
  */
 public enum PhoneNumberType
 {
-	HOME, BUSINESS, MOBILE, FAX
+	/**
+	 * Home number. Can be land line or mobile in nature
+	 */
+	HOME, 
+	
+	/**
+	 * Business number. Can be land line or mobile in nature
+	 */
+	BUSINESS, 
+	
+	/**
+	 * Mobile number
+	 */
+	MOBILE, 
+	
+	/**
+	 * Fax number. These still exist. really
+	 */
+	FAX
 }

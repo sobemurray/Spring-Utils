@@ -21,7 +21,15 @@ package com.sobetech.common.enums;
  */
 public enum YesNoString implements StringEnum
 {
-	NO("No"), YES("Yes");
+	/**
+	 * NO
+	 */
+	NO("No"), 
+	
+	/**
+	 * YES
+	 */
+	YES("Yes");
 
 	private String value;
 

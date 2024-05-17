@@ -24,7 +24,14 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_NULL)
 public class MySQLConfiguration extends DatabaseConfiguration
 { 
+	/**
+	 * Port number that the database is running on. Defaulted to 3306
+	 */
 	protected int port = 3306;
+	
+	/**
+	 * The full name of the driver class 
+	 */
     protected static String DEFAULT_DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
     
     /**
