@@ -20,7 +20,9 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 ## 1.0.4
 ##### upcoming
-####
+#### FDI-57 
+Cleaned up ErrorCode. 
+Added protected setters to ApiRuntimeException for it's children
 
 ## 1.0.3
 ##### 05-14-2024
