@@ -21,5 +21,23 @@ package com.sobetech.common.enums;
  */
 public enum Gender
 {
-	MALE, FEMALE, GENDER_NON_CONFORMING
+	/**
+	 * Male
+	 */
+	MALE, 
+	
+	/**
+	 * Female
+	 */
+	FEMALE, 
+	
+	/**
+	 * Non-conforming
+	 */
+	GENDER_NON_CONFORMING,
+	
+	/**
+	 * All other possibilities
+	 */
+	OTHER;
 }

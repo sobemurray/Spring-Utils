@@ -25,9 +25,9 @@ public class ApiRuntimeException extends RuntimeException
 	 */
 	private static final long serialVersionUID = -46660060574162151L;
 	
-	private final String message;
+	private String message;
 	
-	private final CodedError codedError;
+	private CodedError codedError;
 	
 	private Object[] errorDisplayParameters;
 	
@@ -274,5 +274,45 @@ public class ApiRuntimeException extends RuntimeException
 	public Object[] getErrorResolutionParameters() 
 	{
 		return errorResolutionParameters;
+	}
+
+	/**
+	 * Setter for attribute message
+	 *
+	 * @param message the message to set
+	 */
+	protected void setMessage(String message)
+	{
+		this.message = message;
+	}
+
+	/**
+	 * Setter for attribute codedError
+	 *
+	 * @param codedError the codedError to set
+	 */
+	protected void setCodedError(CodedError codedError)
+	{
+		this.codedError = codedError;
+	}
+
+	/**
+	 * Setter for attribute errorDisplayParameters
+	 *
+	 * @param errorDisplayParameters the errorDisplayParameters to set
+	 */
+	protected void setErrorDisplayParameters(Object[] errorDisplayParameters)
+	{
+		this.errorDisplayParameters = errorDisplayParameters;
+	}
+
+	/**
+	 * Setter for attribute errorResolutionParameters
+	 *
+	 * @param errorResolutionParameters the errorResolutionParameters to set
+	 */
+	protected void setErrorResolutionParameters(Object[] errorResolutionParameters)
+	{
+		this.errorResolutionParameters = errorResolutionParameters;
 	}
 }
