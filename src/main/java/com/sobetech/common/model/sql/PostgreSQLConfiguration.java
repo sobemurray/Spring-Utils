@@ -24,7 +24,14 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_NULL)
 public class PostgreSQLConfiguration extends DatabaseConfiguration
 { 
+	/**
+	 * Port number that the database is running on. Defaulted to 5432
+	 */
 	protected int port = 5432;
+	
+	/**
+	 * The full name of the driver class 
+	 */
     protected static String DEFAULT_DRIVER_CLASS_NAME = "org.postgresql.Driver";
     
     /**

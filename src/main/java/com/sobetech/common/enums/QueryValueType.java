@@ -21,5 +21,33 @@ package com.sobetech.common.enums;
  */
 public enum QueryValueType
 {
-	STRING, INT, LONG, NUMBER, DATE
+	/**
+	 * String type
+	 */
+	STRING, 
+	
+	/**
+	 * Integer type
+	 */
+	INT, 
+	
+	/**
+	 * Long integer type
+	 */
+	LONG, 
+	
+	/**
+	 * A number type, integer or decimal
+	 */
+	NUMBER, 
+	
+	/**
+	 * Date type
+	 */
+	DATE,
+	
+	/**
+	 * Array type
+	 */
+	ARRAY;
 }

@@ -118,7 +118,7 @@ public class TextLine
      * character of an empty character will return <code>true</code>
      * 
      * @param testCharacter The character to check
-     * @return <code>true</code) if the test character is the first character in the line
+     * @return <code>true</code>) if the test character is the first character in the line
      */
     public boolean isFirstCharacter(char testCharacter)
     {
@@ -130,7 +130,7 @@ public class TextLine
      * character of an empty character will return <code>false</code>
      * 
      * @param testCharacter The character to check
-     * @return <code>true</code) if the test character is NOT the first character in the line
+     * @return <code>true</code>) if the test character is NOT the first character in the line
      */
     public boolean isFirstCharacterNot(char testCharacter)
     {
