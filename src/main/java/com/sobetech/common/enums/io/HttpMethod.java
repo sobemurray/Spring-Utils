@@ -23,5 +23,28 @@ package com.sobetech.common.enums.io;
  */
 public enum HttpMethod
 {
-	POST, PUT, PATCH, GET
+	/**
+	 * HTTP POST method
+	 */
+	POST, 
+	
+	/**
+	 * HTTP PUT method
+	 */
+	PUT, 
+	
+	/**
+	 * HTTP PATCH method
+	 */
+	PATCH, 
+	
+	/**
+	 * HTTP GET method
+	 */
+	GET, 
+	
+	/**
+	 * HTTP DELETE method
+	 */
+	DELETE;
 }

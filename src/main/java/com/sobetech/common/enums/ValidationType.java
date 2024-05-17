@@ -24,11 +24,34 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "The type of validation that failed")
 public enum ValidationType implements StringEnum
 {
+	/**
+	 * Unexpected null
+	 */
 	NULL("Null"), 
+	
+	/**
+	 * Unexpected null
+	 */
 	EMPTY("Empty"), 
+	
+	/**
+	 * Soemthing is invalid
+	 */
 	INVALID("Invalid"),
+	
+	/**
+	 * Invalid duplicate
+	 */
 	DUPLICATE("Duplicate"),
+	
+	/**
+	 * Something is unexpectedly missing
+	 */
 	MISSING("Missing"),
+	
+	/**
+	 * An external validation failure occurred
+	 */
 	EXTERNAL("External Failure");
 
 	private String value;

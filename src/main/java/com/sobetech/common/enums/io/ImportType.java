@@ -21,5 +21,23 @@ package com.sobetech.common.enums.io;
  */
 public enum ImportType
 {
-	DATABASE, FILE, WIKIPEDIA;
+	/**
+	 * Importing from a database
+	 */
+	DATABASE, 
+	
+	/**
+	 * Importing from a file
+	 */
+	FILE, 
+	
+	/**
+	 * Importing from Wikipedia
+	 */
+	WIKIPEDIA, 
+	
+	/**
+	 * Importing from somewhere else
+	 */
+	OTHER;
 }

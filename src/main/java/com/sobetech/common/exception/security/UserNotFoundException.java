@@ -169,10 +169,10 @@ public class UserNotFoundException extends ApiRuntimeException
 	 * @param message The message to include in the exception
 	 * @param codedError The custom error that contains messaging that can be easily displayed
 	 * the the user
-	 * @param errorDisplayParameters An array of Objects that will be converted into Strings. These
+	 * @param errorDisplayParameter An array of Objects that will be converted into Strings. These
 	 * Strings will be used to build a readable message to be sent in the response and displayed to a
 	 * end user
-	 * @param errorResolutionParameters An array of Objects that will be converted into Strings. These
+	 * @param errorResolutionParameter An array of Objects that will be converted into Strings. These
 	 * Strings will be used to build a readable resolution to be sent in the response
 	 */
 	public UserNotFoundException(String message, CodedError codedError, String errorDisplayParameter,
@@ -208,10 +208,10 @@ public class UserNotFoundException extends ApiRuntimeException
 	 * @param cause The parent Throwable that caused this exception
 	 * @param codedError The custom error that contains messaging that can be easily displayed
 	 * the the user
-	 * @param errorDisplayParameters An array of Objects that will be converted into Strings. These
+	 * @param errorDisplayParameter An array of Objects that will be converted into Strings. These
 	 * Strings will be used to build a readable message to be sent in the response and displayed to a
 	 * end user
-	 * @param errorResolutionParameters An array of Objects that will be converted into Strings. These
+	 * @param errorResolutionParameter An array of Objects that will be converted into Strings. These
 	 * Strings will be used to build a readable resolution to be sent in the response
 	 */
 	public UserNotFoundException(String message, Throwable cause, CodedError codedError, String errorDisplayParameter,

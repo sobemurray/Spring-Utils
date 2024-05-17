@@ -22,5 +22,13 @@ package com.sobetech.common.enums.io;
  */
 public enum ExportType
 {
-	DATABASE, FILE;
+	/**
+	 * Exporting to a database
+	 */
+	DATABASE, 
+	
+	/**
+	 * Exporting to a file
+	 */
+	FILE;
 }
