@@ -226,6 +226,11 @@ public enum ErrorCode implements CodedEnum, CodedError
 	 * This login request has been denied
 	 */
 	LOGIN_DENIED(3007, HttpStatus.UNAUTHORIZED),
+	
+	/**
+	 * This login request has been denied
+	 */
+	USER_LOGGED_OUT(3008, HttpStatus.UNAUTHORIZED),
 
 	/*
 	 * External System based errors
