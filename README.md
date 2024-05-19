@@ -18,8 +18,13 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 # Releases
 
+## 1.0.5
+##### 05-19-2024
+#### FDI-66
+Added a new ErrorCode for when the user making the request is logged out
+
 ## 1.0.4
-##### upcoming
+##### 05-17-2024
 #### FDI-57 
 Cleaned up ErrorCode. 
 Added protected setters to ApiRuntimeException for it's children
