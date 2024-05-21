@@ -90,6 +90,13 @@
             <version>2.0.13</version>
             <scope>provided</scope>
         </dependency>
+        
+        <!-- For the enums lookup call -->
+        <dependency>
+		    <groupId>org.reflections</groupId>
+		    <artifactId>reflections</artifactId>
+		    <version>0.10.2</version>
+		</dependency>
 
 		<!-- Test Only Dependencies -->
 		<dependency>

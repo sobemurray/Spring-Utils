@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.sobetech.common.service.spring.date.DateUtil;
 import com.sobetech.common.service.spring.io.FileUtil;
 import com.sobetech.common.service.spring.math.NumberUtil;
+import com.sobetech.common.service.spring.reflection.ReflectionUtil;
 
 /**
  * Abstract class holding beans and methods to be used by any service
@@ -57,4 +58,10 @@ public abstract class BaseService
 	 */
 	@Autowired
 	protected StringUtil stringUtil;
+	
+	/**
+	 * A Spring Service to do functions with Reflection
+	 */
+	@Autowired
+	protected ReflectionUtil reflectionUtil;
 }

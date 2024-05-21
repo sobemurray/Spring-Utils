@@ -23,9 +23,16 @@ package com.sobetech.common.enums;
 public interface StringEnum
 {
 	/**
+	 * Get the name of the Enum
+	 * 
+	 * @return The name of the Enum. The same as Enum.name()
+	 */
+	String name();
+	
+	/**
 	 * Gets the alternative String value of the Enum
 	 * 
 	 * @return The alternative String value of the Enum
 	 */
-	String getValue();
+	String getDescription();
 }
