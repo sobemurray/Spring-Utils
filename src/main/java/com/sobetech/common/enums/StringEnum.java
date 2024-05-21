@@ -11,10 +11,6 @@
  */
 package com.sobetech.common.enums;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-import com.sobetech.common.enums.serializers.StringEnumSerializer;
-
 /**
  * An interface used to indicate that an enum also has an alternative String value
  *
@@ -23,7 +19,7 @@ import com.sobetech.common.enums.serializers.StringEnumSerializer;
  * @since Jul 27, 2022
  *
  */
-@JsonSerialize(using = StringEnumSerializer.class)
+//@JsonSerialize(using = StringEnumSerializer.class)
 public interface StringEnum
 {
 	/**
