@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sobetech.spring</groupId>
 	<artifactId>utils</artifactId>
-	<version>1.0.6-SNAPSHOT</version>
+	<version>1.0.6</version>
 	<name>Spring Utilities</name>
 	<description>Spring Beans that would be useful in any Spring project. This will replace SDJK, JavaUtil and FileUtil. It would be easier to strip out the Spring in the future than to add it in</description>
 	<inceptionYear>2024</inceptionYear>
@@ -145,6 +145,7 @@
                  <!-- Or the latest version -->
                 <configuration>
                     <!-- Configuration options -->
+        			<doclint>none</doclint>
                     <failOnError>false</failOnError>
                     <outputDirectory>${javadoc.dest.dir}</outputDirectory>
                 </configuration>
