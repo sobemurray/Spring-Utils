@@ -11,10 +11,6 @@
  */
 package com.sobetech.common.enums;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
-import com.sobetech.common.enums.serializers.CustomStateDeserializer;
-
 /**
  * An enum for US States as well as other territories and possessions
  *
@@ -23,7 +19,7 @@ import com.sobetech.common.enums.serializers.CustomStateDeserializer;
  * @since Jul 25, 2022
  *
  */
-@JsonDeserialize(using = CustomStateDeserializer.class)
+//@JsonDeserialize(using = CustomStateDeserializer.class)
 public enum State
 {
 	ALABAMA("Alabama", "AL"),
