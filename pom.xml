@@ -39,6 +39,7 @@
         <spring.version>6.1.6</spring.version>
         <jackson.version>2.17.0</jackson.version>
         <swagger.version>2.2.21</swagger.version>
+        <reflections.version>0.10.2</reflections.version>
 	</properties>
 
 	<dependencies>
@@ -90,6 +91,13 @@
             <version>2.0.13</version>
             <scope>provided</scope>
         </dependency>
+        
+        <!-- For the enums lookup call -->
+        <dependency>
+		    <groupId>org.reflections</groupId>
+		    <artifactId>reflections</artifactId>
+		    <version>${reflections.version}</version>
+		</dependency>
 
 		<!-- Test Only Dependencies -->
 		<dependency>

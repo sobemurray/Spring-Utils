@@ -43,6 +43,6 @@ public class StringEnumSerializer extends StdSerializer<StringEnum>
 	@Override
 	public void serialize(StringEnum value, JsonGenerator generator, SerializerProvider provider) throws IOException, JsonProcessingException
 	{
-		generator.writeString(value.getValue());
+		generator.writeString(value.getDescription());
 	}
 }
