@@ -16,7 +16,8 @@ import java.io.IOException;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+
+import org.springframework.stereotype.Component;
 
 import com.sobetech.common.enums.StringEnum;
 
@@ -28,10 +29,9 @@ import com.sobetech.common.enums.StringEnum;
  * @since Jul 18, 2022
  *
  */
-public class StringEnumSerializer extends StdSerializer<StringEnum>
+@Component
+public class StringEnumSerializer extends EnumSerializer<StringEnum>
 {
-	private static final long serialVersionUID = 1L;
-
 	/**
 	 * Default constructor
 	 */
@@ -43,6 +43,18 @@ public class StringEnumSerializer extends StdSerializer<StringEnum>
 	@Override
 	public void serialize(StringEnum value, JsonGenerator generator, SerializerProvider provider) throws IOException, JsonProcessingException
 	{
+		if(isStrict())
+		{
+			generator.writeString(value.toString());
+		}
+		
 		generator.writeString(value.getValue());
 	}
+
+	@Override
+	protected String getMessageKey()
+	{
+		return "sobetech.enum.StringEnum.serializer.strict";
+	}
+
 }
