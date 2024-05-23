@@ -18,6 +18,11 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 # Releases
 
+## 1.0.7
+##### upcoming
+#### SU-16
+Fixed StringEnum to make sense. getValue should have been getDescription all along
+
 ## 1.0.6
 ##### 05-21-2024
 #### FDI-78
