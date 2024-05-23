@@ -88,7 +88,11 @@ public class ReflectionUtil
 			    for(Object stringEnum : enumValues)
 			    {
 			    	StringEnum newStringEnum =  (StringEnum)stringEnum;
-			    	uiEnums.add(new UiEnum(newStringEnum.name(), newStringEnum.getDescription()));
+			    	
+			    	if(newStringEnum.isActive())
+			    	{
+			    		uiEnums.add(new UiEnum(newStringEnum.name(), newStringEnum.getDescription()));
+			    	}
 			    }
 	        }	    
 		}
