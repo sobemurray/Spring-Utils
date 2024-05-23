@@ -89,7 +89,7 @@ public class ReflectionUtil
 			    {
 			    	StringEnum newStringEnum =  (StringEnum)stringEnum;
 			    	
-			    	if(newStringEnum.isActive())
+			    	if(newStringEnum.isActive() && !newStringEnum.isPrivate())
 			    	{
 			    		uiEnums.add(new UiEnum(newStringEnum.name(), newStringEnum.getDescription()));
 			    	}
