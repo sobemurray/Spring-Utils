@@ -22,6 +22,9 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 ##### upcoming
 #### SU-16
 Fixed StringEnum to make sense. getValue should have been getDescription all along
+#### FDI-84
+- Added isActive as a default for StringEnum. This allow for them to be flagged as inactive. See NFLTeam for implementation
+- Added isPrivate as a default for StringEnum. This allow for them to be flagged as private and not sent to UIs
 
 ## 1.0.6
 ##### 05-21-2024
