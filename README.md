@@ -18,6 +18,10 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 # Releases
 
+## 1.0.8
+##### upcoming
+####
+
 ## 1.0.7
 ##### 05-24-2024
 #### SU-16
