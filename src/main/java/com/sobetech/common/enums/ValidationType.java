@@ -62,7 +62,7 @@ public enum ValidationType implements StringEnum
 	}
 
 	@Override
-	public String getValue()
+	public String getDescription()
 	{
 		return value;
 	}
