@@ -15,6 +15,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.logging.Logger;
 
@@ -536,5 +537,27 @@ public class DateUtil
     	}
     	
     	return String.format("%02d:%02d.%03d", duration.toMinutesPart(), duration.toSecondsPart(), duration.toMillisPart());
+    }
+    
+    /**
+     * Get the current year using LocalDate
+     * 
+     * @return The current year
+     */
+    public int getCurrentYear()
+    {
+    	LocalDate currentDate = LocalDate.now();
+        return currentDate.getYear();
+    }
+    
+    /**
+     * Check to see if a year is the current year
+     * 
+     * @param yearToCheck The year to check
+     * @return <code>true</code> if the year to check is the current year
+     */
+    public boolean isCurrentYear(int yearToCheck)
+    {
+    	return yearToCheck == getCurrentYear();
     }
 }
