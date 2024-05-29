@@ -19,7 +19,7 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 # Releases
 
 ## 1.0.8
-##### upcoming
+##### 05-29-2024
 #### SU-19
 Migrated code that originated from FDI work
 #### FDI-124
