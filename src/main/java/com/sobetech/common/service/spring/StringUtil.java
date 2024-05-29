@@ -37,6 +37,33 @@ public class StringUtil
 {
 	protected final Logger LOG = LoggerFactory.getLogger(this.getClass());
 	
+	/**
+	 * Test a String to see if it is either null or blank
+	 * 
+	 * @param string The String to test
+	 * @return <code>true</true> if the String to test is <code>null</code> blank
+	 */
+	public boolean isNullOrBlank(String string)
+	{
+		if(string == null)
+		{
+			return true;
+		}
+		
+		return string.isBlank();
+	}
+	
+	/**
+	 * Test a String to see if it is not null nor blank
+	 * 
+	 * @param string The String to test
+	 * @return <code>true</true> if the String to test is not <code>null</code> not blank
+	 */
+	public boolean isPresent(String string)
+	{
+		return !isNullOrBlank(string);
+	}
+	
     /**
      * 
      * Safely compares 2 String objects for equality regardless if the either of the arguments are null. If both

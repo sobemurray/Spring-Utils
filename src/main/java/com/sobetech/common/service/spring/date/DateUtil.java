@@ -560,4 +560,15 @@ public class DateUtil
     {
     	return yearToCheck == getCurrentYear();
     }
+    
+    /**
+	 * Is this year in the future using LocalDate
+	 * 
+	 * @param yearToTest The year to test
+	 * @return <code>true</code> if this year is in the future
+	 */
+    public boolean isFutureYear(int yearToTest)
+	{
+        return yearToTest > getCurrentYear();
+	}
 }
