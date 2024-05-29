@@ -11,6 +11,7 @@
  */
 package com.sobetech.common.service.spring.reflection;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -105,5 +106,101 @@ public class ReflectionUtil
 		uiEnums.sort((enum1, enum2) -> enum1.getDescription().compareTo(enum2.getDescription()));
 		
 		return uiEnums;
+	}
+	
+	/**
+	 * Create a new class and populate it with the matching attributes of the source. The matching
+	 * attributes have the same name in both classes as well as the same types
+	 * 
+	 * @param <O> The Class that is being returned
+	 * @param sourceObject The object to be copied
+	 * @param destinationObjectClass The type of object to be created and populated
+	 * @param returnNullIfEmpty If <code>true</code> this will return a null object if nothing was copied
+	 * from the source to the destination
+	 * @return A new instance of a class of the destination type with the common attributes of the source 
+	 * object copied over to the new instance.
+	 * 
+	 * If the source object is <code>null</code> then null will be returned.
+	 * 
+	 * If the returnNullIfEmpty parameter has been set to <code>true</code> this then this will return a null object 
+	 * if nothing was copied from the source to the destination
+	 * @throws ReflectiveOperationException
+	 */
+	public <O extends Object> O createAndCopyAttributes(Object sourceObject, Class<O> destinationObjectClass,
+			boolean returnNullIfEmpty) throws ReflectiveOperationException
+	{
+		if(sourceObject == null)
+		{
+			return null;
+		}
+		
+		O destinationObject  = destinationObjectClass.getDeclaredConstructor().newInstance();
+		
+		Field[] sourceFields = sourceObject.getClass().getDeclaredFields();
+        Field[] destinationFields = destinationObject.getClass().getDeclaredFields();
+        
+        boolean destinationIsEmpty = true;
+        
+        for (Field sourceField : sourceFields) 
+        {
+            for (Field destinationField : destinationFields) 
+            {
+                if (sourceField.getName().equals(destinationField.getName())) 
+                {
+                	if(sourceField.getType().equals(destinationField.getType()))
+                	{
+	                	sourceField.setAccessible(true);
+	                    destinationField.setAccessible(true);
+	                    destinationField.set(destinationObject, sourceField.get(sourceObject));
+	                    destinationIsEmpty = false;
+                	}
+                	else
+                	{
+                		LOG.debug("{}.{} is {}, but {} expected {}", sourceObject.getClass().getSimpleName(), 
+                				sourceField.getName(), sourceField.getType(),
+                				destinationObjectClass.getSimpleName(), destinationField.getType());
+                	}
+                }
+            }
+        }
+        
+        if(destinationIsEmpty && returnNullIfEmpty)
+        {
+        	return null;
+        }
+        
+        return destinationObject;
+	}
+
+	/**
+	 * Copy the attributes from one object to another as long as the names and types are identical
+	 * 
+	 * @param sourceObject The object to copy from
+	 * @param destinationObject The object to copy to
+	 */
+	public void copyObjectAttributes(Object sourceObject, Object destinationObject)
+	{
+		Field[] sourceFields = sourceObject.getClass().getDeclaredFields();
+        Field[] destinationFields = destinationObject.getClass().getDeclaredFields();
+
+        for (Field sourceField : sourceFields) 
+        {
+            for (Field destinationField : destinationFields) 
+            {
+                if (sourceField.getName().equals(destinationField.getName()) &&
+                    sourceField.getType().equals(destinationField.getType())) 
+                {
+                    try 
+                    {
+                        sourceField.setAccessible(true);
+                        destinationField.setAccessible(true);
+                        destinationField.set(destinationObject, sourceField.get(sourceObject));
+                    } 
+                    catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
 	}
 }

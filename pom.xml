@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sobetech.spring</groupId>
 	<artifactId>utils</artifactId>
-	<version>1.0.7-SNAPSHOT</version>
+	<version>1.0.8-SNAPSHOT</version>
 	<name>Spring Utilities</name>
 	<description>Spring Beans that would be useful in any Spring project. This will replace SDJK, JavaUtil and FileUtil. It would be easier to strip out the Spring in the future than to add it in</description>
 	<inceptionYear>2024</inceptionYear>
@@ -91,6 +91,21 @@
             <version>2.0.13</version>
             <scope>provided</scope>
         </dependency>
+        
+        <!-- Since this is going to be in a Spring Data app we can scope as provided -->
+        <dependency>
+    		<groupId>jakarta.persistence</groupId>
+    		<artifactId>jakarta.persistence-api</artifactId>
+    		<version>3.2.0</version>
+            <scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-core</artifactId>
+		    <version>6.5.2.Final</version>
+            <scope>provided</scope>
+		</dependency>
         
         <!-- For the enums lookup call -->
         <dependency>
