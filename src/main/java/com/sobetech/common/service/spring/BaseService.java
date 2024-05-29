@@ -19,6 +19,7 @@ import com.sobetech.common.service.spring.date.DateUtil;
 import com.sobetech.common.service.spring.io.FileUtil;
 import com.sobetech.common.service.spring.math.NumberUtil;
 import com.sobetech.common.service.spring.reflection.ReflectionUtil;
+import com.sobetech.common.service.spring.sql.SqlUtil;
 
 /**
  * Abstract class holding beans and methods to be used by any service
@@ -64,4 +65,10 @@ public abstract class BaseService
 	 */
 	@Autowired
 	protected ReflectionUtil reflectionUtil;
+	
+	/**
+	 * A Spring Service to help with SQL and other database operations
+	 */
+	@Autowired
+	protected SqlUtil sqlUtil;
 }

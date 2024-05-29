@@ -92,6 +92,21 @@
             <scope>provided</scope>
         </dependency>
         
+        <!-- Since this is going to be in a Spring Data app we can scope as provided -->
+        <dependency>
+    		<groupId>jakarta.persistence</groupId>
+    		<artifactId>jakarta.persistence-api</artifactId>
+    		<version>3.2.0</version>
+            <scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-core</artifactId>
+		    <version>6.5.2.Final</version>
+            <scope>provided</scope>
+		</dependency>
+        
         <!-- For the enums lookup call -->
         <dependency>
 		    <groupId>org.reflections</groupId>
