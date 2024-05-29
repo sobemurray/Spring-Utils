@@ -18,6 +18,13 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 # Releases
 
+## 1.0.8
+##### upcoming
+#### SU-19
+Migrated code that originated from FDI work
+#### FDI-124
+Added call to get the current year as well as other calls related to that
+
 ## 1.0.7
 ##### 05-24-2024
 #### SU-16
