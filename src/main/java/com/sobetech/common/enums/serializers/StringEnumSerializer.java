@@ -47,8 +47,8 @@ public class StringEnumSerializer extends EnumSerializer<StringEnum>
 		{
 			generator.writeString(value.toString());
 		}
-		
-		generator.writeString(value.getValue());
+
+		generator.writeString(value.getDescription());
 	}
 
 	@Override
