@@ -18,18 +18,18 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 /**
  * A POJO containing the results of a validation
  *
- *
  * @author John.Murray
  *
  * @since Apr 9, 2024
  *
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ValidationResult
+public class ValidationResult // Add a generic to use Validatable
 {
 	private boolean valid = true;
 	private ArrayList<String> issues;
 	private ArrayList<ValidationMessage> messages;
+	// Add Coded Error that can be parsed
 
 	/**
 	 * Add a new issue to this result. This will also set the valid boolean to false
