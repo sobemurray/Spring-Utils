@@ -27,6 +27,7 @@ public enum EditStatus implements StringEnum
 	EDITED("Edited"),
 	FINALIZED("Finalized"),
 	IMPORTED("Imported"),
+	REVIEWED("Reviewed"),
 	NEEDS_REVIEW("Needs Review");	
 
 	private String description;
