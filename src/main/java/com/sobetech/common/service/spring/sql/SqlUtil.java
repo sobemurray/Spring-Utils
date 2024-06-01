@@ -79,12 +79,20 @@ public class SqlUtil
 			return;
 		}
 		
-		//predicates.add(criteriaBuilder.or(criteriaBuilder.equal(root.get(fieldName), criteriaBuilder.equal(root.get(fieldName)));
-		
-		predicates.add(criteriaBuilder.or(criteriaBuilder.equal(root.get(fieldName), searchTerm), 
-				criteriaBuilder.equal(root.get(fieldName), searchTerm)));
-		
 		predicates.add(criteriaBuilder.equal(root.get(fieldName), searchTerm));
+	}
+	
+	public <P> void addLikePredicateIfNotNull(List<Predicate> predicates, CriteriaBuilder criteriaBuilder, Root<P> root, 
+			String fieldName, Object searchTerm)
+	{
+		if(searchTerm == null)
+		{
+			return;
+		}
+		
+		String likeTerm = "%" + searchTerm.toString().toLowerCase() + "%";
+		
+		predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get(fieldName)), likeTerm));
 	}
 	
 	/**
