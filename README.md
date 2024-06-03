@@ -18,8 +18,18 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 # Releases
 
-## 1.0.9
+## 1.0.11
 ##### upcoming
+
+## 1.0.10
+##### 06-01-2024
+#### SU-24
+Added iLike searching with Criteria objects
+
+## 1.0.9
+##### 06-01-2024
+#### SU-23
+Added REVIEWED status to EditStatus
 
 ## 1.0.8
 ##### 05-29-2024
