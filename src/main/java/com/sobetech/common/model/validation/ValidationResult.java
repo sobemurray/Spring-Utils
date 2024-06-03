@@ -15,8 +15,11 @@ import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import com.sobetech.common.exception.CodedError;
+
 /**
  * A POJO containing the results of a validation
+ *
  *
  * @author John.Murray
  *
@@ -24,12 +27,63 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  *
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ValidationResult // Add a generic to use Validatable
+public class ValidationResult
 {
+	private String objectTypeBeingValidated;
 	private boolean valid = true;
-	private ArrayList<String> issues;
-	private ArrayList<ValidationMessage> messages;
-	// Add Coded Error that can be parsed
+	private ArrayList<String> messages;
+	private ArrayList<CodedError> errors;
+	
+	/**
+	 * Construct a new ValidationResult for an object
+	 * 
+	 * @param objectTypeBeingValidated The type of object being validated. It can be a any String deemed
+	 * applicable to giving good results to a user
+	 */
+	public ValidationResult(String objectTypeBeingValidated)
+	{
+		this.objectTypeBeingValidated = objectTypeBeingValidated;
+	}
+	
+	/**
+	 * Merge the results from one validation into these results
+	 * 
+	 * @param resultsToMerge The new ValidationResult attributes to merge with this one
+	 */
+	public void mergeResults(ValidationResult resultsToMerge)
+	{
+		if(resultsToMerge.isInvalid())
+		{
+			setValid(false);
+		}
+		
+		if(resultsToMerge.hasMessages())
+		{
+			if(this.hasMessages())
+			{
+				this.messages.addAll(resultsToMerge.getMessages());
+			}
+			else
+			{
+				// Only do this in the messages because errors should always have messages, where
+				// messages might not have errors
+				this.objectTypeBeingValidated = resultsToMerge.getObjectTypeBeingValidated();
+				this.messages = resultsToMerge.getMessages();
+			}
+		}
+		
+		if(resultsToMerge.hasErrors())
+		{
+			if(this.hasErrors())
+			{
+				this.errors.addAll(resultsToMerge.getErrors());
+			}
+			else
+			{
+				this.errors = resultsToMerge.getErrors();
+			}
+		}
+	}
 
 	/**
 	 * Add a new issue to this result. This will also set the valid boolean to false
@@ -37,31 +91,9 @@ public class ValidationResult // Add a generic to use Validatable
 	 * @param newIssue The new issue String to add
 	 * @return <code>true</code> if the addition has been successful. Otherwise <code>false</code>
 	 */
-	public boolean addIssue(String newIssue)
+	public boolean addMessage(String newMessage)
 	{
-		if(newIssue == null || newIssue.isBlank())
-		{
-			return false;
-		}
-
-		if(this.issues == null)
-		{
-			this.issues = new ArrayList<>();
-		}
-
-		this.valid = false;
-		return this.issues.add(newIssue);
-	}
-
-	/**
-	 * Add a new ValidationMessage to this result. This will also set the valid boolean to false
-	 * 
-	 * @param newMessage The new ValidationMessage to add
-	 * @return <code>true</code> if the addition has been successful. Otherwise <code>false</code>
-	 */
-	public boolean addValidationMessage(ValidationMessage newMessage)
-	{
-		if(newMessage == null)
+		if(newMessage == null || newMessage.isBlank())
 		{
 			return false;
 		}
@@ -71,8 +103,79 @@ public class ValidationResult // Add a generic to use Validatable
 			this.messages = new ArrayList<>();
 		}
 
-		this.valid = false;
 		return this.messages.add(newMessage);
+	}
+	
+	/**
+	 * Add a new CodedError to this response
+	 * 
+	 * @param newError The new CodedError to add
+	 * @return <code>true</code> if the addition has been successful. Otherwise <code>false</code>
+	 */
+	public boolean addError(CodedError newError)
+	{
+		if(newError == null)
+		{
+			return false;
+		}
+
+		if(this.errors == null)
+		{
+			this.errors = new ArrayList<>();
+		}
+
+		this.valid = false;
+		return this.errors.add(newError);
+	}
+	
+	/**
+	 * Alternative getter for valid attribute
+	 * 
+	 * @return <code>true</code> if this result is invalid
+	 */
+	public boolean isInvalid()
+	{
+		return !isValid();
+	}
+	
+	/**
+	 * Does this result have any messages in it
+	 * 
+	 * @return <code>true</code> if this result has any messages
+	 */
+	public boolean hasMessages()
+	{
+		return getMessages() != null && !getMessages().isEmpty();
+	}
+	
+	/**
+	 * Does this result have any errors in it
+	 * 
+	 * @return <code>true</code> if this result has any errors
+	 */
+	public boolean hasErrors()
+	{
+		return getErrors() != null && !getErrors().isEmpty();
+	}
+
+	/**
+	 * Getter for attribute objectTypeBeingValidated
+	 *
+	 * @return the objectTypeBeingValidated
+	 */
+	public String getObjectTypeBeingValidated()
+	{
+		return this.objectTypeBeingValidated;
+	}
+
+	/**
+	 * Setter for attribute objectTypeBeingValidated
+	 *
+	 * @param objectTypeBeingValidated the objectTypeBeingValidated to set
+	 */
+	public void setObjectTypeBeingValidated(String objectTypeBeingValidated)
+	{
+		this.objectTypeBeingValidated = objectTypeBeingValidated;
 	}
 
 	/**
@@ -97,32 +200,11 @@ public class ValidationResult // Add a generic to use Validatable
 	}
 
 	/**
-	 * Getter for attribute issues
-	 *
-	 * @return the issues
-	 */
-	public ArrayList<String> getIssues()
-	{
-		return this.issues;
-	}
-
-	/**
-	 * Setter for attribute issues
-	 *
-	 * @param issues
-	 *            the issues to set
-	 */
-	public void setIssues(ArrayList<String> issues)
-	{
-		this.issues = issues;
-	}
-
-	/**
 	 * Getter for attribute messages
 	 *
 	 * @return the messages
 	 */
-	public ArrayList<ValidationMessage> getMessages()
+	public ArrayList<String> getMessages()
 	{
 		return this.messages;
 	}
@@ -130,11 +212,31 @@ public class ValidationResult // Add a generic to use Validatable
 	/**
 	 * Setter for attribute messages
 	 *
-	 * @param messages
+	 * @param issues
 	 *            the messages to set
 	 */
-	public void setMessages(ArrayList<ValidationMessage> messages)
+	public void setMessages(ArrayList<String> messages)
 	{
 		this.messages = messages;
+	}
+
+	/**
+	 * Getter for attribute errors
+	 *
+	 * @return the errors
+	 */
+	public ArrayList<CodedError> getErrors()
+	{
+		return this.errors;
+	}
+
+	/**
+	 * Setter for attribute errors
+	 *
+	 * @param errors the errors to set
+	 */
+	public void setErrors(ArrayList<CodedError> errors)
+	{
+		this.errors = errors;
 	}
 }
