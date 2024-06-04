@@ -29,6 +29,7 @@ import com.sobetech.common.exception.CodedError;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ValidationResult
 {
+	private long objectIdBeingValidated;
 	private String objectTypeBeingValidated;
 	private boolean valid = true;
 	private ArrayList<String> messages;
@@ -37,11 +38,13 @@ public class ValidationResult
 	/**
 	 * Construct a new ValidationResult for an object
 	 * 
+	 * @param objectIdBeingValidated The ID of the object being validated
 	 * @param objectTypeBeingValidated The type of object being validated. It can be a any String deemed
 	 * applicable to giving good results to a user
 	 */
-	public ValidationResult(String objectTypeBeingValidated)
+	public ValidationResult(long objectIdBeingValidated, String objectTypeBeingValidated)
 	{
+		this.objectIdBeingValidated = objectIdBeingValidated;
 		this.objectTypeBeingValidated = objectTypeBeingValidated;
 	}
 	
@@ -52,6 +55,11 @@ public class ValidationResult
 	 */
 	public void mergeResults(ValidationResult resultsToMerge)
 	{
+		if(resultsToMerge == null)
+		{
+			return;
+		}
+		
 		if(resultsToMerge.isInvalid())
 		{
 			setValid(false);
@@ -156,6 +164,26 @@ public class ValidationResult
 	public boolean hasErrors()
 	{
 		return getErrors() != null && !getErrors().isEmpty();
+	}
+
+	/**
+	 * Getter for attribute objectIdBeingValidated
+	 *
+	 * @return the objectIdBeingValidated
+	 */
+	public long getObjectIdBeingValidated()
+	{
+		return this.objectIdBeingValidated;
+	}
+
+	/**
+	 * Setter for attribute objectIdBeingValidated
+	 *
+	 * @param objectIdBeingValidated the objectIdBeingValidated to set
+	 */
+	public void setObjectIdBeingValidated(long objectIdBeingValidated)
+	{
+		this.objectIdBeingValidated = objectIdBeingValidated;
 	}
 
 	/**
