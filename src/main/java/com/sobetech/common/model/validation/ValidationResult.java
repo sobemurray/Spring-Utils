@@ -147,6 +147,16 @@ public class ValidationResult
 	}
 	
 	/**
+	 * Is this result valid, but does have warning messages
+	 * 
+	 * @return <code>true</code> if this result is valid and has messages
+	 */
+	public boolean isWarning()
+	{
+		return isValid() && hasMessages();
+	}
+	
+	/**
 	 * Does this result have any messages in it
 	 * 
 	 * @return <code>true</code> if this result has any messages

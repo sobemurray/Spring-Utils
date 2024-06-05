@@ -41,7 +41,7 @@ public class StringUtil
 	 * Test a String to see if it is either null or blank
 	 * 
 	 * @param string The String to test
-	 * @return <code>true</true> if the String to test is <code>null</code> blank
+	 * @return <code>true</true> if the String to test is <code>null</code> or blank
 	 */
 	public boolean isNullOrBlank(String string)
 	{
@@ -51,6 +51,22 @@ public class StringUtil
 		}
 		
 		return string.isBlank();
+	}
+	
+	/**
+	 * Test a String to see if it is either not null nor blank
+	 * 
+	 * @param string The String to test
+	 * @return <code>true</true> if the String to test is not <code>null</code> nor blank
+	 */
+	public boolean isNotNullOrBlank(String string)
+	{
+		if(string == null)
+		{
+			return true;
+		}
+		
+		return !isNullOrBlank(string);
 	}
 	
 	/**
