@@ -19,7 +19,7 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 # Releases
 
 ## 1.0.11
-##### upcoming
+##### 06-05-2024
 #### SU-22
 Moved tested validation framework from FDI and cleaned out old code that didn't remained usable
 
