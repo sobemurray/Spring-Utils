@@ -28,6 +28,7 @@ import org.springframework.stereotype.Service;
 
 import com.sobetech.common.enums.StringEnum;
 import com.sobetech.common.enums.UiEnum;
+import com.sobetech.common.model.annotation.SkipNullCopyAttribute;
 
 /**
  * A Spring service used to do Reflection functionality
@@ -73,7 +74,7 @@ public class ReflectionUtil
 	        	
 	            if (uiEnumClass.getSimpleName().equals(className)) 
 	            {
-	            	LOG.debug("Found class {}", uiEnumClass.getName());
+	            	LOG.trace("Found class {}", uiEnumClass.getName());
 	            	foundClass = uiEnumClass;
 	            }
 	        }
@@ -135,41 +136,8 @@ public class ReflectionUtil
 		}
 		
 		O destinationObject  = destinationObjectClass.getDeclaredConstructor().newInstance();
-		
-		Field[] sourceFields = sourceObject.getClass().getDeclaredFields();
-        Field[] destinationFields = destinationObject.getClass().getDeclaredFields();
-        
-        boolean destinationIsEmpty = true;
-        
-        for (Field sourceField : sourceFields) 
-        {
-            for (Field destinationField : destinationFields) 
-            {
-                if (sourceField.getName().equals(destinationField.getName())) 
-                {
-                	if(sourceField.getType().equals(destinationField.getType()))
-                	{
-	                	sourceField.setAccessible(true);
-	                    destinationField.setAccessible(true);
-	                    destinationField.set(destinationObject, sourceField.get(sourceObject));
-	                    destinationIsEmpty = false;
-                	}
-                	else
-                	{
-                		LOG.debug("{}.{} is {}, but {} expected {}", sourceObject.getClass().getSimpleName(), 
-                				sourceField.getName(), sourceField.getType(),
-                				destinationObjectClass.getSimpleName(), destinationField.getType());
-                	}
-                }
-            }
-        }
-        
-        if(destinationIsEmpty && returnNullIfEmpty)
-        {
-        	return null;
-        }
-        
-        return destinationObject;
+
+        return copyObjectAttributes(sourceObject, destinationObject, returnNullIfEmpty);
 	}
 
 	/**
@@ -177,30 +145,69 @@ public class ReflectionUtil
 	 * 
 	 * @param sourceObject The object to copy from
 	 * @param destinationObject The object to copy to
+	 * @return The updated destinationObject
+	 * @throws IllegalAccessException If any issues occur in the reflection process
+	 * @throws IllegalArgumentException If any issues occur in the reflection process
 	 */
-	public void copyObjectAttributes(Object sourceObject, Object destinationObject)
+	public <O extends Object> O copyObjectAttributes(Object sourceObject, O destinationObject) throws IllegalArgumentException, IllegalAccessException
+	{
+        return copyObjectAttributes(sourceObject, destinationObject, false);
+	}
+
+	/**
+	 * Copy the attributes from one object to another as long as the names and types are identical
+	 * 
+	 * @param sourceObject The object to copy from
+	 * @param destinationObject The object to copy to
+	 * @param returnNullIfEmpty If <code>true</code> this will return a null object if nothing was copied
+	 * from the source to the destination
+	 * @return The updated destinationObject
+	 * @throws IllegalAccessException If any issues occur in the reflection process
+	 * @throws IllegalArgumentException If any issues occur in the reflection process
+	 */
+	public <O extends Object> O  copyObjectAttributes(Object sourceObject, O destinationObject, boolean returnNullIfEmpty) 
+			throws IllegalArgumentException, IllegalAccessException
 	{
 		Field[] sourceFields = sourceObject.getClass().getDeclaredFields();
         Field[] destinationFields = destinationObject.getClass().getDeclaredFields();
+        
+        boolean noDataTransfered = true;
 
         for (Field sourceField : sourceFields) 
         {
+        	sourceField.setAccessible(true);
+        	
+        	if(sourceField.get(sourceObject) == null && sourceField.isAnnotationPresent(SkipNullCopyAttribute.class))
+        	{
+        		LOG.debug("Skipping {} because it was flagged as SkipNullCopyAttribute", sourceField.getName());
+        		continue;
+        	}
+        	
             for (Field destinationField : destinationFields) 
             {
-                if (sourceField.getName().equals(destinationField.getName()) &&
-                    sourceField.getType().equals(destinationField.getType())) 
-                {
-                    try 
-                    {
-                        sourceField.setAccessible(true);
-                        destinationField.setAccessible(true);
-                        destinationField.set(destinationObject, sourceField.get(sourceObject));
-                    } 
-                    catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
+            	if (sourceField.getName().equals(destinationField.getName()))         	
+            	{
+	                if(sourceField.getType().equals(destinationField.getType())) 
+	                {
+	                    destinationField.setAccessible(true);
+	                    destinationField.set(destinationObject, sourceField.get(sourceObject));
+	                    noDataTransfered = false;
+	                }
+	            	else
+	            	{
+	            		LOG.debug("{}.{} is {}, but {} expected {}", sourceObject.getClass().getSimpleName(), 
+	            				sourceField.getName(), sourceField.getType(),
+	            				destinationObject.getClass().getSimpleName(), destinationField.getType());
+	            	}
                 }
             }
         }
+        
+        if(noDataTransfered && returnNullIfEmpty)
+        {
+        	return null;
+        }
+        
+        return destinationObject;
 	}
 }
