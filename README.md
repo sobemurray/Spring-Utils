@@ -22,6 +22,8 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 ##### upcoming
 #### SU-25
 Added annotation to skip copying an attribute if it is null
+#### SU-26
+Building Predicate from a SearchCritera object via reflection
 
 ## 1.0.11
 ##### 06-05-2024
