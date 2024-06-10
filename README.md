@@ -24,6 +24,8 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 Added annotation to skip copying an attribute if it is null
 #### SU-26
 Building Predicate from a SearchCritera object via reflection
+#### FDI-208
+Created a custom LinkedHashMap type that has a maximum size limit. This will be used in caches that we don't want to grow too large
 
 ## 1.0.11
 ##### 06-05-2024
