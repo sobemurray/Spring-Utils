@@ -20,7 +20,8 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 ## 1.0.12
 ##### upcoming
-####
+#### SU-25
+Added annotation to skip copying an attribute if it is null
 
 ## 1.0.11
 ##### 06-05-2024

@@ -85,9 +85,14 @@ public enum ErrorCode implements CodedEnum, CodedError
 	 */
 	
 	/**
-	 * A generic system error has occured and a 500 will be returned
+	 * A generic system error has occurred and a 500 will be returned
 	 */
 	SYSTEM_ERROR(1000, HttpStatus.INTERNAL_SERVER_ERROR),
+	
+	/**
+	 * An error has occurred when attempting to perform Reflection logic
+	 */
+	REFLECTION_ERROR(1001, HttpStatus.INTERNAL_SERVER_ERROR),
 	
 	/*
 	 * General Domain and Entity based errors
