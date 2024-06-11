@@ -28,6 +28,8 @@ Added annotation to skip copying an attribute if it is null
 Building Predicate from a SearchCritera object via reflection
 #### FDI-208
 Created a custom LinkedHashMap type that has a maximum size limit. This will be used in caches that we don't want to grow too large
+#### FDI-213
+Added an error for when update a password and they don't match
 
 ## 1.0.11
 ##### 06-05-2024
