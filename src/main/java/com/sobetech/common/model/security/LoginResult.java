@@ -18,6 +18,10 @@ package com.sobetech.common.model.security;
  *
  * @since Jun 11, 2024
  *
+ * @param <U> The User that will be returned as part of the result. The user
+ * will be returned because it can contain data such as display names, user 
+ * preferences, Roles, etc
+ * 
  */
 public class LoginResult <U extends CommonUser<?>>
 {
