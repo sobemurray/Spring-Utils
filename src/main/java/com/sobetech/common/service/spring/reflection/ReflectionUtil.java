@@ -69,7 +69,7 @@ public class ReflectionUtil
 
 	        for (Class<? extends StringEnum> uiEnumClass : uiEnumClasses) 
 	        {
-	        	LOG.debug("See if class {} is {}", uiEnumClass.getSimpleName(), className);
+	        	LOG.trace("See if class {} is {}", uiEnumClass.getSimpleName(), className);
 	        	
 	        	
 	            if (uiEnumClass.getSimpleName().equals(className)) 
@@ -179,7 +179,7 @@ public class ReflectionUtil
         	
         	if(sourceField.get(sourceObject) == null && sourceField.isAnnotationPresent(SkipNullCopyAttribute.class))
         	{
-        		LOG.debug("Skipping {} because it was flagged as SkipNullCopyAttribute", sourceField.getName());
+        		LOG.trace("Skipping {} because it was flagged as SkipNullCopyAttribute", sourceField.getName());
         		continue;
         	}
         	

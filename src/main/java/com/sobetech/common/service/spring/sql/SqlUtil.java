@@ -183,7 +183,7 @@ public class SqlUtil
         			searchFieldName = searchCriteriaField.getName();
         		}
         		
-        		predicates.add(criteriaBuilder.gt(root.get(searchFieldName), numberCriteriaValue));
+        		predicates.add(criteriaBuilder.ge(root.get(searchFieldName), numberCriteriaValue));
         	}
         	
         	// <
@@ -209,7 +209,7 @@ public class SqlUtil
         			searchFieldName = searchCriteriaField.getName();
         		}
         		
-        		predicates.add(criteriaBuilder.gt(root.get(searchFieldName), numberCriteriaValue));
+        		predicates.add(criteriaBuilder.lt(root.get(searchFieldName), numberCriteriaValue));
         	}
         	
         	// <=
@@ -235,7 +235,7 @@ public class SqlUtil
         			searchFieldName = searchCriteriaField.getName();
         		}
         		
-        		predicates.add(criteriaBuilder.gt(root.get(searchFieldName), numberCriteriaValue));
+        		predicates.add(criteriaBuilder.le(root.get(searchFieldName), numberCriteriaValue));
         	}
         }
 	}
