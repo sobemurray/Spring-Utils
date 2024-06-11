@@ -52,4 +52,10 @@ public interface CommonUser<I extends Object> extends Serializable
 	 * @return The user's name
 	 */
 	String getName();
+	
+	/**
+	 * Many attributes of a user are only to be seen internally, this method will clear
+	 * out these fields before being returned to external resources
+	 */
+	void clearInternalFields();
 }

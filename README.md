@@ -20,6 +20,8 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 ## 1.0.12
 ##### upcoming
+#### SU-15 
+Added LoginResult from FDI
 #### SU-25
 Added annotation to skip copying an attribute if it is null
 #### SU-26
