@@ -18,8 +18,23 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 # Releases
 
-## 1.0.11
+## 1.0.12
 ##### upcoming
+#### SU-15 
+Added LoginResult from FDI
+#### SU-25
+Added annotation to skip copying an attribute if it is null
+#### SU-26
+Building Predicate from a SearchCritera object via reflection
+#### FDI-208
+Created a custom LinkedHashMap type that has a maximum size limit. This will be used in caches that we don't want to grow too large
+#### FDI-213
+Added an error for when update a password and they don't match
+#### FDI-214
+Moved classes that should have been in the security project
+
+## 1.0.11
+##### 06-05-2024
 #### SU-22
 Moved tested validation framework from FDI and cleaned out old code that didn't remained usable
 

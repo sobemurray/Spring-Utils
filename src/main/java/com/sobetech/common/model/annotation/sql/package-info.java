@@ -4,18 +4,18 @@
  * Copyright © 2024 Sobetech Holdings LLC, All Rights Reserved
  *
  * This software is supplied under the terms of a license agreement or
- * nondisclosure agreement with Sobetech Holdings LLC, or one of its affiliates,
+ * nondisclosure agreement with Team Focus / Peak6, or one of its affiliates,
  * and may not be used, disseminated, or distributed except in accordance with
  * the terms of that agreement.
  *
  */
 
 /**
- * Model objects used in security logic
+ * Annotations to determine the type of predicate should be built for a search criteria
  *
  * @author John Murray
  *
- * @since May 1, 2024
+ * @since Jun 9, 2024
  *
  */
-package com.sobetech.common.model.security;
+package com.sobetech.common.model.annotation.sql;
