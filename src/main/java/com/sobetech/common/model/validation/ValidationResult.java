@@ -96,7 +96,7 @@ public class ValidationResult
 	/**
 	 * Add a new issue to this result. This will also set the valid boolean to false
 	 * 
-	 * @param newIssue The new issue String to add
+	 * @param newMessage The new issue String to add
 	 * @return <code>true</code> if the addition has been successful. Otherwise <code>false</code>
 	 */
 	public boolean addMessage(String newMessage)
@@ -250,7 +250,7 @@ public class ValidationResult
 	/**
 	 * Setter for attribute messages
 	 *
-	 * @param issues
+	 * @param messages
 	 *            the messages to set
 	 */
 	public void setMessages(ArrayList<String> messages)
