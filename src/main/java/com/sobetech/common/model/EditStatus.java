@@ -23,18 +23,22 @@ import com.sobetech.common.enums.StringEnum;
  */
 public enum EditStatus implements StringEnum
 {
-	DELETED("Deleted"),
-	EDITED("Edited"),
-	FINALIZED("Finalized"),
-	IMPORTED("Imported"),
-	REVIEWED("Reviewed"),
-	NEEDS_REVIEW("Needs Review");	
+	DELETED("Deleted", false),
+	EDITED("Edited", false),
+	FINALIZED("Finalized", true),
+	IMPORTED("Imported", false),
+	REVIEWED("Reviewed", true),
+	UNRESOLVABLE_ISSUES("Unresolvable Issues", true),
+	NEEDS_REVIEW("Needs Review", false);	
 
 	private String description;
 	
-	private EditStatus(String description)
+	private boolean validatedState;
+	
+	private EditStatus(String description, boolean validatedState)
 	{
 		this.description = description;
+		this.validatedState = validatedState;
 	}
 	
 	/**
@@ -52,5 +56,15 @@ public enum EditStatus implements StringEnum
 	public String getDescription()
 	{
 		return this.description;
+	}
+
+	/**
+	 * Getter for attribute validatedState
+	 *
+	 * @return the validatedState
+	 */
+	public boolean isValidatedState()
+	{
+		return this.validatedState;
 	}
 }
