@@ -20,7 +20,8 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 ## 1.0.13
 ##### upcoming
-#### 
+#### SU-27
+New EditStatus for an entity that cannot be finalized, but cannot be altered to fix it. We didn't want to mask things by bypassing the status. That is why this new status was made. To flag it, but not leave it in permanent limbo
 
 ## 1.0.12
 ##### 06-15-2024
