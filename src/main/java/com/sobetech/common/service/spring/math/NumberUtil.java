@@ -279,7 +279,7 @@ public class NumberUtil
     		return false;
     	}
     	
-    	return number1.doubleValue() > number2.doubleValue();
+    	return number1.doubleValue() < number2.doubleValue();
     }
     
     /**
