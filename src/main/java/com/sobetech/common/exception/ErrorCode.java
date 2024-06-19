@@ -186,6 +186,11 @@ public enum ErrorCode implements CodedEnum, CodedError
 	 * The parameter sent in the request is not valid
 	 */
 	INVALID_REQUEST_PARAMETER(2016, HttpStatus.UNPROCESSABLE_ENTITY),
+	
+	/**
+	 * Cannot query with empty criteria
+	 */
+	EMPTY_CRITERIA(2017, HttpStatus.BAD_REQUEST),
 
 	/*
 	 * Application security based errors
