@@ -576,4 +576,54 @@ public class StringUtil
 		
 		return stringToSplit.split(String.valueOf(delimiter)).length;
 	}
+	
+	/**
+	 * Get a substring between to portions of the String. An example for a stringToParse of
+	 * 'I would like you to parse this string for me'
+	 * 
+	 * A leadingString of 'like you ' and a trailingString of ' for' would return
+	 * 'to parse this string'
+	 * 
+	 * @param stringToParse The String to parse
+	 * @param leadingString The marker for where to start
+	 * @param trailingString The marker for where to end
+	 * @return The first substring found between the leading and trailing strings. If nothing 
+	 * could be found, then an empty String will be returned. If any of the arguments are 
+	 * <code>null</code> or empty, then an IllegalArgumentException will be returned
+	 */
+	public String getSubstringBetween(String stringToParse, String leadingString, String trailingString)
+	{
+		if(stringToParse == null || stringToParse.isEmpty())
+		{
+			throw new IllegalArgumentException("Cannot get a substring from a null or empty string");
+		}
+		
+		if(leadingString == null || leadingString.isEmpty())
+		{
+			throw new IllegalArgumentException("Cannot get a substring from a null or empty "
+					+ "leading string");
+		}
+		
+		if(trailingString == null || trailingString.isEmpty())
+		{
+			throw new IllegalArgumentException("Cannot get a substring from a null or empty "
+					+ "trailing string");
+		}
+		
+		int startIndex = stringToParse.indexOf(leadingString) + leadingString.length();
+		
+		if(startIndex == -1)
+		{
+			return "";
+		}
+		
+		int endIndex = stringToParse.indexOf(trailingString);
+		
+		if(startIndex >= endIndex)
+		{
+			return "";
+		}
+		
+		return stringToParse.substring(startIndex, endIndex);
+	}
 }
