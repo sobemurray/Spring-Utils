@@ -11,6 +11,7 @@
  */
 package com.sobetech.common.service.spring.sql;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.List;
 
@@ -31,6 +32,7 @@ import com.sobetech.common.model.annotation.sql.GreaterThanEqualsCriteria;
 import com.sobetech.common.model.annotation.sql.LessThanCriteria;
 import com.sobetech.common.model.annotation.sql.LessThanEqualsCriteria;
 import com.sobetech.common.model.annotation.sql.LikeCriteria;
+import com.sobetech.common.model.annotation.sql.OrCriteria;
 import com.sobetech.common.model.sql.SearchCriteria;
 
 /**
@@ -99,143 +101,121 @@ public class SqlUtil
         		continue;
         	}
 
-        	// This is VERY Clunky. Java 17 switch might make this better
-        	
-        	// EQUALS
-        	if(searchCriteriaField.isAnnotationPresent(EqualsCriteria.class))
+        	for(Annotation annotation : searchCriteriaField.getAnnotations())
         	{
-        		EqualsCriteria equalsCriteria = searchCriteriaField.getAnnotation(EqualsCriteria.class);
-        		
-        		String searchFieldName = equalsCriteria.fieldName();
-        		
-        		if(searchFieldName.isBlank())
+        		switch(annotation)
         		{
-        			searchFieldName = searchCriteriaField.getName();
-        		}
-        		
-        		predicates.add(criteriaBuilder.equal(root.get(searchFieldName), criteriaValue));
-        	}
-        	
-        	// iLIKE
-        	if(searchCriteriaField.isAnnotationPresent(LikeCriteria.class))
-        	{
-        		LikeCriteria likeCriteria = searchCriteriaField.getAnnotation(LikeCriteria.class);
-        		
-        		String searchFieldName = likeCriteria.fieldName();
-        		
-        		if(searchFieldName.isBlank())
-        		{
-        			searchFieldName = searchCriteriaField.getName();
-        		}
-        		
-        		String likeTerm = "%" + criteriaValue.toString().toLowerCase() + "%";
-        		
-        		predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get(searchFieldName)), likeTerm));
+	        		case EqualsCriteria criteria -> {
+	        			String searchFieldName = criteria.fieldName();
+	            		
+	            		if(searchFieldName.isBlank())
+	            		{
+	            			searchFieldName = searchCriteriaField.getName();
+	            		}
+	            		
+	            		predicates.add(criteriaBuilder.equal(root.get(searchFieldName), criteriaValue));
+	        		}
+	        		case OrCriteria criteria -> {
 
-        	}
-        	
-        	// >
-        	if(searchCriteriaField.isAnnotationPresent(GreaterThanCriteria.class))
-        	{
-        		Number numberCriteriaValue = null;
-        		
-        		if(criteriaValue instanceof Number)
-        		{
-        			numberCriteriaValue = (Number)criteriaValue;
+	            		predicates.add(criteriaBuilder.or(
+	            				criteriaBuilder.equal(root.get(criteria.firstFieldName()), criteriaValue), 
+	            				criteriaBuilder.equal(root.get(criteria.secondFieldName()), criteriaValue)
+	            				));
+	        		}
+	        		case LikeCriteria criteria -> {
+	        			String searchFieldName = criteria.fieldName();
+	            		
+	            		if(searchFieldName.isBlank())
+	            		{
+	            			searchFieldName = searchCriteriaField.getName();
+	            		}
+	            		
+	            		String likeTerm = "%" + criteriaValue.toString().toLowerCase() + "%";
+	            		
+	            		predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get(searchFieldName)), likeTerm));
+	        		}
+	        		case GreaterThanCriteria criteria -> {
+	            		Number numberCriteriaValue = null;
+	            		
+	            		if(criteriaValue instanceof Number)
+	            		{
+	            			numberCriteriaValue = (Number)criteriaValue;
+	            		}
+	            		else
+	            		{
+	            			throw new ApiRuntimeException("Expected a Number from " + searchCriteriaField.getName());
+	            		}
+	        			String searchFieldName = criteria.fieldName();
+	            		
+	            		if(searchFieldName.isBlank())
+	            		{
+	            			searchFieldName = searchCriteriaField.getName();
+	            		}
+
+	            		predicates.add(criteriaBuilder.gt(root.get(searchFieldName), numberCriteriaValue));
+	        		}
+	        		case GreaterThanEqualsCriteria criteria -> {
+	            		Number numberCriteriaValue = null;
+	            		
+	            		if(criteriaValue instanceof Number)
+	            		{
+	            			numberCriteriaValue = (Number)criteriaValue;
+	            		}
+	            		else
+	            		{
+	            			throw new ApiRuntimeException("Expected a Number from " + searchCriteriaField.getName());
+	            		}
+	        			String searchFieldName = criteria.fieldName();
+	            		
+	            		if(searchFieldName.isBlank())
+	            		{
+	            			searchFieldName = searchCriteriaField.getName();
+	            		}
+
+	            		predicates.add(criteriaBuilder.ge(root.get(searchFieldName), numberCriteriaValue));
+	        		}
+	        		case LessThanCriteria criteria -> {
+	            		Number numberCriteriaValue = null;
+	            		
+	            		if(criteriaValue instanceof Number)
+	            		{
+	            			numberCriteriaValue = (Number)criteriaValue;
+	            		}
+	            		else
+	            		{
+	            			throw new ApiRuntimeException("Expected a Number from " + searchCriteriaField.getName());
+	            		}
+	        			String searchFieldName = criteria.fieldName();
+	            		
+	            		if(searchFieldName.isBlank())
+	            		{
+	            			searchFieldName = searchCriteriaField.getName();
+	            		}
+
+	            		predicates.add(criteriaBuilder.lt(root.get(searchFieldName), numberCriteriaValue));
+	        		}
+	        		case LessThanEqualsCriteria criteria -> {
+	            		Number numberCriteriaValue = null;
+	            		
+	            		if(criteriaValue instanceof Number)
+	            		{
+	            			numberCriteriaValue = (Number)criteriaValue;
+	            		}
+	            		else
+	            		{
+	            			throw new ApiRuntimeException("Expected a Number from " + searchCriteriaField.getName());
+	            		}
+	        			String searchFieldName = criteria.fieldName();
+	            		
+	            		if(searchFieldName.isBlank())
+	            		{
+	            			searchFieldName = searchCriteriaField.getName();
+	            		}
+
+	            		predicates.add(criteriaBuilder.le(root.get(searchFieldName), numberCriteriaValue));
+	        		}
+					default -> { break; }
         		}
-        		else
-        		{
-        			throw new ApiRuntimeException("Expected a Number from " + searchCriteriaField.getName());
-        		}
-        		
-        		GreaterThanCriteria greaterThanCriteria = searchCriteriaField.getAnnotation(GreaterThanCriteria.class);
-        		
-        		String searchFieldName = greaterThanCriteria.fieldName();
-        		
-        		if(searchFieldName.isBlank())
-        		{
-        			searchFieldName = searchCriteriaField.getName();
-        		}
-        		
-        		predicates.add(criteriaBuilder.gt(root.get(searchFieldName), numberCriteriaValue));
-        	}
-        	
-        	// >=
-        	if(searchCriteriaField.isAnnotationPresent(GreaterThanEqualsCriteria.class))
-        	{
-        		Number numberCriteriaValue = null;
-        		
-        		if(criteriaValue instanceof Number)
-        		{
-        			numberCriteriaValue = (Number)criteriaValue;
-        		}
-        		else
-        		{
-        			throw new ApiRuntimeException("Expected a Number from " + searchCriteriaField.getName());
-        		}
-        		
-        		GreaterThanEqualsCriteria greaterThanEqualsCriteria = searchCriteriaField.getAnnotation(GreaterThanEqualsCriteria.class);
-        		
-        		String searchFieldName = greaterThanEqualsCriteria.fieldName();
-        		
-        		if(searchFieldName.isBlank())
-        		{
-        			searchFieldName = searchCriteriaField.getName();
-        		}
-        		
-        		predicates.add(criteriaBuilder.ge(root.get(searchFieldName), numberCriteriaValue));
-        	}
-        	
-        	// <
-        	if(searchCriteriaField.isAnnotationPresent(LessThanCriteria.class))
-        	{
-        		Number numberCriteriaValue = null;
-        		
-        		if(criteriaValue instanceof Number)
-        		{
-        			numberCriteriaValue = (Number)criteriaValue;
-        		}
-        		else
-        		{
-        			throw new ApiRuntimeException("Expected a Number from " + searchCriteriaField.getName());
-        		}
-        		
-        		LessThanCriteria lessThanCriteria = searchCriteriaField.getAnnotation(LessThanCriteria.class);
-        		
-        		String searchFieldName = lessThanCriteria.fieldName();
-        		
-        		if(searchFieldName.isBlank())
-        		{
-        			searchFieldName = searchCriteriaField.getName();
-        		}
-        		
-        		predicates.add(criteriaBuilder.lt(root.get(searchFieldName), numberCriteriaValue));
-        	}
-        	
-        	// <=
-        	if(searchCriteriaField.isAnnotationPresent(LessThanEqualsCriteria.class))
-        	{
-        		Number numberCriteriaValue = null;
-        		
-        		if(criteriaValue instanceof Number)
-        		{
-        			numberCriteriaValue = (Number)criteriaValue;
-        		}
-        		else
-        		{
-        			throw new ApiRuntimeException("Expected a Number from " + searchCriteriaField.getName());
-        		}
-        		
-        		LessThanEqualsCriteria lessThanEqualsCriteria = searchCriteriaField.getAnnotation(LessThanEqualsCriteria.class);
-        		
-        		String searchFieldName = lessThanEqualsCriteria.fieldName();
-        		
-        		if(searchFieldName.isBlank())
-        		{
-        			searchFieldName = searchCriteriaField.getName();
-        		}
-        		
-        		predicates.add(criteriaBuilder.le(root.get(searchFieldName), numberCriteriaValue));
         	}
         }
 	}
