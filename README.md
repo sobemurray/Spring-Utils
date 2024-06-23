@@ -18,6 +18,17 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 # Releases
 
+## 1.0.13
+##### upcoming
+#### SU-27
+New EditStatus for an entity that cannot be finalized, but cannot be altered to fix it. We didn't want to mask things by bypassing the status. That is why this new status was made. To flag it, but not leave it in permanent limbo
+#### SU-28
+New criteria annotation for doing OR queries
+#### FDI-224
+Added calls to safely compare Number objects
+#### FDI-256
+Moved cleaner interface to common from FDI
+
 ## 1.0.12
 ##### 06-15-2024
 #### SU-15 

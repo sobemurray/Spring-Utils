@@ -32,5 +32,12 @@ import java.lang.annotation.Target;
 @Target(FIELD)
 public @interface GreaterThanCriteria
 {
+	/**
+	 * The field name in the model object to attempt to match. If it is not provided, then the
+	 * name of the search criteria field will be used
+	 * 
+	 * @return The field name in the model object to attempt to match. If it is not provided, 
+	 * then the name of the search criteria field will be used
+	 */
 	String fieldName() default "";
 }

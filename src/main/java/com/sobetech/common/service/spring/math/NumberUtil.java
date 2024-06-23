@@ -206,4 +206,98 @@ public class NumberUtil
             return nullErrorValue;
         }
     }
+    
+    /**
+     * A null-safe way to check if two Number object for equality
+     * 
+     * @param number1 The first Number to check
+     * @param number2 The second Number to check
+     * @return <code>true</code> if both of the number are equal or <code>false</code> if either is 
+     * <code>null</code> or they are not equal
+     */
+    public boolean equals(Number number1, Number number2)
+    {
+    	if(number1 == null || number2 == null)
+    	{
+    		return false;
+    	}
+    	
+    	return number1.equals(number2);
+    }
+    
+    /**
+     * A null-safe way to check if one Number is greater than another Number
+     * 
+     * @param number1 The first Number to check
+     * @param number2 The second Number to check
+     * @return <code>true</code> if the first number is greater than then second or 
+     * <code>false</code> if either is <code>null</code> or the first number is greater than then 
+     * second
+     */
+    public boolean greaterThan(Number number1, Number number2)
+    {
+    	if(number1 == null || number2 == null)
+    	{
+    		return false;
+    	}
+    	
+    	return number1.doubleValue() > number2.doubleValue();
+    }
+    
+    /**
+     * A null-safe way to check if one Number is greater or equal to another Number
+     * 
+     * @param number1 The first Number to check
+     * @param number2 The second Number to check
+     * @return <code>true</code> if the first number is greater or equal to than then second or 
+     * <code>false</code> if either is <code>null</code> or the first number is greater or equal to 
+     * than then second
+     */
+    public boolean greaterThanEquals(Number number1, Number number2)
+    {
+    	if(number1 == null || number2 == null)
+    	{
+    		return false;
+    	}
+    	
+    	return greaterThan(number1, number2) || equals(number1, number2);
+    }
+    
+    /**
+     * A null-safe way to check if one Number is less than another Number
+     * 
+     * @param number1 The first Number to check
+     * @param number2 The second Number to check
+     * @return <code>true</code> if the first number is less than then second or 
+     * <code>false</code> if either is <code>null</code> or the first number is less than then 
+     * second
+     */
+    public boolean lessThan(Number number1, Number number2)
+    {
+    	if(number1 == null || number2 == null)
+    	{
+    		return false;
+    	}
+    	
+    	return number1.doubleValue() < number2.doubleValue();
+    }
+    
+    /**
+     * A null-safe way to check if one Number is less or equal to another Number
+     * 
+     * @param number1 The first Number to check
+     * @param number2 The second Number to check
+     * @return <code>true</code> if the first number is less or equal to than then second or 
+     * <code>false</code> if either is <code>null</code> or the first number is less or equal to 
+     * than then second
+     */
+    public boolean lessThanEquals(Number number1, Number number2)
+    {
+    	if(number1 == null || number2 == null)
+    	{
+    		return false;
+    	}
+    	
+    	return lessThan(number1, number2) || equals(number1, number2);
+    }
 }
