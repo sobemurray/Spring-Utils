@@ -19,7 +19,7 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 # Releases
 
 ## 1.0.14
-##### upcoming
+##### 06-30-2024
 #### FDI-162
 Preventing error when the source object in copyObjectAttributes is null
 
