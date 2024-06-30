@@ -155,12 +155,15 @@ public class ReflectionUtil
 	}
 
 	/**
-	 * Copy the attributes from one object to another as long as the names and types are identical
+	 * Copy the attributes from one object to another as long as the names and types are identical.
+	 * If the sourceObject is <code>null</code> then the destinationObject will be returned
+	 * unchanged
 	 * 
 	 * @param sourceObject The object to copy from
 	 * @param destinationObject The object to copy to
 	 * @param returnNullIfEmpty If <code>true</code> this will return a null object if nothing was copied
-	 * from the source to the destination
+	 * from the source to the destination. If the sourceObject is <code>null</code> then the 
+	 * destinationObject will be returned unchanged
 	 * @return The updated destinationObject
 	 * @throws IllegalAccessException If any issues occur in the reflection process
 	 * @throws IllegalArgumentException If any issues occur in the reflection process
@@ -168,6 +171,11 @@ public class ReflectionUtil
 	public <O extends Object> O  copyObjectAttributes(Object sourceObject, O destinationObject, boolean returnNullIfEmpty) 
 			throws IllegalArgumentException, IllegalAccessException
 	{
+		if(sourceObject == null)
+		{
+			return destinationObject;
+		}
+		
 		Field[] sourceFields = sourceObject.getClass().getDeclaredFields();
         Field[] destinationFields = destinationObject.getClass().getDeclaredFields();
         
