@@ -33,6 +33,7 @@ import com.sobetech.common.model.annotation.sql.LessThanCriteria;
 import com.sobetech.common.model.annotation.sql.LessThanEqualsCriteria;
 import com.sobetech.common.model.annotation.sql.LikeCriteria;
 import com.sobetech.common.model.annotation.sql.OrCriteria;
+import com.sobetech.common.model.annotation.sql.OrLikeCriteria;
 import com.sobetech.common.model.sql.SearchCriteria;
 
 /**
@@ -133,6 +134,14 @@ public class SqlUtil
 	            		String likeTerm = "%" + criteriaValue.toString().toLowerCase() + "%";
 	            		
 	            		predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get(searchFieldName)), likeTerm));
+	        		}
+	        		case OrLikeCriteria criteria -> {
+	            		String likeTerm = "%" + criteriaValue.toString().toLowerCase() + "%";
+
+	            		predicates.add(criteriaBuilder.or(
+	            				criteriaBuilder.like(criteriaBuilder.lower(root.get(criteria.firstFieldName())), likeTerm), 
+	            				criteriaBuilder.like(criteriaBuilder.lower(root.get(criteria.secondFieldName())), likeTerm)
+	            				));
 	        		}
 	        		case GreaterThanCriteria criteria -> {
 	            		Number numberCriteriaValue = null;
