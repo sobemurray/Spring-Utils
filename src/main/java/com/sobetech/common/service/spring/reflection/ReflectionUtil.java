@@ -15,6 +15,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -217,5 +219,41 @@ public class ReflectionUtil
         }
         
         return destinationObject;
+	}
+	
+	/**
+	 * Get all of the declared fields from a class and all of their super classes
+	 * 
+	 * @param baseClass The class to start the recursive search
+	 * @return All of the current and found fields for this class
+	 */
+	public Set<Field> getAllFields(Class<?> baseClass)
+	{
+		return getAllFields(baseClass, new HashSet<>());
+	}
+	
+	/**
+	 * Get all of the declared fields from a class and all of their super classes
+	 * 
+	 * @param baseClass The class to start the recursive search
+	 * @param currentFields The current set of fields that this search will be appended to
+	 * @return All of the current and found fields for this class
+	 */
+	public Set<Field> getAllFields(Class<?> baseClass, Set<Field> currentFields)
+	{
+		Set<Field> foundFields = new HashSet<>();
+		
+		Field[] classFields = baseClass.getDeclaredFields();
+		
+		foundFields.addAll(Arrays.asList(classFields));
+		
+		Class<?> superClass = baseClass.getSuperclass();
+		
+		if(superClass.getSimpleName().equals("Object"))
+		{
+			return foundFields;
+		}
+		
+		return getAllFields(superClass, foundFields);
 	}
 }
