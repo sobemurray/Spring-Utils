@@ -236,24 +236,29 @@ public class ReflectionUtil
 	 * Get all of the declared fields from a class and all of their super classes
 	 * 
 	 * @param baseClass The class to start the recursive search
-	 * @param currentFields The current set of fields that this search will be appended to
+	 * @param knownFields The set of known fields that this search will be appended to
 	 * @return All of the current and found fields for this class
 	 */
-	public Set<Field> getAllFields(Class<?> baseClass, Set<Field> currentFields)
+	public Set<Field> getAllFields(Class<?> baseClass, Set<Field> knownFields)
 	{
-		Set<Field> foundFields = new HashSet<>();
+		//Set<Field> foundFields = new HashSet<>();
+		
+		if(knownFields == null)
+		{
+			knownFields = new HashSet<>();
+		}
 		
 		Field[] classFields = baseClass.getDeclaredFields();
 		
-		foundFields.addAll(Arrays.asList(classFields));
+		knownFields.addAll(Arrays.asList(classFields));
 		
 		Class<?> superClass = baseClass.getSuperclass();
 		
 		if(superClass.getSimpleName().equals("Object"))
 		{
-			return foundFields;
+			return knownFields;
 		}
 		
-		return getAllFields(superClass, foundFields);
+		return getAllFields(superClass, knownFields);
 	}
 }
