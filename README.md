@@ -19,7 +19,7 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 # Releases
 
 ## 1.0.15
-##### upcoming
+##### 07-07-2024
 #### FDI-258
 Added new search criteria annotation for OR and LIKE
 #### PDA-24
