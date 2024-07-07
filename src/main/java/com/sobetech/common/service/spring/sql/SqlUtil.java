@@ -14,6 +14,7 @@ package com.sobetech.common.service.spring.sql;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Predicate;
@@ -23,6 +24,7 @@ import org.hibernate.Hibernate;
 import org.hibernate.proxy.HibernateProxy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sobetech.common.exception.ApiRuntimeException;
@@ -33,7 +35,9 @@ import com.sobetech.common.model.annotation.sql.LessThanCriteria;
 import com.sobetech.common.model.annotation.sql.LessThanEqualsCriteria;
 import com.sobetech.common.model.annotation.sql.LikeCriteria;
 import com.sobetech.common.model.annotation.sql.OrCriteria;
+import com.sobetech.common.model.annotation.sql.OrLikeCriteria;
 import com.sobetech.common.model.sql.SearchCriteria;
+import com.sobetech.common.service.spring.reflection.ReflectionUtil;
 
 /**
  * A utility service to assist in SQL and other database operations
@@ -46,6 +50,9 @@ import com.sobetech.common.model.sql.SearchCriteria;
 @Service
 public class SqlUtil
 {
+	@Autowired
+	private ReflectionUtil reflectionUtil;
+	
 	protected final Logger LOG = LoggerFactory.getLogger(this.getClass());	
 	
 	/**
@@ -88,7 +95,7 @@ public class SqlUtil
 	public <P> void addPredicates(List<Predicate> predicates, CriteriaBuilder criteriaBuilder, Root<P> root, 
 			SearchCriteria searchCriteria) throws IllegalArgumentException, IllegalAccessException
 	{
-		Field[] searchCriteriaFields = searchCriteria.getClass().getDeclaredFields();
+		Set<Field> searchCriteriaFields = reflectionUtil.getAllFields(searchCriteria.getClass());
 
         for (Field searchCriteriaField : searchCriteriaFields) 
         {
@@ -133,6 +140,14 @@ public class SqlUtil
 	            		String likeTerm = "%" + criteriaValue.toString().toLowerCase() + "%";
 	            		
 	            		predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get(searchFieldName)), likeTerm));
+	        		}
+	        		case OrLikeCriteria criteria -> {
+	            		String likeTerm = "%" + criteriaValue.toString().toLowerCase() + "%";
+
+	            		predicates.add(criteriaBuilder.or(
+	            				criteriaBuilder.like(criteriaBuilder.lower(root.get(criteria.firstFieldName())), likeTerm), 
+	            				criteriaBuilder.like(criteriaBuilder.lower(root.get(criteria.secondFieldName())), likeTerm)
+	            				));
 	        		}
 	        		case GreaterThanCriteria criteria -> {
 	            		Number numberCriteriaValue = null;

@@ -18,8 +18,16 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 # Releases
 
-## 1.0.14
+## 1.0.15
 ##### upcoming
+#### FDI-258
+Added new search criteria annotation for OR and LIKE
+#### PDA-24
+- Allowing search criteria annotations to be inherited
+- Added ability to get fields from a class as well as the super class
+
+## 1.0.14
+##### 06-30-2024
 #### FDI-162
 Preventing error when the source object in copyObjectAttributes is null
 

@@ -20,8 +20,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * Annotation to use on a field to tell a criteria builder that this be used to build a 
- * 'LIKE' criteria
+ * Annotation to use on a search criteria field to tell a criteria builder that this be used to 
+ * build a compound 'LIKE' and 'OR' criteria.
+ * 
+ * Example: The search criteria field is called name. You want to see if the name is 'like' to the 
+ * first name or the last name. 
  *
  * @author John Murray
  *
@@ -32,14 +35,19 @@ import java.lang.annotation.Target;
 @Inherited
 @Retention(RUNTIME)
 @Target(FIELD)
-public @interface GreaterThanCriteria
+public @interface OrLikeCriteria
 {
 	/**
-	 * The field name in the model object to attempt to match. If it is not provided, then the
-	 * name of the search criteria field will be used
+	 * The first field name in the model object to attempt to match
 	 * 
-	 * @return The field name in the model object to attempt to match. If it is not provided, 
-	 * then the name of the search criteria field will be used
+	 * @return The first field name in the model object to attempt to match
 	 */
-	String fieldName() default "";
+	String firstFieldName();
+	
+	/**
+	 * The second field name in the model object to attempt to match
+	 * 
+	 * @return The second field name in the model object to attempt to match
+	 */
+	String secondFieldName();
 }
