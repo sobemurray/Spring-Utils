@@ -11,7 +11,14 @@
  */
 package com.sobetech.common.service.spring.math;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
+
+import com.sobetech.common.exception.ApiRuntimeException;
 
 /**
  * This class contains a number of static methods used to handle numeric functions.
@@ -299,5 +306,106 @@ public class NumberUtil
     	}
     	
     	return lessThan(number1, number2) || equals(number1, number2);
+    }
+    
+    /**
+     * Calculate a mean using BigDecimal for accuracy using a default scale of '4'
+     * 
+     * @param part The numerator for the computation
+     * @param total The denominator for the computation
+     * @return The calculated mean using BigDecimal for accuracy
+     */
+    public BigDecimal calculateMean(int part, int total)
+    {
+    	return calculateMean(part, total, 4);
+    }
+    
+    /**
+     * Calculate a mean using BigDecimal for accuracy
+     * 
+     * @param part The numerator for the computation
+     * @param total The denominator for the computation
+     * @param scale The scale to use in BigDecimal calculations
+     * @return The calculated mean using BigDecimal for accuracy
+     */
+    public BigDecimal calculateMean(int part, int total, int scale)
+    {
+    	if(total == 0)
+    	{
+    		return BigDecimal.ZERO;
+    	}
+
+        BigDecimal partDecimal = new BigDecimal(part);
+        BigDecimal totalDecimal = new BigDecimal(total);
+
+        return partDecimal.divide(totalDecimal, scale, RoundingMode.HALF_UP);
+    }
+    
+    /**
+     * Calculate a percentage using BigDecimal for accuracy with a default scale of '4'
+     * 
+     * @param part The numerator for the computation
+     * @param total The denominator for the computation
+     * @return The calculated percentage using BigDecimal for accuracy
+     */
+    public BigDecimal calculatePercentage(int part, int total)
+    {
+        return calculatePercentage(part, total, 4);
+    }
+    
+    /**
+     * Calculate a percentage using BigDecimal for accuracy
+     * 
+     * @param part The numerator for the computation
+     * @param total The denominator for the computation
+     * @param scale The scale to use in BigDecimal calculations
+     * @return The calculated percentage using BigDecimal for accuracy
+     */
+    public BigDecimal calculatePercentage(int part, int total, int scale)
+    {
+    	if(total == 0)
+    	{
+    		throw new ApiRuntimeException("Percentage cannot be computed if the total is zero");
+    	}
+
+        BigDecimal fraction = calculateMean(part, total, scale);
+
+        // fraction * 100
+        BigDecimal percentage = fraction.multiply(BigDecimal.valueOf(100));
+
+        // Setting scale for percentage
+        percentage = percentage.setScale(scale, RoundingMode.HALF_UP);
+
+        return percentage;
+    }
+    
+    /**
+     * Find the median from a list of integers
+     * 
+     * @param numbers A list if integers
+     * @return The median of this list
+     */
+    public double calculateMedian(List<Integer> numbers)
+    {
+    	// Step 1: Sort the list
+        Collections.sort(numbers);
+
+        // Step 2: Calculate the median
+        int size = numbers.size();
+        if (size == 0) 
+        {
+            throw new IllegalArgumentException("List must not be empty");
+        }
+
+        if (size % 2 == 1) 
+        {
+            // Odd number of elements
+            return numbers.get(size / 2);
+        }
+        
+		// Even number of elements
+		int middle1 = numbers.get(size / 2 - 1);
+		int middle2 = numbers.get(size / 2);
+		return (middle1 + middle2) / 2.0;
     }
 }
