@@ -25,9 +25,12 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 ##### 07-07-2024
 #### FDI-258
 Added new search criteria annotation for OR and LIKE
-#### PDA-24
+#### FDA-24
 - Allowing search criteria annotations to be inherited
 - Added ability to get fields from a class as well as the super class
+
+#### FDA-50
+Added calls to calculate mean and median
 
 ## 1.0.14
 ##### 06-30-2024
