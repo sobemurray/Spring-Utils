@@ -20,6 +20,8 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 ## 1.0.16
 ##### upcoming
+#### FDA-53
+New objects for building charts and graphs
 
 ## 1.0.15
 ##### 07-07-2024
