@@ -45,6 +45,12 @@
 	<dependencies>
 		<!-- Internal Library Dependencies -->
 		
+		<dependency>
+            <groupId>com.sobetech.common</groupId>
+            <artifactId>sjdk</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        
 		<!-- External Library Dependencies -->
 
         <!-- Spring Dependencies -->
