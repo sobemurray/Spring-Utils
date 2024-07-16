@@ -194,8 +194,8 @@ public class ReflectionUtil
 			return destinationObject;
 		}
 		
-		Field[] sourceFields = sourceObject.getClass().getDeclaredFields();
-        Field[] destinationFields = destinationObject.getClass().getDeclaredFields();
+		Set<Field> sourceFields = getAllFields(sourceObject.getClass());
+		Set<Field> destinationFields = getAllFields(destinationObject.getClass());
         
         boolean noDataTransfered = true;
 
