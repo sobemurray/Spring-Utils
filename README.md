@@ -18,6 +18,11 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 # Releases
 
+## 1.1.0
+##### upcoming
+#### SU-30
+Moved objects without a dependence on Spring to SJDK
+
 ## 1.0.16
 ##### 07-13-2024
 #### FDA-53

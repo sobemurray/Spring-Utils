@@ -16,6 +16,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -28,6 +29,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.sobetech.common.enums.IndexedEnum;
 import com.sobetech.common.enums.StringEnum;
 import com.sobetech.common.enums.UiEnum;
 import com.sobetech.common.model.annotation.SkipNullCopyAttribute;
@@ -95,7 +97,15 @@ public class ReflectionUtil
 			    	
 			    	if(newStringEnum.isActive() && !newStringEnum.isPrivate())
 			    	{
-			    		uiEnums.add(new UiEnum(newStringEnum.name(), newStringEnum.getDescription()));
+			    		int orderIndex = 0;
+			    		
+			    		if(IndexedEnum.class.isInstance(newStringEnum))
+			    		{
+			    			orderIndex = IndexedEnum.class.cast(newStringEnum).getIndex();
+			    		}
+			    		
+			    		uiEnums.add(new UiEnum(newStringEnum.name(), newStringEnum.getDescription(), 
+			    				orderIndex));
 			    	}
 			    }
 	        }	    
@@ -106,7 +116,13 @@ public class ReflectionUtil
 			LOG.error("Reflection Error", e);
 		}
 		
-		uiEnums.sort((enum1, enum2) -> enum1.getDescription().compareTo(enum2.getDescription()));
+		Comparator<UiEnum> byIndexThenDescription = Comparator
+                .comparingInt(UiEnum::getIndex)
+                .thenComparing(UiEnum::getDescription);
+
+		uiEnums.sort(byIndexThenDescription);
+		
+		//uiEnums.sort((enum1, enum2) -> enum1.getDescription().compareTo(enum2.getDescription()));
 		
 		return uiEnums;
 	}
@@ -178,8 +194,8 @@ public class ReflectionUtil
 			return destinationObject;
 		}
 		
-		Field[] sourceFields = sourceObject.getClass().getDeclaredFields();
-        Field[] destinationFields = destinationObject.getClass().getDeclaredFields();
+		Set<Field> sourceFields = getAllFields(sourceObject.getClass());
+		Set<Field> destinationFields = getAllFields(destinationObject.getClass());
         
         boolean noDataTransfered = true;
 
