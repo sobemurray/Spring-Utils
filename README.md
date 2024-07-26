@@ -18,8 +18,13 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 # Releases
 
-## 1.1.0
+## 1.1.1
 ##### upcoming
+#### FDA-91
+New String Utility method to work with JSON strings
+
+## 1.1.0
+##### 07-19-2024
 #### SU-30
 Moved objects without a dependence on Spring to SJDK
 
