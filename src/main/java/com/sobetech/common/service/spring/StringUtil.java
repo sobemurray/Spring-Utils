@@ -23,6 +23,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.sobetech.common.enums.BooleanFormat;
 
 /**
@@ -625,5 +629,75 @@ public class StringUtil
 		}
 		
 		return stringToParse.substring(startIndex, endIndex);
+	}
+	
+	/**
+	 * Convert any object into a JSON String
+	 * 
+	 * @param object The object to convert to JSON
+	 * @return The object as JSON or as toString if a Jackson issue occurred
+	 */
+	public String toJsonString(Object object)
+	{
+		return toJsonString(object, false);
+	}
+	
+	/**
+	 * Convert any object into a JSON String
+	 * 
+	 * @param object The object to convert to JSON
+	 * @param removeWhitespace Remove whitespace from the resultant JSON
+	 * @return The object as JSON or as toString if a Jackson issue occurred
+	 */
+	public String toJsonString(Object object, boolean removeWhitespace)
+	{
+		ObjectMapper objectMapper = new ObjectMapper();
+		try
+		{
+			String jsonString = objectMapper.writeValueAsString(object);
+			
+			if(removeWhitespace)
+			{
+				return removeJsonWhitespace(jsonString);
+			}
+			
+			return jsonString;
+		}
+		catch(JsonProcessingException e)
+		{
+			LOG.error("A Jackson error occurred converting object to JSON", e);
+		}
+		
+		return object.toString();
+	}
+	
+	/**
+	 * Take a JSON string and remove all whitespace characters for storage or transmission using
+	 * Jackson
+	 * 
+	 * @param jsonString The JSON String to format
+	 * @return The JSON with all whitespace removed. If the input is <code>null</code> then null 
+	 * will be returned. If there was an issue with Jackson performing the formatting then the
+	 * issue will be logged and the original String will be returned
+	 */
+	public String removeJsonWhitespace(String jsonString)
+	{
+		if(jsonString == null)
+		{
+			return null;
+		}
+
+		try
+		{
+			ObjectMapper objectMapper = new ObjectMapper();
+			JsonNode jsonNode = objectMapper.readTree(jsonString);
+		    return objectMapper.writeValueAsString(jsonNode); 
+		}
+		catch(JsonProcessingException e)
+		{
+			LOG.error("An error has occurred processing this JSON:\n" + jsonString, e);
+		}
+		
+	    return jsonString;
 	}
 }
