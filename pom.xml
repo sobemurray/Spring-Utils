@@ -83,7 +83,38 @@
             <scope>provided</scope>
         </dependency>
         
+        <!-- PDF Parser Dependencies (All Test Scope at this time) -->
+        
+        <dependency> 
+		    <groupId>org.apache.pdfbox</groupId>
+		    <artifactId>pdfbox</artifactId>
+		    <version>3.0.2</version>
+            <scope>test</scope>
+		</dependency>
+		
+		<dependency> 
+		    <groupId>com.itextpdf</groupId> 
+		    <artifactId>itextpdf</artifactId> 
+    		<version>5.5.13.4</version>
+            <scope>test</scope>
+		</dependency>
+        
         <!-- Other Dependencies -->
+        
+        <dependency> 
+		    <groupId>org.apache.pdfbox</groupId>
+		    <artifactId>pdfbox</artifactId>
+		    <version>3.0.2</version>
+            <scope>test</scope>
+		</dependency>
+		
+		<dependency> 
+		    <groupId>com.itextpdf</groupId> 
+		    <artifactId>itextpdf</artifactId> 
+    		<version>5.5.13.4</version>
+            <scope>test</scope>
+		</dependency>
+		
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
             <artifactId>swagger-annotations</artifactId>
@@ -95,7 +126,6 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>2.0.13</version>
-            <scope>provided</scope>
         </dependency>
         
         <!-- Since this is going to be in a Spring Data app we can scope as provided -->
