@@ -18,6 +18,11 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 # Releases
 
+## 1.1.2
+##### upcoming
+#### FDI-294
+ReflectionUtil not working in openjdk 21
+
 ## 1.1.1
 ##### 07-26-2024
 #### FDA-91

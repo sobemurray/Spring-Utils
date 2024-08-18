@@ -70,6 +70,12 @@ public class ReflectionUtil
 
 	        // Retrieve all classes from the classpath
 	        Set<Class<? extends StringEnum>> uiEnumClasses = reflections.getSubTypesOf(StringEnum.class);
+	        
+	        if(uiEnumClasses == null || uiEnumClasses.isEmpty())
+	        {
+	        	LOG.error("Could not get any sub-types of StringEnum");
+	        	return uiEnums;
+	        }
 
 	        for (Class<? extends StringEnum> uiEnumClass : uiEnumClasses) 
 	        {
@@ -114,6 +120,11 @@ public class ReflectionUtil
 				| InvocationTargetException  e)
 		{
 			LOG.error("Reflection Error", e);
+		}
+		
+		if(uiEnums.isEmpty())
+		{
+			LOG.error("{} did not return any values", className);
 		}
 		
 		Comparator<UiEnum> byIndexThenDescription = Comparator
