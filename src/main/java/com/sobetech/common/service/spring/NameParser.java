@@ -14,7 +14,8 @@ package com.sobetech.common.service.spring;
 import org.springframework.stereotype.Service;
 
 /**
- * Service to take a string and parse names of people. This should be in a library
+ * Service to take a string and parse names of people. This is not a completely foolproof parser, so
+ * see the documentation of individual methods to see what is and not not possible with this parser
  *
  * @author John Murray
  *
