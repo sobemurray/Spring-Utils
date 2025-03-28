@@ -232,7 +232,7 @@ public class ReflectionUtil
 	                }
 	            	else
 	            	{
-	            		LOG.debug("{}.{} is {}, but {} expected {}", sourceObject.getClass().getSimpleName(), 
+	            		LOG.trace("{}.{} is {}, but {} expected {}", sourceObject.getClass().getSimpleName(), 
 	            				sourceField.getName(), sourceField.getType(),
 	            				destinationObject.getClass().getSimpleName(), destinationField.getType());
 	            	}
