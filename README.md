@@ -19,7 +19,7 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 # Releases
 
 ## 1.1.3
-##### upcoming
+##### 03-29-2025
 #### SU-8
 Added PdfParser as a test case
 #### SU-33
