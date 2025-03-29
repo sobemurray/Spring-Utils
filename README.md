@@ -20,6 +20,8 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 ## 1.1.3
 ##### upcoming
+#### SU-8
+Added PdfParser as a test case
 #### SU-33
 Reduced logging levels for ReflectionUtil
 
