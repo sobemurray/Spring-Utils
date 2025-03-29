@@ -614,14 +614,18 @@ public class StringUtil
 					+ "trailing string");
 		}
 		
-		int startIndex = stringToParse.indexOf(leadingString) + leadingString.length();
+		int startIndex = stringToParse.indexOf(leadingString);
 		
 		if(startIndex == -1)
 		{
 			return "";
 		}
 		
-		int endIndex = stringToParse.indexOf(trailingString);
+		// Since indexOf gets the index at the beginning of leadingString and this is not inclusive,
+		// we need to move the index to the correct location
+		startIndex += leadingString.length();
+		
+		int endIndex = stringToParse.indexOf(trailingString, startIndex);
 		
 		if(startIndex >= endIndex)
 		{
