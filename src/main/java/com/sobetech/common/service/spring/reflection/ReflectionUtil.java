@@ -4,7 +4,7 @@
  *  Copyright © 2024 Sobetech Holdings LLC, All Rights Reserved
  *
  *  This software is supplied under the terms of a license agreement or
- *  nondisclosure agreement with Team Focus / Peak6, or one of its
+ *  nondisclosure agreement with Sobetech Holdings LLC, or one of its
  *  affiliates, and may not be used, disseminated, or distributed except
  *  in accordance with the terms of that agreement.
  *
@@ -232,7 +232,7 @@ public class ReflectionUtil
 	                }
 	            	else
 	            	{
-	            		LOG.debug("{}.{} is {}, but {} expected {}", sourceObject.getClass().getSimpleName(), 
+	            		LOG.trace("{}.{} is {}, but {} expected {}", sourceObject.getClass().getSimpleName(), 
 	            				sourceField.getName(), sourceField.getType(),
 	            				destinationObject.getClass().getSimpleName(), destinationField.getType());
 	            	}
