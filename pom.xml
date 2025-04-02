@@ -186,8 +186,8 @@
 			</plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                 <!-- Or the latest version -->
+                <artifactId>maven-javadoc-plugin</artifactId>    
+    			<version>3.11.2</version>
                 <configuration>
                     <!-- Configuration options -->
         			<doclint>none</doclint>
