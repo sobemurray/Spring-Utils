@@ -25,4 +25,23 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class EntityNotFoundException extends ApiRuntimeException 
 {
 	private static final long serialVersionUID = 1392039531666321901L;
+
+	/**
+	 * A default constructor that will set the error code to ErrorCode.ENTITY_NOT_FOUND
+	 */
+	public EntityNotFoundException()
+	{
+		super(ErrorCode.ENTITY_NOT_FOUND);
+	}
+
+	/**
+	 * A constructor that will set the error code to ErrorCode.ENTITY_NOT_FOUND and a readable
+	 * version of the entity type that will be used in messaging
+	 * 
+	 * @param entityType A readable version of the entity type that will be used in messaging
+	 */
+	public EntityNotFoundException(String entityType)
+	{
+		super(entityType, ErrorCode.ENTITY_NOT_FOUND, new String[] {entityType}, new String[] {entityType});
+	}
 }

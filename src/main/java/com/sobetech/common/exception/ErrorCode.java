@@ -191,6 +191,11 @@ public enum ErrorCode implements CodedEnum, CodedError
 	 * Cannot query with empty criteria
 	 */
 	EMPTY_CRITERIA(2017, HttpStatus.BAD_REQUEST),
+	
+	/**
+	 * Cannot query with empty criteria
+	 */
+	ENTITY_NOT_FOUND(2018, HttpStatus.NOT_FOUND),
 
 	/*
 	 * Application security based errors
