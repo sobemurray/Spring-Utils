@@ -18,8 +18,13 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 # Releases
 
-## 1.1.3
+## 1.1.4
 ##### upcoming
+#### FDI-383
+Improved error handling for entities not being found
+
+## 1.1.3
+##### 03-29-2025
 #### SU-8
 Added PdfParser as a test case
 #### SU-33
