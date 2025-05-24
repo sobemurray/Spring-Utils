@@ -133,7 +133,7 @@ public enum ErrorCode implements CodedEnum, CodedError
 	/**
 	 * The user is invalid. Not to be used for permissions issues
 	 */
-	USER_INVALID(2006, HttpStatus.BAD_REQUEST),
+	USER_INVALID(2006, HttpStatus.FORBIDDEN),
 	
 	/**
 	 * The value of an attribute is invalid. If there is a defined list of values for the attribute, use INVALID_ATTRIBUTE_VALUE
@@ -148,13 +148,13 @@ public enum ErrorCode implements CodedEnum, CodedError
 	/**
 	 * A String that is trying to be translated into an Enum is invalid
 	 */
-	INVALID_ENUM(2009, HttpStatus.BAD_REQUEST),
+	INVALID_ENUM(2009, HttpStatus.UNPROCESSABLE_ENTITY),
 	
 	/**
 	 * The value of an attribute is invalid. This is different from INVALID_ATTRIBUTE, because the attribute in question 
 	 * has a defined list of possible values
 	 */
-	INVALID_ATTRIBUTE_VALUE(2010, HttpStatus.BAD_REQUEST),
+	INVALID_ATTRIBUTE_VALUE(2010, HttpStatus.UNPROCESSABLE_ENTITY),
 
 	/**
 	 * This tenant is not configured and needs to be address before it can use the system. This is not a security issue, but 
@@ -165,7 +165,7 @@ public enum ErrorCode implements CodedEnum, CodedError
 	/**
 	 * The item in question is not in the correct format
 	 */
-	INVALID_FORMAT(2012, HttpStatus.BAD_REQUEST),
+	INVALID_FORMAT(2012, HttpStatus.UNPROCESSABLE_ENTITY),
 	
 	/**
 	 * The year that is being sent is not valid
@@ -190,7 +190,12 @@ public enum ErrorCode implements CodedEnum, CodedError
 	/**
 	 * Cannot query with empty criteria
 	 */
-	EMPTY_CRITERIA(2017, HttpStatus.BAD_REQUEST),
+	EMPTY_CRITERIA(2017, HttpStatus.UNPROCESSABLE_ENTITY),
+	
+	/**
+	 * Cannot query with empty criteria
+	 */
+	ENTITY_NOT_FOUND(2018, HttpStatus.NOT_FOUND),
 
 	/*
 	 * Application security based errors
@@ -210,12 +215,12 @@ public enum ErrorCode implements CodedEnum, CodedError
 	/**
 	 * The token that was sent in the request is of an unknown type
 	 */
-	UNKNOWN_TOKEN_TYPE(3002, HttpStatus.BAD_REQUEST),
+	UNKNOWN_TOKEN_TYPE(3002, HttpStatus.UNPROCESSABLE_ENTITY),
 	
 	/**
 	 * The token that was sent in the request is not the correct type
 	 */
-	MISSMATCHED_TOKEN_TYPE(3003, HttpStatus.BAD_REQUEST),
+	MISSMATCHED_TOKEN_TYPE(3003, HttpStatus.UNPROCESSABLE_ENTITY),
 	
 	/**
 	 * The token sent in the request has expired
@@ -245,7 +250,7 @@ public enum ErrorCode implements CodedEnum, CodedError
 	/**
 	 * A new password request has a mismatch
 	 */
-	PASSWORD_MISMACH(3009, HttpStatus.BAD_REQUEST),
+	PASSWORD_MISMACH(3009, HttpStatus.UNPROCESSABLE_ENTITY),
 
 	/*
 	 * External System based errors
