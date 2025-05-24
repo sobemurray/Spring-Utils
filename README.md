@@ -19,9 +19,11 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 # Releases
 
 ## 1.1.4
-##### upcoming
+##### 05-24-2025
 #### FDI-383
 Improved error handling for entities not being found
+#### FDI-391
+Started using a BOM to consolidate library versions
 
 ## 1.1.3
 ##### 03-29-2025
