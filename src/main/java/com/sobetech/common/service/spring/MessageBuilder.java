@@ -20,8 +20,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.http.ResponseEntity;
 
 import com.sobetech.common.exception.CodedError;
+import com.sobetech.common.exception.ErrorResponse;
 
 /**
  * Get display and resolution messages from properties file and the code of the message find
@@ -45,6 +47,15 @@ public abstract class MessageBuilder
 
 	@Autowired
 	private MessageSource messageSource;
+
+	protected ResponseEntity<ErrorResponse> getResponseByCodedError(CodedError errorCode)
+	{
+		ErrorResponse response = new ErrorResponse(errorCode.getHttpStatus(), errorCode.getCode(), 
+				getMessageString(getDisplayStringKey(errorCode)), 
+				getMessageString(getResolutionStringKey(errorCode)));
+		
+		return new ResponseEntity<>(response, errorCode.getHttpStatus());
+	}
 
 	protected String getDisplayStringKey(CodedError errorCode)
 	{
