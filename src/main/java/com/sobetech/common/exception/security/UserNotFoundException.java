@@ -19,7 +19,7 @@ import com.sobetech.common.exception.CodedError;
 import com.sobetech.common.exception.ExceptionParameterType;
 
 /**
- *
+ * An ApiRuntimeException for when a user was not found
  *
  * @author John Murray
  *
