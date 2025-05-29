@@ -29,6 +29,8 @@ Added abstract class MessageBuilder to read message properties files
 Improved error handling for entities not being found
 #### FDI-391
 Started using a BOM to consolidate library versions
+#### FDI-405
+Added errors for users that already exist
 
 ## 1.1.3
 ##### 03-29-2025
