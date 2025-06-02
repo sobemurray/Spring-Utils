@@ -251,6 +251,16 @@ public enum ErrorCode implements CodedEnum, CodedError
 	 * A new password request has a mismatch
 	 */
 	PASSWORD_MISMACH(3009, HttpStatus.UNPROCESSABLE_ENTITY),
+	
+	/*
+	 * There is a user in the system with this name
+	 */
+	USER_EXISTS_NAME(3010, HttpStatus.UNPROCESSABLE_ENTITY),
+	
+	/**
+	 * There is a user in the system with this email address
+	 */
+	USER_EXISTS_EMAIL(3011, HttpStatus.UNPROCESSABLE_ENTITY),
 
 	/*
 	 * External System based errors

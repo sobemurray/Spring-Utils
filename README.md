@@ -18,12 +18,21 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 # Releases
 
-## 1.1.4
+## 1.1.5
 ##### upcoming
+#### FDI-7
+Ensured correct configuration of JUnit
+#### SU-35
+Added abstract class MessageBuilder to read message properties files
+
+## 1.1.4
+##### 05-24-2025
 #### FDI-383
 Improved error handling for entities not being found
 #### FDI-391
 Started using a BOM to consolidate library versions
+#### FDI-405
+Added errors for users that already exist
 
 ## 1.1.3
 ##### 03-29-2025
