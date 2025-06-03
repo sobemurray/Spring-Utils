@@ -19,7 +19,7 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 # Releases
 
 ## 1.1.5
-##### upcoming
+##### 06-03-2025
 #### FDI-7
 Ensured correct configuration of JUnit
 #### SU-35
