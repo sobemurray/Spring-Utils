@@ -27,6 +27,18 @@ import com.sobetech.common.model.validation.ValidationResult;
 public interface Validator <V extends Validatable>
 {
 	/**
+	 * Check to see if this validator is acceptable for this object. This will default to 
+	 * <code>true</code>
+	 * 
+	 * @param validatableObject The object to check if this Validator is acceptable for this object
+	 * @return <code>true</code> if this Validator is acceptable for this object
+	 */
+	default boolean accept(V validatableObject)
+	{
+		return validatableObject != null;
+	}
+	
+	/**
 	 * Validate an object before it is used by an application. Validation logic will be 
 	 * based on the ValidationOperation requested. This will always return a 
 	 * ValidationResult and never an exception. This will assemble all of the issues
