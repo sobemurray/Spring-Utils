@@ -20,6 +20,8 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 ## 1.1.6
 ##### upcoming
+#### FDI-356
+Expanded the Validator class to be used in a Factory pattern
 
 ## 1.1.5
 ##### 06-03-2025
