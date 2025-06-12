@@ -11,7 +11,8 @@
  */
 package com.sobetech.common.model.validation;
 
-import java.util.ArrayList;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -32,8 +33,8 @@ public class ValidationResult
 	private long objectIdBeingValidated;
 	private String objectTypeBeingValidated;
 	private boolean valid = true;
-	private ArrayList<String> messages;
-	private ArrayList<CodedError> errors;
+	private SortedSet<String> messages;
+	private SortedSet<CodedError> errors;
 	
 	/**
 	 * Construct a new ValidationResult for an object
@@ -108,7 +109,7 @@ public class ValidationResult
 
 		if(this.messages == null)
 		{
-			this.messages = new ArrayList<>();
+			this.messages = new TreeSet<>();
 		}
 
 		return this.messages.add(newMessage);
@@ -129,7 +130,7 @@ public class ValidationResult
 
 		if(this.errors == null)
 		{
-			this.errors = new ArrayList<>();
+			this.errors = new TreeSet<>();
 		}
 
 		this.valid = false;
@@ -242,7 +243,7 @@ public class ValidationResult
 	 *
 	 * @return the messages
 	 */
-	public ArrayList<String> getMessages()
+	public SortedSet<String> getMessages()
 	{
 		return this.messages;
 	}
@@ -253,7 +254,7 @@ public class ValidationResult
 	 * @param messages
 	 *            the messages to set
 	 */
-	public void setMessages(ArrayList<String> messages)
+	public void setMessages(SortedSet<String> messages)
 	{
 		this.messages = messages;
 	}
@@ -263,7 +264,7 @@ public class ValidationResult
 	 *
 	 * @return the errors
 	 */
-	public ArrayList<CodedError> getErrors()
+	public SortedSet<CodedError> getErrors()
 	{
 		return this.errors;
 	}
@@ -273,7 +274,7 @@ public class ValidationResult
 	 *
 	 * @param errors the errors to set
 	 */
-	public void setErrors(ArrayList<CodedError> errors)
+	public void setErrors(SortedSet<CodedError> errors)
 	{
 		this.errors = errors;
 	}

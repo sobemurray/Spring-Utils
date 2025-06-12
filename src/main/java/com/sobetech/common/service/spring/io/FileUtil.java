@@ -94,6 +94,8 @@ public class FileUtil
 	/**
 	 * Open a file and convert each line to a String
 	 * 
+	 * List<String> lines = Files.readAllLines(Path.of("file.txt"));
+	 * 
 	 * @param filePath The fully qualified path of the file to be saved 
 	 * @return The contents of the file as a List of Strings
 	 */

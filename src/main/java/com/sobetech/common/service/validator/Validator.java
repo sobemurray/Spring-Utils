@@ -33,7 +33,7 @@ public interface Validator <V extends Validatable>
 	 * @param validatableObject The object to check if this Validator is acceptable for this object
 	 * @return <code>true</code> if this Validator is acceptable for this object
 	 */
-	default boolean accept(V validatableObject)
+	default boolean accept(final V validatableObject)
 	{
 		return validatableObject != null;
 	}
@@ -48,5 +48,5 @@ public interface Validator <V extends Validatable>
 	 * @param validationOperation The type of operation is being attempted on an object
 	 * @return The result of the validation
 	 */
-	ValidationResult validate(V validatableObject, ValidationOperation validationOperation);
+	ValidationResult validate(final V validatableObject, ValidationOperation validationOperation);
 }

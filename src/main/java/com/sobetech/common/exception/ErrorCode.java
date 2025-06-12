@@ -94,6 +94,11 @@ public enum ErrorCode implements CodedEnum, CodedError
 	 */
 	REFLECTION_ERROR(1001, HttpStatus.INTERNAL_SERVER_ERROR),
 	
+	/**
+	 * A service, typically internal, is not available
+	 */
+	SERVICE_UNAVAILABLE(1002, HttpStatus.INTERNAL_SERVER_ERROR),
+	
 	/*
 	 * General Domain and Entity based errors
 	 * 
