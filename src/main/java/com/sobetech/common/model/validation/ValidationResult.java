@@ -11,6 +11,7 @@
  */
 package com.sobetech.common.model.validation;
 
+import java.util.Comparator;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -130,7 +131,7 @@ public class ValidationResult
 
 		if(this.errors == null)
 		{
-			this.errors = new TreeSet<>();
+			this.errors = new TreeSet<>(Comparator.comparing(CodedError::getCode));
 		}
 
 		this.valid = false;
