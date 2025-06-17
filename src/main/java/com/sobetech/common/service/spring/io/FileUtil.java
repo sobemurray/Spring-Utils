@@ -39,7 +39,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class FileUtil
 {
-	protected final Logger LOG = LoggerFactory.getLogger(this.getClass());
+	private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 	
 	/**
 	 * Gets the file path string for the resources directory of a codebase
@@ -94,7 +94,7 @@ public class FileUtil
 	/**
 	 * Open a file and convert each line to a String
 	 * 
-	 * List<String> lines = Files.readAllLines(Path.of("file.txt"));
+	 * <code>List String  lines = Files.readAllLines(Path.of("file.txt"));</code>
 	 * 
 	 * @param filePath The fully qualified path of the file to be saved 
 	 * @return The contents of the file as a List of Strings

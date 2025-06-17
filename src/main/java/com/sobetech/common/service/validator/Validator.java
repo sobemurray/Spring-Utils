@@ -23,6 +23,8 @@ import com.sobetech.common.model.validation.ValidationResult;
  *
  * @since May 29, 2024
  *
+ * @param <V> The Validatable object to be validated 
+ * 
  */
 public interface Validator <V extends Validatable>
 {

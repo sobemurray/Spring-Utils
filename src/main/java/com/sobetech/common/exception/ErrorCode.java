@@ -257,7 +257,7 @@ public enum ErrorCode implements CodedEnum, CodedError
 	 */
 	PASSWORD_MISMACH(3009, HttpStatus.UNPROCESSABLE_ENTITY),
 	
-	/*
+	/**
 	 * There is a user in the system with this name
 	 */
 	USER_EXISTS_NAME(3010, HttpStatus.UNPROCESSABLE_ENTITY),
@@ -367,6 +367,12 @@ public enum ErrorCode implements CodedEnum, CodedError
 		this.httpStatus = httpStatus;
 	}
 	
+	/**
+	 * Get the first ErrorCode from a HttpStatus, this will be in the 3 digit codes
+	 * 
+	 * @param httpStatus The HttpStatus to convert into a ErrorCode
+	 * @return The ErrorCode from this HttpStatus
+	 */
 	public static ErrorCode fromHttpStatus(HttpStatus httpStatus)
 	{
 		for(ErrorCode errorCode : ErrorCode.values())

@@ -154,7 +154,7 @@ public class ReflectionUtil
 	 * 
 	 * If the returnNullIfEmpty parameter has been set to <code>true</code> this then this will return a null object 
 	 * if nothing was copied from the source to the destination
-	 * @throws ReflectiveOperationException
+	 * @throws ReflectiveOperationException If the reflection fails
 	 */
 	public <O extends Object> O createAndCopyAttributes(Object sourceObject, Class<O> destinationObjectClass,
 			boolean returnNullIfEmpty) throws ReflectiveOperationException
@@ -172,6 +172,7 @@ public class ReflectionUtil
 	/**
 	 * Copy the attributes from one object to another as long as the names and types are identical
 	 * 
+	 * @param <O> The destination object type
 	 * @param sourceObject The object to copy from
 	 * @param destinationObject The object to copy to
 	 * @return The updated destinationObject
@@ -188,6 +189,7 @@ public class ReflectionUtil
 	 * If the sourceObject is <code>null</code> then the destinationObject will be returned
 	 * unchanged
 	 * 
+	 * @param <O> The destination object type
 	 * @param sourceObject The object to copy from
 	 * @param destinationObject The object to copy to
 	 * @param returnNullIfEmpty If <code>true</code> this will return a null object if nothing was copied

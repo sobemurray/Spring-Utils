@@ -31,9 +31,11 @@ import com.sobetech.common.exception.ApiRuntimeException;
 public class NumberUtil
 {
 	/**
-	 *  Take a currency float that may contain fractions of a cent and round it to the nearest cent
-     *  
-     *  @deprecated
+	 * Take a currency float that may contain fractions of a cent and round it to the nearest cent
+	 * 
+	 * @param inputNumber The number to format
+	 * @return The number rounded to 2 decimal points
+	 * @deprecated
 	 */
     @Deprecated
 	public float formatAsCurrency(float inputNumber)

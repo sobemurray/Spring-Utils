@@ -12,6 +12,7 @@
 package com.sobetech.common.exception;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -50,40 +51,85 @@ public class ErrorResponse
 			example = "Not normally included")
 	private final String moreInfo;
 	
+	/**
+	 * Build a ErrorResponse
+	 * 
+	 * @param errorCode The error code to use
+	 */
 	public ErrorResponse(ErrorCode errorCode)
 	{
-		this(HttpStatus.INTERNAL_SERVER_ERROR, errorCode);
+		this(errorCode.getHttpStatus(), errorCode);
 	}
 	
+	/**
+	 * Build a ErrorResponse
+	 * 
+	 * @param status The HttpStatus to use in the response
+	 * @param errorCode The error code to use
+	 */
 	public ErrorResponse(HttpStatus status, ErrorCode errorCode)
 	{
 		this(status, errorCode.getCode(), null, null);
 	}
 	
+	/**
+	 * Build a generic ErrorResponse from an Exception
+	 * 
+	 * @param ex The Exception to display
+	 */
 	public ErrorResponse(Exception ex)
 	{
 		this(HttpStatus.INTERNAL_SERVER_ERROR, ErrorCode.SYSTEM_ERROR.getCode(), ex.getMessage(), null);
 	}
 	
+	/**
+	 * Build a ErrorResponse
+	 * 
+	 * @param status The HttpStatus to use in the response
+	 * @param errorCode The error code number to use
+	 */
 	public ErrorResponse(HttpStatus status, int errorCode)
 	{
 		this(status, errorCode, null, null);
 	}
 	
+	/**
+	 * Build a ErrorResponse
+	 * 
+	 * @param status The HttpStatus to use in the response
+	 * @param errorCode The error code number to use
+	 * @param errorDisplay The display message of the error
+	 * @param errorResolution The resolution message of the error
+	 */
 	public ErrorResponse(HttpStatus status, int errorCode, String errorDisplay, String errorResolution)
 	{
 		this(status, errorCode, errorDisplay, errorResolution, null);
 	}
 	
-	/*
-	 * Not available until Spring 6.0
+	/**
+	 * Build a ErrorResponse
+	 * 
+	 * @param statusCode The HttpStatusCode to use in the response
+	 * @param errorCode The error code number to use
+	 * @param errorDisplay The display message of the error
+	 * @param errorResolution The resolution message of the error
+	 */
 	public ErrorResponse(HttpStatusCode statusCode, int errorCode, String errorDisplay, String errorResolution)
 	{
 		this(HttpStatus.valueOf(statusCode.value()), errorCode, errorDisplay, errorResolution, null);
 	}
-	*/
 	
-	public ErrorResponse(HttpStatus status, int errorCode, String errorDisplay, String errorResolution, String moreInfo)
+	/**
+	 * Build a ErrorResponse
+	 * 
+	 * @param status The HttpStatus to use in the response
+	 * @param errorCode The error code number to use
+	 * @param errorDisplay The display message of the error
+	 * @param errorResolution The resolution message of the error
+	 * @param moreInfo Any additional information provided in the response
+	 */
+	public ErrorResponse(HttpStatus status, int errorCode, String errorDisplay, String errorResolution, 
+			String moreInfo)
 	{
 		if(status == null)
 		{
@@ -97,43 +143,52 @@ public class ErrorResponse
 	}
 
 	/**
+	 * Getter for attribute httpStatus
+	 *
 	 * @return the httpStatus
 	 */
-	public int getHttpStatus() 
+	public int getHttpStatus()
 	{
-		return httpStatus;
+		return this.httpStatus;
 	}
 
 	/**
+	 * Getter for attribute errorCode
+	 *
 	 * @return the errorCode
 	 */
-	public int getErrorCode() 
+	public int getErrorCode()
 	{
-		return errorCode;
+		return this.errorCode;
 	}
 
 	/**
+	 * Getter for attribute errorDisplay
+	 *
 	 * @return the errorDisplay
 	 */
-	public String getErrorDisplay() 
+	public String getErrorDisplay()
 	{
-		return errorDisplay;
+		return this.errorDisplay;
 	}
 
 	/**
+	 * Getter for attribute errorResolution
+	 *
 	 * @return the errorResolution
 	 */
-	public String getErrorResolution() 
+	public String getErrorResolution()
 	{
-		return errorResolution;
+		return this.errorResolution;
 	}
 
 	/**
+	 * Getter for attribute moreInfo
+	 *
 	 * @return the moreInfo
 	 */
-	public String getMoreInfo() 
+	public String getMoreInfo()
 	{
-		return moreInfo;
+		return this.moreInfo;
 	}
-
 }
