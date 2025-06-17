@@ -52,18 +52,21 @@ public class TimeoutUtility
 
 	/**
 	 * Get a new wait time based on the previous wait time returned. If the next wait time is greater
-	 * than the maximum, then the previous wait time is returned
+	 * than the maximum, then the maximum wait time is returned
 	 * 
 	 * @return The new wait time
 	 */
 	public int getWaitTime()
 	{
+		n3 = n1 + n2;
 		if(n3 < max)
 		{
-			n3 = n1 + n2;
 			n1 = n2;
 			n2 = n3;
+			return n3;
 		}
-		return n3;
+		
+		// We've reached the max
+		return max;
 	}
 }
