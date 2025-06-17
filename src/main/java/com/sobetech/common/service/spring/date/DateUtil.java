@@ -16,6 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
+import static java.util.Calendar.MINUTE;
 import java.util.Date;
 import java.util.logging.Logger;
 
@@ -168,10 +169,7 @@ public class DateUtil
      */
     public Date addMinute(Date inDate)
     {
-        long lTime = inDate.getTime();
-        lTime += 60000;
-        inDate.setTime(lTime);
-        return inDate;
+        return addMinutes(inDate, 1);
     }
 
     /**
@@ -184,11 +182,11 @@ public class DateUtil
      */
     public Date addMinutes(Date inDate, int minutes)
     {
-        for(int i = 0; i < minutes; i++)
-        {
-            inDate = addMinute(inDate);
-        }
-        return inDate;
+    	if (inDate == null) return null;
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(inDate);
+        cal.add(MINUTE, minutes);
+        return cal.getTime();
     }
 
     /**

@@ -67,7 +67,7 @@ public class StringUtil
 	{
 		if(string == null)
 		{
-			return true;
+			return false;
 		}
 		
 		return !isNullOrBlank(string);
@@ -538,7 +538,7 @@ public class StringUtil
         
         if (pattern == null )
         {
-            pattern = "#,##0,###.##;-#,##0,###.#0";
+            pattern = "#,##0.00;-#,##0.00";
         }
 
         return new DecimalFormat(pattern).format(number);
