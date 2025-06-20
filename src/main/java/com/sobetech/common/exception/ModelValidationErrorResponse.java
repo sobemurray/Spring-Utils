@@ -31,10 +31,18 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @JsonInclude(Include.NON_NULL)
 public class ModelValidationErrorResponse extends ErrorResponse
 {
-
 	@Schema(description = "List containing strings of failed model valdiations")
 	private final List<String> validationErrorList;
 	
+	/**
+	 * Build a ModelValidationErrorResponse error response object
+	 * 
+	 * @param status The HttpStatus of the response
+	 * @param errorCode The error code to send
+	 * @param errorDisplay The display message of the error
+	 * @param errorResolution The resolution message of the error
+	 * @param validations Any validations that did not pass
+	 */
 	public ModelValidationErrorResponse(HttpStatus status, int errorCode, String errorDisplay, String errorResolution,
 			List<String> validations)
 	{

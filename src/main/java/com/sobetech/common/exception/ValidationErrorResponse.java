@@ -31,6 +31,11 @@ public class ValidationErrorResponse extends ErrorResponse
 	
 	private final Collection<CodedError> childErrors;
 	
+	/**
+	 * Build a ValidationErrorResponse from a ValidationResult
+	 * 
+	 * @param validationResult The ValidationResult to send as a response
+	 */
 	public ValidationErrorResponse(ValidationResult validationResult)
 	{
 		super(HttpStatus.UNPROCESSABLE_ENTITY, ErrorCode.MALFORMED_ENITIY.getCode(), 

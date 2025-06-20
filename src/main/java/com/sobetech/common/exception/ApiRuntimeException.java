@@ -20,11 +20,6 @@ package com.sobetech.common.exception;
  */
 public class ApiRuntimeException extends RuntimeException 
 {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -46660060574162151L;
-	
 	private String message;
 	
 	private CodedError codedError;

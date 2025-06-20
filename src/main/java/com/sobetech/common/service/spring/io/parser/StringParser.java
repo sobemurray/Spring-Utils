@@ -24,10 +24,23 @@ import java.util.regex.Pattern;
  */
 public abstract class StringParser
 {
+	/**
+	 * The RegEx pattern for integers
+	 */
     protected static Pattern intPattern = Pattern.compile("[-]?\\d+");
     
+    /**
+     * The RegEx Matcher for integers
+     */
     protected static Matcher intMatcher = intPattern.matcher("");
     
+    /**
+     * Get an int from a String if it has one
+     * 
+     * @param inputString The String to search
+     * @return The first int in the String if it was found otherwise an IllegalArgumentException
+     * is thrown
+     */
     protected int getIntFromString(String inputString)
     {
         intMatcher.reset(inputString);

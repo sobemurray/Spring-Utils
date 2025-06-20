@@ -380,6 +380,20 @@ public class NameParser
 		return !getInitialedFirstName(nameString).isBlank();
 	}
 
+	/**
+	 * From a name String, get the last name if the name has 2 parts. These are the known leading
+	 * parts of a 2 part last name:
+	 * 
+	 * AH
+	 * ST
+	 * VAN
+	 * VANDEN
+	 * VANDER
+	 * VON
+	 * 
+	 * @param nameString The String to parse
+	 * @return The last name if it has 2 parts, otherwise an empty String
+	 */
 	public String getTwoPartLastName(String nameString)
 	{
 		if(nameString == null)
