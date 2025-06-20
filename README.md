@@ -18,8 +18,13 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 # Releases
 
-## 1.1.6
+## 1.1.7
 ##### upcoming
+#### FDI-173
+Added new ErrorCode for when a service is not available
+
+## 1.1.6
+##### 06-07-2025
 #### FDI-356
 Expanded the Validator class to be used in a Factory pattern
 

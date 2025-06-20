@@ -14,8 +14,8 @@ package com.sobetech.common.service.spring.date;
 import org.springframework.stereotype.Service;
 
 /**
- * This class generates fibonacci series for timeout wait, every iteration
- * returns next fibonacci number until max is reached.
+ * This class generates Fibonacci series for timeout wait, every iteration
+ * returns next Fibonacci number until max is reached.
  * 
  * The use case for this is when you are polling for a response from a remote system and want to start
  * polling on a rapid basis and to increase the wait time as the polling continues. That accounts for 
@@ -52,18 +52,21 @@ public class TimeoutUtility
 
 	/**
 	 * Get a new wait time based on the previous wait time returned. If the next wait time is greater
-	 * than the maximum, then the previous wait time is returned
+	 * than the maximum, then the maximum wait time is returned
 	 * 
 	 * @return The new wait time
 	 */
 	public int getWaitTime()
 	{
+		n3 = n1 + n2;
 		if(n3 < max)
 		{
-			n3 = n1 + n2;
 			n1 = n2;
 			n2 = n3;
+			return n3;
 		}
-		return n3;
+		
+		// We've reached the max
+		return max;
 	}
 }

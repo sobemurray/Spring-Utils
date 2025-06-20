@@ -23,8 +23,16 @@ import com.sobetech.common.model.validation.ValidationResult;
  */
 public class EntityInvalidException extends ApiRuntimeException
 {
+	/**
+	 * The ValidationResult that caused this exception
+	 */
 	private final ValidationResult validationResult;
 	
+	/**
+	 * Build a EntityInvalidException from a ValidationResult
+	 * 
+	 * @param validationResult The ValidationResult to set for this exception
+	 */
 	public EntityInvalidException(ValidationResult validationResult)
 	{
 		super(ErrorCode.MALFORMED_ENITIY);

@@ -14,6 +14,7 @@ package com.sobetech.common.service.spring;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -208,4 +209,74 @@ public class NameParserTest
 		assertFalse(nameParser.hasSuffix(janMichaelVincent), "hasSuffix for " + janMichaelVincent + " should return false");
 		assertFalse(nameParser.hasSuffix(michaelFWilbon), "hasSuffix for " + michaelFWilbon + " should return false");
 	}
+	
+	@Test
+    void testGetFirstName_nullInput() {
+        assertNull(nameParser.getFirstName(null));
+    }
+
+    @Test
+    void testGetFirstName_blankInput() {
+        assertEquals("", nameParser.getFirstName(""));
+        assertEquals("", nameParser.getFirstName("   "));
+    }
+
+    @Test
+    void testGetFirstName_singleName() {
+        assertEquals("Madonna", nameParser.getFirstName("Madonna"));
+    }
+
+    @Test
+    void testGetFirstName_basicTwoPartName() {
+        assertEquals("John", nameParser.getFirstName("John Smith"));
+    }
+
+    @Test
+    void testGetFirstName_withSuffix() {
+        assertEquals("John", nameParser.getFirstName("John Smith Jr."));
+    }
+
+    @Test
+    void testGetFirstName_withMiddleInitial() {
+        assertEquals("John", nameParser.getFirstName("John A. Smith"));
+    }
+
+    @Test
+    void testGetFirstName_withCommonMiddleName() {
+        assertEquals("John", nameParser.getFirstName("John Michael Smith"));
+        assertEquals("Jane", nameParser.getFirstName("Jane Lee Doe"));
+    }
+
+    @Test
+    void testGetFirstName_withTwoPartLastName() {
+        assertEquals("John", nameParser.getFirstName("John Van Ness"));
+        assertEquals("Jane", nameParser.getFirstName("Jane Von Trapp"));
+    }
+
+    @Test
+    void testGetFirstName_withInitialedFirstName() {
+        assertEquals("J. J.", nameParser.getFirstName("J. J. Abrams"));
+        assertEquals("A. B.", nameParser.getFirstName("A. B. Carter"));
+    }
+
+    @Test
+    void testGetFirstName_unrecognizedThreePartName() {
+        assertEquals("", nameParser.getFirstName("Alpha Beta Gamma")); // not handled
+    }
+
+    @Test
+    void testGetFirstName_trailingSpaces() {
+        assertEquals("John", nameParser.getFirstName("   John Smith  "));
+    }
+
+    @Test
+    void testGetFirstName_suffixWithDotOrNoDot() {
+        assertEquals("John", nameParser.getFirstName("John Smith SR."));
+        assertEquals("John", nameParser.getFirstName("John Smith II"));
+    }
+
+    @Test
+    void testGetFirstName_middleInitialWithoutDot() {
+        assertEquals("Jane", nameParser.getFirstName("Jane M Doe"));
+    }
 }

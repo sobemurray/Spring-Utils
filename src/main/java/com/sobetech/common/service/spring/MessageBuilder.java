@@ -48,6 +48,12 @@ public abstract class MessageBuilder
 	@Autowired
 	private MessageSource messageSource;
 
+	/**
+	 * Build a ResponseEntity from a CodedError
+	 * 
+	 * @param errorCode The CodedError to build the response from
+	 * @return The ResponseEntity populated from the CodedError
+	 */
 	protected ResponseEntity<ErrorResponse> getResponseByCodedError(CodedError errorCode)
 	{
 		ErrorResponse response = new ErrorResponse(errorCode.getHttpStatus(), errorCode.getCode(), 
@@ -57,6 +63,12 @@ public abstract class MessageBuilder
 		return new ResponseEntity<>(response, errorCode.getHttpStatus());
 	}
 
+	/**
+	 * Get the full display key for the messages properties from a CodedError
+	 * 
+	 * @param errorCode The CodedError to build the key
+	 * @return The DisplayStringKey from the CodedError
+	 */
 	protected String getDisplayStringKey(CodedError errorCode)
 	{
 		if(errorCode == null)
@@ -67,6 +79,12 @@ public abstract class MessageBuilder
 		return i18nDisplayKey + errorCode.getCode();
 	}
 	
+	/**
+	 * Get the full resolution key for the messages properties from a CodedError
+	 * 
+	 * @param errorCode The CodedError to build the key
+	 * @return The ResolutionStringKey from the CodedError
+	 */
 	protected String getResolutionStringKey(CodedError errorCode)
 	{
 		if(errorCode == null)
@@ -77,16 +95,40 @@ public abstract class MessageBuilder
 		return i18nResolutionKey + errorCode.getCode();
 	}
 	
+	/**
+	 * Build a message String from the key and the arguments to substitute in from the properties 
+	 * file
+	 * 
+	 * @param messageKey The message key
+	 * @return The message String
+	 */
 	protected String getMessageString(String messageKey)
 	{
 		return getMessageString(messageKey, null, UNKNOWN_MESSAGE);
 	}
 	
+	/**
+	 * Build a message String from the key and the arguments to substitute in from the properties 
+	 * file
+	 * 
+	 * @param messageKey The message key
+	 * @param arguments The arguments to substitute in
+	 * @return The message String
+	 */
 	protected String getMessageString(String messageKey, Object[] arguments)
 	{
 		return getMessageString(messageKey, arguments, UNKNOWN_MESSAGE);
 	}
 	
+	/**
+	 * Build a message String from the key and the arguments to substitute in from the properties 
+	 * file
+	 * 
+	 * @param messageKey The message key
+	 * @param arguments The arguments to substitute in
+	 * @param defaultValue The value to return if any issued occurred in building the message
+	 * @return The message String
+	 */
 	protected String getMessageString(String messageKey, Object[] arguments, String defaultValue)
 	{
 		try
@@ -106,6 +148,12 @@ public abstract class MessageBuilder
 		return defaultValue;
 	}
 	
+	/**
+	 * Get the name of the attribute that was bad
+	 * 
+	 * @param pathReference The path reference
+	 * @return The name of the attribute that was bad 
+	 */
 	protected String getBadAttribute(String pathReference)
 	{
 		int startIndex = pathReference.indexOf("[\"") + 2;
