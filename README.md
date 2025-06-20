@@ -20,6 +20,8 @@ Spring Beans that would be useful in any Spring project. This will replace SDJK,
 
 ## 1.1.7
 ##### upcoming
+#### SU-33
+Improved JUnit test coverage
 #### FDI-173
 Added new ErrorCode for when a service is not available
 
